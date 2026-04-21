@@ -12,6 +12,17 @@
    KEY_SECRET is NEVER present in this file.
    =================================================================== */
 
+/* ── Normalize phone to E.164 (+91XXXXXXXXXX for India) ─────────── */
+function formatPhone(raw) {
+  const digits = raw.replace(/[\s\-\+]/g, '');
+  // Already has country code
+  if (digits.length === 12 && digits.startsWith('91')) return '+' + digits;
+  if (digits.length === 13 && digits.startsWith('091')) return '+91' + digits.slice(3);
+  // 10-digit Indian number
+  if (digits.length === 10) return '+91' + digits;
+  return '+' + digits; // fallback
+}
+
 async function handleEnrollAndPay(event) {
   event.preventDefault();
 
@@ -96,7 +107,13 @@ async function handleEnrollAndPay(event) {
     prefill: {
       name,
       email,
-      contact: phone,
+      contact: formatPhone(phone),
+    },
+    config: {
+      display: {
+        hide: [{ method: 'paylater' }],
+        preferences: { show_default_blocks: true },
+      },
     },
     notes: {
       course: courseName,
@@ -354,7 +371,13 @@ function openCourseCheckout(courseName, amount) {
       name: 'AI Freedom Institute',
       description: courseName,
       order_id: orderData.order_id,
-      prefill: { name, email, contact: phone },
+      prefill: { name, email, contact: formatPhone(phone) },
+      config: {
+        display: {
+          hide: [{ method: 'paylater' }],
+          preferences: { show_default_blocks: true },
+        },
+      },
       notes: { course: courseName },
       theme: { color: '#6A11CB' },
 
