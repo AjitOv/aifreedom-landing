@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://aifreedom.in/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://aifreedom.in/assets/images/og-image.png</image:loc>
+      <image:title>AI Freedom Institute — AI Training &amp; Workshops</image:title>
+    </image:image>
+  </url>
+
+  <!-- Schools Page -->
+  <url>
+    <loc>https://aifreedom.in/schools</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://aifreedom.in/assets/images/workshop.png</image:loc>
+      <image:title>AI Workshop for Schools &amp; Colleges</image:title>
+    </image:image>
+  </url>
+
+  <!-- Corporate Page -->
+  <url>
+    <loc>https://aifreedom.in/corporate</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Individuals Page -->
+  <url>
+    <loc>https://aifreedom.in/individuals</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Business Page -->
+  <url>
+    <loc>https://aifreedom.in/business</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://aifreedom.in/contact</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Course Hub -->
+  <url>
+    <loc>https://aifreedom.in/Course</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Course Player -->
+  <url>
+    <loc>https://aifreedom.in/course-player</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- LLM Content Files -->
+  <url>
+    <loc>https://aifreedom.in/llms.txt</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/llms-full.txt</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/knowledge.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Markdown Mirrors -->
+  <url>
+    <loc>https://aifreedom.in/md/home.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/md/schools.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/md/corporate.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/md/individuals.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/md/business.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aifreedom.in/md/contact.md</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

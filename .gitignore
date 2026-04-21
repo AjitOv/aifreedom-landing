@@ -1,0 +1,19 @@
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & credentials
+*.pickle
+client_secret*.json
+.env
+.env.*
+
+# Node
+node_modules/
+
+# IDE
+.vscode/
+.idea/

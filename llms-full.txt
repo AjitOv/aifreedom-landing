@@ -1,0 +1,359 @@
+# AI Freedom Institute — Complete Site Content
+
+> Empowering Students with AI Skills for the Future
+
+Website: https://aifreedom.in
+Contact: +91 8007280721 | info@aifreedom.in | WhatsApp: https://wa.me/918007280721
+
+---
+
+## 🏠 Home Page (/)
+
+### AI Training & Workshops for Schools, Corporate & Individuals
+
+Learn, Create and Grow with AI. We deliver practical, hands-on AI education that transforms how you work, learn, and build.
+
+- **Primary CTA**: Book Free Demo
+- **Secondary CTA**: Explore Programs
+- **Trust Line**: Trusted by Leading Institutions — Empowering the next generation of innovators
+
+### Key Statistics (Home)
+- 500+ Students Trained
+- 50+ Workshops Done
+- 4 Programs
+- 98% Satisfaction Rate
+
+### 4 Program Funnels
+
+1. **Schools** — AI Awareness Workshops for students & teachers → /schools
+2. **Corporate** — AI Productivity & Automation for teams → /corporate
+3. **Individuals** — Learn AI Skills — No Coding Required → /individuals
+4. **Business Owners** — Use AI to Grow Your Business Faster → /business
+
+### What Makes Us Different
+1. **100% Practical** — No boring PowerPoints. Live AI demonstrations and hands-on activities.
+2. **Customized Content** — Every workshop is tailored to the audience.
+3. **Immediate Results** — Participants start using AI tools from Day 1.
+4. **Expert Led** — 15+ years of experience in AI and technology.
+5. **Post-Workshop Support** — Continued guidance and resources after the workshop.
+6. **Affordable & Scalable** — Programs designed for all budget levels.
+
+### Industry Statistics
+- 85% of jobs will be AI-impacted by 2030
+- 97% of students lack AI skills
+- 3x productivity boost with AI
+- 1 hour to get started
+
+### Testimonials (Home)
+- "The AI workshop was absolutely transformative for our students." — Principal, Leading School, Maharashtra
+- "Our team saved 2-3 hours daily after implementing the AI tools." — HR Manager, IT Company, Pune
+- "I started freelancing with AI tools right after the course. Within 2 months, ₹30K+/month." — Saurabh K., Individual Learner
+
+---
+
+## 🏫 Schools Page (/schools)
+
+### Prepare Your Students for the AI Future in Just 1 Hour
+
+Interactive AI Awareness Workshop — practical, engaging & future-ready. Give your students the skills that matter most in tomorrow's world.
+
+- **Primary CTA**: Book Free Demo Session
+- **Secondary CTA**: Watch Demo
+- **Trust Line**: Trusted by Leading Schools
+
+### The Challenge: Are Your Students Ready for the AI Era?
+
+1. **AI is Transforming Every Career** — Students without AI literacy risk falling behind.
+2. **Students Consume Tech, But Don't Create** — They lack skills to harness tech as creators.
+3. **Traditional Education Lacks AI Exposure** — Critical gap in student readiness.
+
+### Statistics (Schools)
+- 85% of jobs AI-impacted by 2030
+- 97% of students lack AI skills
+- 60% of current jobs didn't exist 20 years ago
+- 1 hour is all it takes to start
+
+### What Students Learn
+1. **Generate AI Images** — Create stunning visuals from text descriptions.
+2. **Create Videos in Seconds** — Transform ideas into professional videos.
+3. **Build Websites Without Coding** — AI builds websites from simple instructions.
+4. **Understand App Creation** — See the process from idea to prototype.
+5. **Create Music with AI** — AI-generated music and sounds.
+6. **AI for Studies & Careers** — Enhance academic performance, explore AI careers.
+
+### Workshop Flow (60 Minutes)
+| Step | Title | Description |
+|------|-------|-------------|
+| 01 | AI Basics | Introduction to AI concepts in simple, engaging language |
+| 02 | Live Demo | Real-time AI tool demonstrations that amaze and inspire |
+| 03 | Student Interaction | Hands-on activities where students try AI tools |
+| 04 | Career Guidance | Future career paths and opportunities in the AI era |
+
+> "From curiosity to clarity in just 60 minutes"
+
+### Student Testimonials
+- "I never knew AI could do so many things! The image generation part blew my mind." — Student, Class 10, Pune
+- "This workshop was amazing! I built a website using AI in just 2 minutes." — Student, Class 12, Mumbai
+- "Our students were engaged from start to finish. Aligned perfectly with NEP 2020." — Principal, CBSE School
+
+### Benefits for Schools
+1. **Enhances School Reputation** — Position as innovative, future-ready institution
+2. **Future-Ready Students** — Equip with skills for tomorrow's workplace
+3. **High Engagement** — Interactive format keeps students excited
+4. **Practical Exposure** — Hands-on experience with real-world AI tools
+5. **NEP 2020 Goals** — Supports digital education transformation
+6. **Easy to Schedule** — Just 1 hour, fits any school schedule
+
+### Lead Form (Schools)
+- Name (required)
+- Phone (required)
+- School / College Name
+
+---
+
+## 🏢 Corporate Page (/corporate)
+
+### Save 2–3 Hours Daily Using AI
+
+AI Productivity Workshop for Teams — automate repetitive tasks, boost output, and transform how your team works. Practical, hands-on, results-driven.
+
+- **Primary CTA**: Book Corporate Demo
+- **Secondary CTA**: See Curriculum
+- **Trust Line**: Trusted by Leading Companies — ROI visible within the first week
+
+### The Problem: Your Team is Losing Hours Every Day
+
+1. **Hours Wasted on Manual Tasks** — Writing emails, creating reports, scheduling — tasks AI handles in seconds.
+2. **Slow Content & Report Creation** — Teams spend days on work AI can do in minutes.
+3. **Repetitive Workflows** — No automation means no scale.
+
+### Statistics (Corporate)
+- 2-3 hours saved daily per person
+- 3x productivity boost
+- 10x faster content creation
+- 1 week to see ROI
+
+### Workshop Curriculum
+1. **Email Automation** — Write professional emails 10x faster.
+2. **Reports & Presentations** — Generate data reports and pitch decks in minutes.
+3. **Content Creation** — Blog posts, social media, marketing copy at scale.
+4. **Meeting & Task Management** — AI-powered meeting notes and project tracking.
+5. **Research & Analysis** — Market research and competitor analysis in minutes.
+6. **Workflow Automation** — Automate repetitive processes across departments.
+
+### Why Companies Choose Us
+1. **Save Massive Time** — 2-3 hours saved per person, per day. 50+ hours per team per month.
+2. **Increase Output** — 3x more output without burning out your team.
+3. **Stay Competitive** — Companies using AI outperform those that don't.
+4. **Customized for Your Team** — Tailored to your industry and use cases.
+5. **Zero Disruption** — 1-2 hour sessions that fit around work schedules.
+6. **Post-Training Support** — 30-day support after the workshop.
+
+### Process
+| Step | Title | Description |
+|------|-------|-------------|
+| 01 | Discovery Call | Understand your team's challenges and customize |
+| 02 | Live Workshop | Interactive, hands-on session with real AI tools |
+| 03 | Implementation | Team starts using AI tools with playbooks |
+| 04 | Follow-Up Support | 30-day support for adoption and questions |
+
+### Lead Form (Corporate)
+- Name (required)
+- Phone (required)
+- Company Name
+
+---
+
+## 👤 Individuals Page (/individuals)
+
+### Learn AI Skills That Give You an Advantage
+
+Beginner-friendly, no coding needed. Master AI tools that help you create, earn, and grow in your career — all with step-by-step guidance.
+
+- **Primary CTA**: Enroll Now
+- **Secondary CTA**: See What You'll Learn
+- **Trust Line**: Join 5,000+ Learners — No coding background required
+
+### Why Learn AI Now
+- 85% of jobs will need AI skills by 2030
+- 40% higher salary for AI-skilled workers
+- 10x faster content creation with AI
+- Zero coding knowledge required
+
+### AI Skills Taught
+1. **AI Image Generation** — Midjourney, DALL-E for visuals, logos, product images.
+2. **AI Video Creation** — Professional videos, reels, presentations in minutes.
+3. **AI Content Writing** — Blogs, social media, emails, marketing copy 10x faster.
+4. **AI Website Building** — Build complete websites, no coding.
+5. **ChatGPT & AI Tools Mastery** — Prompt engineering for 10x better AI output.
+6. **AI Freelancing & Earning** — Monetize AI skills through freelancing and services.
+
+### Who Is This For
+- ✓ College students wanting an edge
+- ✓ Working professionals upskilling
+- ✓ Freelancers adding AI services
+- ✓ Career changers entering AI
+- ✓ Content creators scaling output
+- ✓ Anyone curious about AI
+
+### Learning Path
+| Step | Title | Description |
+|------|-------|-------------|
+| 01 | Watch Free Intro | Get a taste of what AI can do — completely free |
+| 02 | Enroll in Course | Choose the course that fits your goals and budget |
+| 03 | Learn & Practice | Step-by-step lessons with hands-on projects |
+| 04 | Start Earning | Apply your skills to freelance, create, or land a job |
+
+### Success Stories
+- "I started with zero knowledge and now earning ₹30K/month creating AI content." — Rahul S., Freelancer, Pune
+- "The course is so simple and practical. I use AI everyday now." — Priya K., Student, Mumbai
+- "I was scared of AI but this course made it so easy." — Amit T., Professional, Bangalore
+
+### Available Courses
+- AI Basics — Zero to Hero (₹499)
+- AI Prompt Engineering (₹699)
+- AI Se Kamao — Earn with AI (₹2,999)
+- AI Freelancing Masterclass (₹1,499)
+- AI Trading Mastery (₹2,999)
+
+### Lead Form (Individuals)
+- Name (required)
+- Phone (required)
+- Course Interest (dropdown)
+
+---
+
+## 💼 Business Page (/business)
+
+### Use AI to Grow Your Business Faster
+
+AI-powered marketing, content creation, lead generation & business automation. Stop doing everything manually — let AI supercharge your growth.
+
+- **Primary CTA**: Book Strategy Call
+- **Secondary CTA**: See AI Solutions
+- **Trust Line**: For Smart Business Owners — Scale without scaling costs
+
+### The Challenge: Everything Is Manual
+
+1. **Marketing Takes Too Long** — Social media, ads, content creation is exhausting and slow.
+2. **Leads Aren't Converting** — Without smart follow-ups and personalization, losing customers daily.
+3. **Operations Are Inefficient** — Repetitive tasks and lack of automation eat into profits.
+
+### Statistics (Business)
+- 10x faster content creation
+- 50% reduction in marketing cost
+- 3x more leads generated
+- 70% of tasks automatable with AI
+
+### AI Solutions for Business
+1. **Marketing Automation** — AI-generated social media, ad copy, email campaigns on autopilot.
+2. **Content Creation** — Blog posts, product descriptions, website copy in minutes.
+3. **Lead Generation** — AI-powered lead magnets, chatbots, and funnels 24/7.
+4. **Customer Support AI** — Chatbots that handle queries without hiring staff.
+5. **Business Intelligence** — AI analytics, competitor monitoring, market insights.
+6. **Operations Automation** — Automate invoicing, scheduling, reporting.
+
+### Benefits for Business Owners
+1. **Reduce Costs** — Save ₹50K-₹2L per month on operations.
+2. **Increase Revenue** — More leads, better marketing, faster content = more sales.
+3. **Save Massive Time** — Automate 70% of repetitive tasks.
+4. **Scale Without Scaling Costs** — Grow output 10x without proportional expenses.
+5. **Stay Ahead of Competition** — Businesses using AI outperform those that don't.
+6. **Hands-On Guidance** — We help implement AI in your specific business context.
+
+### Process
+| Step | Title | Description |
+|------|-------|-------------|
+| 01 | Strategy Call | Understand your business, challenges, and goals |
+| 02 | AI Audit | Identify which tasks can be automated with AI |
+| 03 | Implementation | Set up AI tools and train your team |
+| 04 | Growth & Support | Ongoing support to optimize and scale |
+
+### Business Testimonials
+- "Marketing costs dropped by 60% and leads increased by 3x." — Vikram M., E-commerce Owner
+- "I used to spend ₹50K/month on content. Now AI does it for free." — Neha P., Restaurant Chain Owner
+- "AI chatbot handles 80% of customer queries automatically." — Deepak R., Service Business Owner
+
+### Lead Form (Business)
+- Name (required)
+- Phone (required)
+- Business Type
+
+---
+
+## 📞 Contact Page (/contact)
+
+### Let's Talk About AI
+
+Book a free demo, ask questions, or discuss how AI can help you. We're here to help.
+
+### Contact Channels
+- **Phone**: +91 8007280721
+- **Email**: info@aifreedom.in
+- **WhatsApp**: https://wa.me/918007280721
+- **Website**: https://aifreedom.in
+- **Response Time**: 2-4 hours during business hours (9 AM – 9 PM IST)
+
+### Contact Form Fields
+- Name (required)
+- Phone (required)
+- Email (optional)
+- Interest (dropdown: School Workshop, Corporate Training, Individual Course, Business AI Solutions, Other)
+- Message (optional)
+
+---
+
+## 📚 Course Hub (/Course)
+
+OTT-style course catalog with AI courses:
+- AI Basics — Zero to Hero (₹499)
+- AI Prompt Engineering (₹699)
+- AI Se Kamao — Earn with AI (₹2,999)
+- AI Freelancing Masterclass (₹1,499)
+- AI Trading Mastery (₹2,999)
+
+---
+
+## FAQ
+
+### What is the AI Awareness Workshop?
+A 1-hour interactive session for school and college students covering AI basics, live demonstrations, hands-on activities, and career guidance.
+
+### How long is the workshop?
+60 minutes standard. Extended versions (90 min or half-day) available on request.
+
+### What do students learn?
+AI image generation, video creation, website building, app creation, music generation, and AI career guidance.
+
+### Is the demo session free?
+Yes, limited free demo sessions are available each month. Contact: +91 8007280721.
+
+### What is the corporate workshop?
+A hands-on AI productivity workshop teaching teams email automation, content creation, report generation, workflow automation — saving 2-3 hours per day.
+
+### Do I need coding knowledge?
+No. All programs are designed for beginners with zero coding or technical background.
+
+### What courses are available for individuals?
+AI Basics (₹499), Prompt Engineering (₹699), AI Se Kamao (₹2,999), AI Freelancing (₹1,499), AI Trading Mastery (₹2,999).
+
+### How does AI help my business?
+AI automates marketing, content, lead generation, customer support, and operations — reducing costs by up to 50% and increasing leads by 3x.
+
+---
+
+## Brand Information
+
+- **Brand Name**: AI Freedom Institute
+- **Tagline**: Empowering Students with AI Skills for the Future
+- **Website**: https://aifreedom.in
+- **Industry**: EdTech / AI Education / Corporate Training
+- **Audiences**: Schools, Corporate Teams, Individual Learners, Business Owners
+- **Service Area**: Pan-India (on-site and virtual)
+- **Languages**: English, Hindi
+- **Founded**: 2024
+
+---
+
+*Last updated: April 2026*
+*© 2026 AI Freedom Institute. All Rights Reserved.*

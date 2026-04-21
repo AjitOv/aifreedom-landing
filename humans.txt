@@ -1,0 +1,23 @@
+/* TEAM */
+Name: AI Freedom Institute
+Site: https://aifreedom.in
+Contact: info@aifreedom.in
+Phone: +91 8007280721
+Location: India
+Description: AI Training & Workshops for Schools, Corporate, Individuals & Business Owners
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript ES6+
+Software: Vercel, Google Analytics 4, Google Tag Manager
+Language: English
+Doctype: HTML5
+Components: Responsive Design, Schema.org Structured Data, llms.txt, Open Graph, Twitter Cards
+
+/* PAGES */
+Home: / — Hub page with 4 program funnels
+Schools: /schools — AI Awareness Workshop for students
+Corporate: /corporate — AI Productivity Training for teams
+Individuals: /individuals — AI Skills Course for learners
+Business: /business — AI Solutions for business growth
+Contact: /contact — Book demo, inquiries
+Course Hub: /Course — OTT-style AI course catalog

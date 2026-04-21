@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Basics — Zero se Hero | Course Player | AI Freedom</title>
+  <meta name="description" content="Watch AI Basics course - Learn AI from zero. Interactive video lessons with progress tracking. AI Freedom by Ajit Ovhal.">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="player-styles.css">
+</head>
+<body>
+
+  <!-- ====== TOP NAVBAR ====== -->
+  <nav class="pl-navbar">
+    <div class="pl-navbar-inner">
+      <div class="pl-nav-left">
+        <a href="Course" class="pl-back-btn" id="backBtn">← Back to Courses</a>
+        <span class="pl-course-name" id="navCourseName">AI Basics — Zero se Hero</span>
+      </div>
+      <div class="pl-nav-right">
+        <div class="pl-progress-indicator">
+          <span id="navProgressText">0% complete</span>
+          <div class="pl-progress-bar-mini">
+            <div class="pl-progress-bar-mini-fill" id="navProgressFill" style="width:0%"></div>
+          </div>
+        </div>
+        <button class="pl-toggle-playlist" id="togglePlaylist" style="display:none;">📋 Playlist</button>
+        <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20full%20access%20to%20AI%20courses" target="_blank" class="pl-nav-cta">🚀 Upgrade</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== MAIN LAYOUT ====== -->
+  <div class="pl-main">
+
+    <!-- ====== VIDEO PLAYER AREA ====== -->
+    <div class="pl-video-area">
+      <div class="pl-video-wrapper" id="videoWrapper">
+        <!-- Video iframe injected by JS -->
+        <div id="videoPlayer"></div>
+
+        <!-- Autoplay Next Overlay -->
+        <div class="pl-autoplay-overlay" id="autoplayOverlay">
+          <span class="pl-autoplay-title">Up Next in</span>
+          <div class="pl-autoplay-timer">
+            <span id="autoplayCount">5</span>
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" id="autoplayCircle"/></svg>
+          </div>
+          <span class="pl-autoplay-next-name" id="autoplayNextName">Loading...</span>
+          <div class="pl-autoplay-btns">
+            <button class="pl-autoplay-play" id="autoplayPlayNow">▶ Play Now</button>
+            <button class="pl-autoplay-cancel" id="autoplayCancel">✕ Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Info -->
+      <div class="pl-video-info">
+        <div class="pl-video-header">
+          <div class="pl-video-title-area">
+            <span class="pl-video-tag" id="videoTag">Lesson 1</span>
+            <h1 class="pl-video-title" id="videoTitle">Loading...</h1>
+            <div class="pl-video-meta">
+              <span id="videoDuration">⏱ --:--</span>
+              <span id="videoModule">📚 Module 1</span>
+              <span>👤 Ajit Ovhal</span>
+            </div>
+          </div>
+          <div class="pl-video-actions">
+            <button class="pl-action-btn" id="markCompleteBtn" onclick="toggleComplete()">✓ Mark Complete</button>
+            <button class="pl-action-btn" onclick="shareCourse()">↗ Share</button>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="pl-video-desc">
+          <div class="pl-video-desc-text" id="videoDesc">
+            Loading description...
+          </div>
+          <span class="pl-desc-toggle" id="descToggle" onclick="toggleDesc()">Show more ▾</span>
+        </div>
+
+        <!-- Recommended Courses -->
+        <div class="pl-recommended">
+          <h3>🔥 Aur Bhi Seekho — Recommended</h3>
+          <div class="pl-rec-grid">
+            <a href="course-player?course=earn-ai" class="pl-rec-card">
+              <div class="pl-rec-thumb">💰</div>
+              <div class="pl-rec-info">
+                <div class="pl-rec-title">AI Se Kamao — Earn Money with AI</div>
+                <div class="pl-rec-meta">12 Lessons • ₹2,999</div>
+              </div>
+            </a>
+            <a href="course-player?course=ai-trading" class="pl-rec-card">
+              <div class="pl-rec-thumb">📈</div>
+              <div class="pl-rec-info">
+                <div class="pl-rec-title">AI Trading Mastery</div>
+                <div class="pl-rec-meta">10 Lessons • ₹2,999</div>
+              </div>
+            </a>
+            <a href="course-player?course=prompt-eng" class="pl-rec-card">
+              <div class="pl-rec-thumb">📝</div>
+              <div class="pl-rec-info">
+                <div class="pl-rec-title">AI Prompt Engineering</div>
+                <div class="pl-rec-meta">8 Lessons • ₹699</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PLAYLIST SIDEBAR ====== -->
+    <aside class="pl-sidebar" id="playlistSidebar">
+      <div class="pl-sidebar-header">
+        <div class="pl-sidebar-title">
+          📋 Course Playlist
+        </div>
+        <div class="pl-sidebar-course" id="sidebarCourseName">AI Basics — Zero se Hero</div>
+        <div class="pl-sidebar-progress">
+          <div class="pl-sidebar-progress-bar">
+            <div class="pl-sidebar-progress-fill" id="sidebarProgressFill" style="width:0%"></div>
+          </div>
+          <span class="pl-sidebar-progress-text" id="sidebarProgressText">0/10</span>
+        </div>
+      </div>
+
+      <!-- Lesson List (injected by JS) -->
+      <div class="pl-lesson-list" id="lessonList"></div>
+
+      <div class="pl-sidebar-footer">
+        <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20to%20unlock%20full%20AI%20Basics%20course" target="_blank" class="pl-sidebar-cta">
+          🔓 Unlock Full Course — ₹499
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Sidebar overlay for mobile -->
+  <div class="pl-sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ====== PAYWALL OVERLAY ====== -->
+  <div class="pl-paywall" id="paywallModal">
+    <div class="pl-paywall-card">
+      <button class="pl-paywall-close" id="paywallClose" onclick="closePaywall()">✕</button>
+      <div class="pl-paywall-emoji">🔒</div>
+      <h2 class="pl-paywall-title">Yeh Lesson Locked Hai!</h2>
+      <p class="pl-paywall-desc">Pehle 2 lessons free hain. Full course access ke liye enroll karo — aur apni AI journey complete karo.</p>
+      <div class="pl-paywall-price" id="paywallPrice">₹499</div>
+      <div class="pl-paywall-original">₹1,999</div>
+      <ul class="pl-paywall-features">
+        <li>All 10 video lessons unlock</li>
+        <li>Lifetime access</li>
+        <li>Certificate of completion</li>
+        <li>Community access</li>
+        <li>WhatsApp support group</li>
+      </ul>
+      <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20to%20buy%20AI%20Basics%20course%20for%20₹499" target="_blank" class="pl-paywall-cta" id="paywallCta">
+        🚀 Enroll Now — ₹499 Only
+      </a>
+    </div>
+  </div>
+
+  <!-- ====== COMPLETION MODAL ====== -->
+  <div class="pl-complete-modal" id="completeModal">
+    <div class="pl-complete-card">
+      <div class="pl-complete-badge">🏆</div>
+      <h2 class="pl-complete-title">Congratulations! 🎉</h2>
+      <p class="pl-complete-desc">Aapne "<span id="completedCourseName">AI Basics</span>" course complete kar liya! Ab aap AI ki duniya samajhte hain.</p>
+      <div class="pl-complete-certificate">
+        🎓 Your certificate is ready! Share it on LinkedIn & WhatsApp.
+      </div>
+      <button class="pl-complete-cta" onclick="closeCompleteModal()">Continue to Next Course →</button>
+    </div>
+  </div>
+
+  <!-- ====== STICKY CTA (Mobile) ====== -->
+  <div class="pl-sticky-cta" id="stickyCta">
+    <div class="pl-sticky-cta-inner">
+      <span class="pl-sticky-cta-text">Full course sirf <strong>₹499</strong></span>
+      <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20AI%20Basics%20course" target="_blank" class="pl-sticky-cta-btn">Enroll Now →</a>
+    </div>
+  </div>
+
+  <!-- ====== JAVASCRIPT ENGINE ====== -->
+  <script>
+  // =================================================================
+  // COURSE DATA — Complete Video Playlists
+  // =================================================================
+  const COURSES = {
+    'ai-basics': {
+      id: 'ai-basics',
+      name: 'AI Basics — Zero se Hero',
+      price: '₹499',
+      originalPrice: '₹1,999',
+      freeLessons: 2,
+      lessons: [
+        {
+          id: 'ab-01',
+          number: 1,
+          title: 'AI Kya Hai? — Introduction to Artificial Intelligence',
+          duration: '12:45',
+          module: 'Module 1: AI Fundamentals',
+          description: 'Is pehle lesson mein hum samjhenge ki AI actually kya hai, kaise kaam karta hai, aur duniya ko kaise badal raha hai. Aapko AI ki basic concepts, types of AI (Narrow vs General vs Super AI), aur daily life mein AI ke examples milenge. Yeh lesson aapki AI journey ka foundation hai.',
+          objective: 'AI ki basic understanding aur types samajhna',
+          hook: 'Kya aapko pata hai ki aap din mein 100+ baar AI use karte ho bina jaane?',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: true
+        },
+        {
+          id: 'ab-02',
+          number: 2,
+          title: 'ChatGPT Masterclass — Pehla AI Tool Seekho',
+          duration: '18:30',
+          module: 'Module 1: AI Fundamentals',
+          description: 'ChatGPT ko kaise use karein — basic se advanced level tak. Account create karna, conversation start karna, aur powerful prompts likhna. Is lesson ke baad aap ChatGPT se kuch bhi karwa sakte ho — emails, code, content, ideas, aur bahut kuch.',
+          objective: 'ChatGPT pe hands-on mastery',
+          hook: 'Ek tool jo aapki 4 ghante ki kaam 10 minute mein kar de — kya aap ready ho?',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: true
+        },
+        {
+          id: 'ab-03',
+          number: 3,
+          title: 'Google Gemini — Google Ka AI Weapon',
+          duration: '15:20',
+          module: 'Module 2: AI Tools Deep Dive',
+          description: 'Google Gemini kya hai, ChatGPT se kaise different hai, aur kaise use karein. Real-time search integration, multimodal capabilities, aur Indian context mein Gemini ke best use cases.',
+          objective: 'Gemini vs ChatGPT — dono tools mein mastery',
+          hook: 'Google ka yeh AI tool ChatGPT se bhi powerful hai — agar sahi use karo toh',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-04',
+          number: 4,
+          title: 'AI Image Generation — DALL-E, Midjourney & Canva AI',
+          duration: '22:15',
+          module: 'Module 2: AI Tools Deep Dive',
+          description: 'AI se stunning images banao — DALL-E, Midjourney, aur Canva AI tools ke saath. Product images, social media graphics, logos — sab kuch AI se create karo bina design experience ke.',
+          objective: 'AI se professional quality images generate karna',
+          hook: 'Ek line likho — aur AI aapke liye masterpiece bana de',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-05',
+          number: 5,
+          title: 'AI Video Creation — Reels & YouTube Shorts in Minutes',
+          duration: '20:00',
+          module: 'Module 3: Content Creation with AI',
+          description: 'AI tools se professional videos banao bina camera, editing skills, ya expensive software ke. InVideo AI, Runway, HeyGen, D-ID — sab tools hands-on seekho.',
+          objective: 'AI se video content create karna seekho',
+          hook: '₹0 budget. 0 editing skills. Phir bhi professional videos? AI se possible hai.',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-06',
+          number: 6,
+          title: 'AI Writing & Copywriting — Content Machine Bano',
+          duration: '17:45',
+          module: 'Module 3: Content Creation with AI',
+          description: 'Blogs, emails, social media posts, ad copy — sab kuch AI se likhna seekho. Jasper AI, Copy.ai, aur ChatGPT ke advanced writing techniques.',
+          objective: 'AI se high-quality content writing master karo',
+          hook: '1 ghante mein 10 blog posts? AI writers se possible hai.',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-07',
+          number: 7,
+          title: 'AI Website Builder — Bina Code Ke Website Banao',
+          duration: '19:30',
+          module: 'Module 4: AI for Productivity',
+          description: 'AI tools se complete websites banao — landing pages, portfolios, e-commerce sites. Wix AI, Framer, aur v0.dev ke saath hands-on practice.',
+          objective: 'AI se functional websites create karna',
+          hook: 'Website ke liye developer hire karna band karo — AI se khud banao.',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-08',
+          number: 8,
+          title: 'AI for Students — Studies mein AI ka Power Use',
+          duration: '14:20',
+          module: 'Module 4: AI for Productivity',
+          description: 'Notes banana, research karna, presentations likhna, exam prep — sab kuch AI se faster aur better karo. Students ke liye specific AI workflow.',
+          objective: 'Academic productivity 3x boost karo AI se',
+          hook: 'Topper students already AI use kar rahe hain. Kya aap peeche rehna chahte ho?',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-09',
+          number: 9,
+          title: 'AI Automation — Boring Tasks ko Automate Karo',
+          duration: '16:40',
+          module: 'Module 5: Advanced AI Skills',
+          description: 'Zapier, Make.com, aur AI automation tools ke saath repetitive tasks automate karo. Email replies, data entry, scheduling — sab automatic.',
+          objective: 'Daily tasks ko AI se automate karna seekho',
+          hook: 'Agar tum wahi kaam baar baar kar rahe ho — toh AI se automate karo.',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        },
+        {
+          id: 'ab-10',
+          number: 10,
+          title: 'AI Career Roadmap — AI Se Future Secure Karo',
+          duration: '21:00',
+          module: 'Module 5: Advanced AI Skills',
+          description: 'AI mein career options, job roles, salary expectations, portfolio building, aur next steps. Complete roadmap — AI Basics ke baad kya karna hai.',
+          objective: 'AI career path clear karna aur action plan banana',
+          hook: 'AI seekhne ke baad kya karna hai? Yeh lesson aapka poora future plan hai.',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          free: false
+        }
+      ]
+    },
+    'earn-ai': {
+      id: 'earn-ai',
+      name: 'AI Se Kamao — Earn Money with AI',
+      price: '₹2,999',
+      originalPrice: '₹9,999',
+      freeLessons: 2,
+      lessons: [
+        { id:'ea-01', number:1, title:'AI Earning Ecosystem — Kahan Se Paisa Aayega?', duration:'15:00', module:'Module 1: Foundation', description:'AI se paisa kamane ke 10+ tarike — freelancing, content, automation, SaaS. Complete landscape samjho.', objective:'AI earning opportunities identify karna', hook:'AI se ₹1 lakh/month kamana possible hai — agar yeh 10 tarike pata ho toh.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:true },
+        { id:'ea-02', number:2, title:'AI Freelancing Setup — Fiverr & Upwork Masterclass', duration:'22:00', module:'Module 1: Foundation', description:'Fiverr aur Upwork pe AI services sell karo. Profile setup, gig optimization, client management.', objective:'AI freelancing profile launch karna', hook:'Ek Fiverr gig ne mujhe ₹80K diya ek mahine mein — yeh kaise, woh sikhaata hoon.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:true },
+        { id:'ea-03', number:3, title:'AI Content Creation Agency — Business Model', duration:'25:00', module:'Module 2: Income Streams', description:'AI se content creation agency banao — social media, blogs, videos. Clients kaise laayo, price kaise set karo.', objective:'AI content agency ka blueprint', hook:'₹0 investment se agency start karo aur ₹50K/month kamao.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-04', number:4, title:'AI Copywriting — ₹5000/Article Se Kamao', duration:'18:30', module:'Module 2: Income Streams', description:'AI-assisted copywriting — high-paying skill. Sales pages, emails, ad copy. Clients ke liye premium content likho.', objective:'High-ticket copywriting skill develop karna', hook:'Ek sales page likhne ke ₹10,000. Aur AI se 1 ghante mein ho jaata hai.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-05', number:5, title:'YouTube Automation with AI', duration:'20:00', module:'Module 3: Passive Income', description:'Faceless YouTube channels AI se run karo — scriptwriting, voiceover, editing sab AI se.', objective:'AI-powered YouTube channel start karna', hook:'Bina face dikha ke YouTube se ₹1 lakh/month? AI se possible hai.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-06', number:6, title:'AI SaaS Products — Build & Sell', duration:'24:00', module:'Module 3: Passive Income', description:'Simple AI tools banao aur sell karo. No-code tools, API integrations, subscription models.', objective:'AI micro-SaaS build karna seekho', hook:'Ek chhota sa AI tool monthly ₹30K la sakta hai. Seekho kaise.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-07', number:7, title:'AI for E-commerce — Product Descriptions & Marketing', duration:'17:00', module:'Module 4: Business Applications', description:'E-commerce businesses ke liye AI — product descriptions, marketing copy, customer support automation.', objective:'E-commerce mein AI implement karna', hook:'Apne e-commerce store ki sales 3x karo AI ke saath.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-08', number:8, title:'Client Acquisition — AI Services Kaise Becho', duration:'19:30', module:'Module 4: Business Applications', description:'High-ticket clients kaise dhundho, pitch kaise karo, aur long-term retainers kaise set karo.', objective:'Client acquisition system build karna', hook:'₹10K/client se ₹50K/client — pricing psychology seekho.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-09', number:9, title:'Scaling to ₹1 Lakh/Month — Growth Strategy', duration:'22:00', module:'Module 5: Scaling', description:'Multiple income streams combine karo, team banao (AI + humans), aur ₹1 lakh/month achieve karo.', objective:'₹1 lakh/month target achieve karna', hook:'₹10K se ₹1 lakh — yeh exact roadmap hai scaling ka.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'ea-10', number:10, title:'AI Portfolio & Personal Brand — Authority Build Karo', duration:'16:00', module:'Module 5: Scaling', description:'Apna AI portfolio banao, LinkedIn pe brand build karo, aur industry mein authority bano.', objective:'Personal brand + portfolio se premium clients attract karo', hook:'Portfolio dikhao — clients khud aayenge. Yeh hai apna brand banana.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false }
+      ]
+    },
+    'ai-trading': {
+      id: 'ai-trading',
+      name: 'AI Trading Mastery',
+      price: '₹2,999',
+      originalPrice: '₹7,999',
+      freeLessons: 2,
+      lessons: [
+        { id:'at-01', number:1, title:'AI + Stock Market — Introduction', duration:'14:00', module:'Module 1: Basics', description:'AI trading kya hai, kaise kaam karta hai, aur traditional trading se kaise different hai. Complete overview.', objective:'AI trading landscape samajhna', hook:'70% trades AI se hoti hain. Kya aap manual trading kar ke paisa gawa rahe ho?', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:true },
+        { id:'at-02', number:2, title:'AI Market Analysis — Data Reading with AI', duration:'20:00', module:'Module 1: Basics', description:'AI tools se market data analyze karo — patterns, trends, indicators. ChatGPT aur specialized tools ka use.', objective:'AI se market analysis karna seekho', hook:'Aankh se chart padho ya AI se — kaun jeetega?', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:true },
+        { id:'at-03', number:3, title:'AI Screening Tools — Best Stocks AI Se Dhundho', duration:'18:00', module:'Module 2: Tools', description:'AI-powered stock screeners aur their use. Finviz, TradingView AI, custom GPT screeners.', objective:'AI se stock screening master karo', hook:'100 stocks mein se best 5 AI 10 second mein dhundh leta hai.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-04', number:4, title:'Algo Trading Basics — Automated Strategies', duration:'25:00', module:'Module 2: Tools', description:'Algorithm-based trading — simple strategies banao jo automatically execute hoon. No-code tools + basics.', objective:'First algo trading strategy banao', hook:'Soye raho aur AI trade karta rahe. Yeh hai algo trading.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-05', number:5, title:'Risk Management with AI', duration:'16:30', module:'Module 3: Advanced', description:'AI se risk calculate karo, stop-loss optimize karo, aur portfolio diversify karo scientifically.', objective:'Smart risk management system banao', hook:'90% traders loss karte hain kyunki risk manage nahi karte. AI se seekho.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-06', number:6, title:'AI Sentiment Analysis — Market Mood AI Se Samjho', duration:'19:00', module:'Module 3: Advanced', description:'News, social media, aur market sentiment ko AI se analyze karo — before the market moves.', objective:'Sentiment-based trading decisions lena seekho', hook:'Elon Musk ka ek tweet market crash kara sakta hai. AI pehle se bata deta hai.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-07', number:7, title:'Paper Trading & Backtesting with AI', duration:'22:00', module:'Module 4: Execution', description:'Real money lagane se pehle AI se backtest karo. Paper trading setup, historical data analysis.', objective:'Strategy ko test karna real money se pehle', hook:'Real paisa lagane se pehle 1000 fake trades karo — AI se.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-08', number:8, title:'Live Trading with AI — Practical Demo', duration:'30:00', module:'Module 4: Execution', description:'Live market mein AI tools ka use — real-time decisions, AI alerts setup, execution strategy.', objective:'Live trading environment mein AI implement karna', hook:'Ajit sir live trade karenge AI ke saath — real money, real market.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-09', number:9, title:'AI Trading Portfolio — Long-term Wealth Building', duration:'18:00', module:'Module 5: Strategy', description:'AI se long-term investment portfolio banao. ETFs, mutual funds, stocks — AI-optimized allocation.', objective:'Wealth building ka AI-powered system banao', hook:'₹5000/month invest karo AI strategy se. 10 saal mein crorepati.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false },
+        { id:'at-10', number:10, title:'AI Trading Mindset & Next Steps', duration:'15:00', module:'Module 5: Strategy', description:'Trading psychology, discipline, aur continuous learning. AI tools evolve hote hain — kaise up-to-date raho.', objective:'Sustainable trading mindset develop karo', hook:'Tools badlenge, par mindset permanent hai. Yeh last lesson sabse important hai.', videoUrl:'https://www.youtube.com/embed/dQw4w9WgXcQ', free:false }
+      ]
+    }
+  };
+
+  // =================================================================
+  // STATE MANAGEMENT
+  // =================================================================
+  let currentCourse = null;
+  let currentLessonIndex = 0;
+  let completedLessons = {};
+  let lessonProgress = {};
+  let autoplayTimer = null;
+
+  // Load progress from localStorage
+  function loadProgress() {
+    try {
+      completedLessons = JSON.parse(localStorage.getItem('af_completed') || '{}');
+      lessonProgress = JSON.parse(localStorage.getItem('af_progress') || '{}');
+      const lastLesson = localStorage.getItem('af_last_' + currentCourse.id);
+      if (lastLesson !== null) currentLessonIndex = parseInt(lastLesson);
+    } catch(e) {}
+  }
+  function saveProgress() {
+    try {
+      localStorage.setItem('af_completed', JSON.stringify(completedLessons));
+      localStorage.setItem('af_progress', JSON.stringify(lessonProgress));
+      localStorage.setItem('af_last_' + currentCourse.id, currentLessonIndex);
+    } catch(e) {}
+  }
+
+  // =================================================================
+  // INITIALIZATION
+  // =================================================================
+  function init() {
+    // Get course from URL params
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get('course') || 'ai-basics';
+    currentCourse = COURSES[courseId] || COURSES['ai-basics'];
+
+    // Update page title
+    document.title = currentCourse.name + ' | Course Player | AI Freedom';
+    document.getElementById('navCourseName').textContent = currentCourse.name;
+    document.getElementById('sidebarCourseName').textContent = currentCourse.name;
+
+    // Update paywall pricing
+    document.getElementById('paywallPrice').textContent = currentCourse.price;
+
+    // Load progress
+    loadProgress();
+
+    // Render playlist
+    renderPlaylist();
+
+    // Load current lesson
+    loadLesson(currentLessonIndex);
+
+    // Setup mobile playlist toggle
+    setupMobilePlaylist();
+  }
+
+  // =================================================================
+  // RENDER PLAYLIST
+  // =================================================================
+  function renderPlaylist() {
+    const list = document.getElementById('lessonList');
+    list.innerHTML = '';
+
+    currentCourse.lessons.forEach((lesson, idx) => {
+      const isCompleted = completedLessons[lesson.id];
+      const isActive = idx === currentLessonIndex;
+      const isFree = lesson.free;
+      const isLocked = !isFree && idx >= currentCourse.freeLessons;
+      const progress = lessonProgress[lesson.id] || 0;
+
+      const el = document.createElement('div');
+      el.className = `pl-lesson${isActive ? ' active' : ''}${isCompleted ? ' completed' : ''}${isLocked ? ' locked' : ''}`;
+      el.setAttribute('data-index', idx);
+
+      el.innerHTML = `
+        <div class="pl-lesson-check">${isCompleted ? '✓' : lesson.number}</div>
+        <div class="pl-lesson-info">
+          <span class="pl-lesson-number">${lesson.module}</span>
+          <span class="pl-lesson-name">${lesson.title}</span>
+          <span class="pl-lesson-duration">
+            ⏱ ${lesson.duration}
+            ${isFree ? '<span class="pl-lesson-free">FREE</span>' : ''}
+            ${isLocked ? '<span class="pl-lesson-lock-icon">🔒</span>' : ''}
+          </span>
+          ${progress > 0 && !isCompleted ? `<div class="pl-lesson-progress"><div class="pl-lesson-progress-fill" style="width:${progress}%"></div></div>` : ''}
+        </div>
+      `;
+
+      el.addEventListener('click', () => {
+        if (isLocked) {
+          showPaywall();
+          return;
+        }
+        loadLesson(idx);
+      });
+
+      list.appendChild(el);
+    });
+
+    updateProgress();
+  }
+
+  // =================================================================
+  // LOAD LESSON
+  // =================================================================
+  function loadLesson(index) {
+    const lesson = currentCourse.lessons[index];
+    if (!lesson) return;
+
+    // Check if locked
+    if (!lesson.free && index >= currentCourse.freeLessons) {
+      showPaywall();
+      return;
+    }
+
+    currentLessonIndex = index;
+    saveProgress();
+
+    // Cancel any autoplay
+    cancelAutoplay();
+
+    // Update video
+    const player = document.getElementById('videoPlayer');
+    player.innerHTML = `<iframe src="${lesson.videoUrl}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:var(--radius-lg);"></iframe>`;
+
+    // Update info
+    document.getElementById('videoTag').textContent = `Lesson ${lesson.number}`;
+    document.getElementById('videoTitle').textContent = lesson.title;
+    document.getElementById('videoDuration').textContent = `⏱ ${lesson.duration}`;
+    document.getElementById('videoModule').textContent = `📚 ${lesson.module}`;
+    document.getElementById('videoDesc').innerHTML = `
+      <p><strong style="color:var(--neon-green)">🎯 Objective:</strong> ${lesson.objective}</p>
+      <p style="margin-top:8px"><strong style="color:var(--neon-blue)">💡 Hook:</strong> "${lesson.hook}"</p>
+      <p style="margin-top:12px">${lesson.description}</p>
+    `;
+
+    // Update mark complete button
+    const btn = document.getElementById('markCompleteBtn');
+    if (completedLessons[lesson.id]) {
+      btn.classList.add('completed');
+      btn.textContent = '✓ Completed';
+    } else {
+      btn.classList.remove('completed');
+      btn.textContent = '✓ Mark Complete';
+    }
+
+    // Re-render playlist to update active state
+    renderPlaylist();
+
+    // Scroll to active lesson in sidebar
+    setTimeout(() => {
+      const activeEl = document.querySelector('.pl-lesson.active');
+      if (activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
+    }, 300);
+
+    // Simulate video end after duration (for demo)
+    simulateVideoEnd(lesson);
+
+    // Close mobile sidebar
+    closeMobileSidebar();
+
+    // Scroll to top
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  // =================================================================
+  // VIDEO END SIMULATION (for demo)
+  // =================================================================
+  function simulateVideoEnd(lesson) {
+    // In production, use YouTube API onStateChange
+    // For demo: simulate progress updates
+    const durationParts = lesson.duration.split(':');
+    const totalSeconds = parseInt(durationParts[0]) * 60 + parseInt(durationParts[1]);
+
+    // Simulate progress at 50% and 100%
+    clearTimeout(window._progressTimer1);
+    clearTimeout(window._progressTimer2);
+
+    window._progressTimer1 = setTimeout(() => {
+      lessonProgress[lesson.id] = 50;
+      saveProgress();
+      renderPlaylist();
+    }, 5000);
+
+    window._progressTimer2 = setTimeout(() => {
+      lessonProgress[lesson.id] = 100;
+      saveProgress();
+      renderPlaylist();
+      // Show autoplay for next
+      showAutoplayOverlay();
+    }, 15000);
+  }
+
+  // =================================================================
+  // AUTOPLAY NEXT
+  // =================================================================
+  function showAutoplayOverlay() {
+    const nextIdx = currentLessonIndex + 1;
+    if (nextIdx >= currentCourse.lessons.length) {
+      // Course completed!
+      showCompletionModal();
+      return;
+    }
+
+    const nextLesson = currentCourse.lessons[nextIdx];
+    if (!nextLesson.free && nextIdx >= currentCourse.freeLessons) {
+      showPaywall();
+      return;
+    }
+
+    document.getElementById('autoplayNextName').textContent = nextLesson.title;
+    document.getElementById('autoplayOverlay').classList.add('active');
+
+    let count = 5;
+    document.getElementById('autoplayCount').textContent = count;
+    const circle = document.getElementById('autoplayCircle');
+
+    autoplayTimer = setInterval(() => {
+      count--;
+      document.getElementById('autoplayCount').textContent = count;
+      circle.style.strokeDashoffset = 188 - ((5 - count) / 5 * 188);
+
+      if (count <= 0) {
+        cancelAutoplay();
+        // Auto-mark current as complete
+        completedLessons[currentCourse.lessons[currentLessonIndex].id] = true;
+        saveProgress();
+        loadLesson(nextIdx);
+      }
+    }, 1000);
+  }
+
+  function cancelAutoplay() {
+    clearInterval(autoplayTimer);
+    autoplayTimer = null;
+    document.getElementById('autoplayOverlay').classList.remove('active');
+    document.getElementById('autoplayCircle').style.strokeDashoffset = 188;
+  }
+
+  document.getElementById('autoplayPlayNow').addEventListener('click', () => {
+    cancelAutoplay();
+    completedLessons[currentCourse.lessons[currentLessonIndex].id] = true;
+    saveProgress();
+    loadLesson(currentLessonIndex + 1);
+  });
+
+  document.getElementById('autoplayCancel').addEventListener('click', cancelAutoplay);
+
+  // =================================================================
+  // MARK COMPLETE
+  // =================================================================
+  function toggleComplete() {
+    const lesson = currentCourse.lessons[currentLessonIndex];
+    if (completedLessons[lesson.id]) {
+      delete completedLessons[lesson.id];
+    } else {
+      completedLessons[lesson.id] = true;
+    }
+    saveProgress();
+
+    const btn = document.getElementById('markCompleteBtn');
+    if (completedLessons[lesson.id]) {
+      btn.classList.add('completed');
+      btn.textContent = '✓ Completed';
+    } else {
+      btn.classList.remove('completed');
+      btn.textContent = '✓ Mark Complete';
+    }
+
+    renderPlaylist();
+
+    // Check if all completed
+    const allDone = currentCourse.lessons.every(l => completedLessons[l.id]);
+    if (allDone) showCompletionModal();
+  }
+
+  // =================================================================
+  // PROGRESS TRACKING
+  // =================================================================
+  function updateProgress() {
+    const total = currentCourse.lessons.length;
+    const done = currentCourse.lessons.filter(l => completedLessons[l.id]).length;
+    const pct = Math.round((done / total) * 100);
+
+    document.getElementById('navProgressText').textContent = pct + '% complete';
+    document.getElementById('navProgressFill').style.width = pct + '%';
+    document.getElementById('sidebarProgressFill').style.width = pct + '%';
+    document.getElementById('sidebarProgressText').textContent = done + '/' + total;
+  }
+
+  // =================================================================
+  // PAYWALL
+  // =================================================================
+  function showPaywall() {
+    document.getElementById('paywallModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePaywall() {
+    document.getElementById('paywallModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // =================================================================
+  // COMPLETION MODAL
+  // =================================================================
+  function showCompletionModal() {
+    document.getElementById('completedCourseName').textContent = currentCourse.name;
+    document.getElementById('completeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCompleteModal() {
+    document.getElementById('completeModal').classList.remove('active');
+    document.body.style.overflow = '';
+    window.location.href = 'Course';
+  }
+
+  // =================================================================
+  // DESCRIPTION TOGGLE
+  // =================================================================
+  function toggleDesc() {
+    const desc = document.getElementById('videoDesc');
+    const toggle = document.getElementById('descToggle');
+    desc.classList.toggle('expanded');
+    toggle.textContent = desc.classList.contains('expanded') ? 'Show less ▴' : 'Show more ▾';
+  }
+
+  // =================================================================
+  // SHARE
+  // =================================================================
+  function shareCourse() {
+    const lesson = currentCourse.lessons[currentLessonIndex];
+    const url = window.location.href;
+    const text = `Check out "${lesson.title}" — ${currentCourse.name} on AI Freedom! ${url}`;
+    if (navigator.share) {
+      navigator.share({ title:lesson.title, text:text, url:url });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert('Link copied to clipboard!');
+    }
+  }
+
+  // =================================================================
+  // MOBILE PLAYLIST TOGGLE
+  // =================================================================
+  function setupMobilePlaylist() {
+    const toggle = document.getElementById('togglePlaylist');
+    const sidebar = document.getElementById('playlistSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', closeMobileSidebar);
+  }
+
+  function closeMobileSidebar() {
+    document.getElementById('playlistSidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+  }
+
+  // =================================================================
+  // INIT ON LOAD
+  // =================================================================
+  window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /schools
+Allow: /corporate
+Allow: /individuals
+Allow: /business
+Allow: /contact
+Allow: /Course
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /knowledge.md
+Allow: /md/
+
+Sitemap: https://aifreedom.in/sitemap.xml
+
+# LLM-friendly content
+# llms.txt: https://aifreedom.in/llms.txt
+# llms-full.txt: https://aifreedom.in/llms-full.txt
+# knowledge.md: https://aifreedom.in/knowledge.md
