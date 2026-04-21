@@ -32,6 +32,8 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PZJLJ0JMXN',{page_title:'Individuals',send_page_view:true});</script>
 
   <link rel="stylesheet" href="styles.css">
+  <!-- Razorpay Standard Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body class="page-individuals">
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHSWQDS6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -258,33 +260,54 @@
   <section class="section section-gradient" id="enroll">
     <div class="container">
       <div class="form-section animate-on-scroll">
-        <div class="form-card">
+        <div class="form-card" id="enrollFormCard">
           <h3>Enroll Now</h3>
           <p>Get started with your AI learning journey today.</p>
-          <form onsubmit="handleFormSubmit(event, 'Individual AI Course Enrollment')">
+
+          <!-- Step 1: Details -->
+          <form id="enrollForm" onsubmit="handleEnrollAndPay(event)" novalidate>
             <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" class="form-input" id="name" name="name" placeholder="Enter your name" required>
+              <label for="enroll-name">Your Name</label>
+              <input type="text" class="form-input" id="enroll-name" name="name" placeholder="Enter your name" required>
             </div>
             <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" class="form-input" id="phone" name="phone" placeholder="Enter phone number" required>
+              <label for="enroll-email">Email Address</label>
+              <input type="email" class="form-input" id="enroll-email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
-              <label for="interest">What interests you?</label>
-              <select class="form-select" id="interest" name="requirement">
-                <option value="">Select an option</option>
-                <option value="AI Basics Course">AI Basics — Zero to Hero (₹499)</option>
-                <option value="AI Prompt Engineering">AI Prompt Engineering (₹699)</option>
-                <option value="AI Se Kamao - Earn with AI">AI Se Kamao — Earn with AI (₹2,999)</option>
-                <option value="AI Freelancing">AI Freelancing Masterclass (₹1,499)</option>
-                <option value="AI Trading Mastery">AI Trading Mastery (₹2,999)</option>
-                <option value="Just exploring">Just exploring options</option>
+              <label for="enroll-phone">Phone Number</label>
+              <input type="tel" class="form-input" id="enroll-phone" name="phone" placeholder="Enter phone number" required>
+            </div>
+            <div class="form-group">
+              <label for="enroll-course">Choose Your Course</label>
+              <select class="form-select" id="enroll-course" name="requirement" required>
+                <option value="">Select a course</option>
+                <option value="AI Basics Course" data-amount="49900">AI Basics — Zero to Hero (₹499)</option>
+                <option value="AI Prompt Engineering" data-amount="69900">AI Prompt Engineering (₹699)</option>
+                <option value="AI Freelancing" data-amount="149900">AI Freelancing Masterclass (₹1,499)</option>
+                <option value="AI Se Kamao - Earn with AI" data-amount="299900">AI Se Kamao — Earn with AI (₹2,999)</option>
+                <option value="AI Trading Mastery" data-amount="299900">AI Trading Mastery (₹2,999)</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-accent btn-large form-btn">Enroll Now →</button>
-            <p class="urgency-text">⏰ Limited spots available at current pricing</p>
+
+            <!-- Error message area -->
+            <div id="enrollError" style="display:none;color:#ff6b6b;font-size:0.875rem;margin-bottom:12px;padding:10px;background:rgba(255,107,107,0.1);border-radius:8px;border:1px solid rgba(255,107,107,0.3);"></div>
+
+            <button type="submit" class="btn btn-accent btn-large form-btn" id="enrollBtn">
+              <span id="enrollBtnText">Proceed to Pay →</span>
+              <span id="enrollBtnSpinner" style="display:none;">⏳ Processing...</span>
+            </button>
+            <p class="urgency-text">🔒 Secure payment powered by Razorpay</p>
           </form>
+        </div>
+
+        <!-- Step 2: Payment Success State -->
+        <div class="form-card" id="paymentSuccess" style="display:none;text-align:center;">
+          <div style="font-size:4rem;margin-bottom:16px;">✅</div>
+          <h3 style="color:#4ade80;">Payment Successful!</h3>
+          <p id="successMsg">Your enrollment is confirmed. You'll receive course access details shortly.</p>
+          <div id="successDetails" style="background:rgba(255,255,255,0.05);border-radius:12px;padding:16px;margin:16px 0;font-size:0.85rem;color:rgba(255,255,255,0.7);text-align:left;"></div>
+          <a href="/Course" class="btn btn-accent btn-large" style="margin-top:8px;">Go to Course Hub →</a>
         </div>
       </div>
     </div>
@@ -313,5 +336,6 @@
   <div class="sticky-cta"><div class="sticky-cta-inner"><a href="tel:+918007280721" class="btn btn-secondary">📞 Call Now</a><a href="#enroll" class="btn btn-accent">Enroll Now</a></div></div>
 
   <script src="main.js"></script>
+  <script src="razorpay-checkout.js"></script>
 </body>
 </html>

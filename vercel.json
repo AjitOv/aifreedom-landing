@@ -1,4 +1,8 @@
 {
+  "functions": {
+    "api/create-order.js": { "memory": 128, "maxDuration": 10 },
+    "api/verify-payment.js": { "memory": 128, "maxDuration": 10 }
+  },
   "headers": [
     {
       "source": "/(.*)",
