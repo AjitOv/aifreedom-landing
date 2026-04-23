@@ -81,10 +81,18 @@ function initScrollAnimations() {
   elements.forEach(el => observer.observe(el));
 }
 
-/* ===== COUNTER ANIMATIONS ===== */
+/* ===== COUNTER ANIMATIONS =====
+   Static HTML holds the final rendered value so crawlers and LLM fetchers
+   see real numbers (e.g. "500+") instead of the "0" starting frame. */
 function initCounterAnimations() {
   const counters = document.querySelectorAll('[data-target]');
   if (!counters.length) return;
+
+  counters.forEach(el => {
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    el.textContent = prefix + '0' + suffix;
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

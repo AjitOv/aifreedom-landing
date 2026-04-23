@@ -16,9 +16,16 @@ A future where every student, professional, and business owner understands, uses
 - 100% practical, hands-on approach (no boring PowerPoints)
 - Customized content for each audience
 - Results from Day 1 — immediate skills that translate to productivity gains
-- 15+ years of experience in AI and technology
+- Led by an experienced AI trainer and creator
 - Post-training support and resources
 - Affordable and scalable programs
+
+### Founder
+**Ajit (AI Finance Guy)** — Founder, AI Trainer & Creator.
+- Author of 3 books
+- Delivered 32 AI projects
+- Conducted webinars, seminars and courses across India
+- Focus: practical, no-code AI adoption for students, professionals and business owners
 
 ---
 

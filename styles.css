@@ -1430,3 +1430,25 @@ textarea.form-input {
   .two-col { grid-template-columns: 1fr; gap: 32px; }
   .skills-list { grid-template-columns: 1fr; }
 }
+
+/* FAQ */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary { transition: color .2s ease; }
+.faq-item[open] summary > span:last-child { transform: rotate(45deg); }
+.faq-item summary > span:last-child { display: inline-block; transition: transform .25s ease; }
+.faq-item[open] { border-color: rgba(0, 198, 255, 0.35) !important; box-shadow: 0 6px 20px rgba(30, 60, 114, 0.08) !important; }
+.faq-item summary:hover { color: var(--primary); }
+
+/* Founder card — stack on mobile */
+@media (max-width: 640px) {
+  #founder > .container > div[style*="grid-template-columns:120px"] {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+  #founder > .container > div > div:first-child {
+    margin: 0 auto;
+  }
+  #founder > .container > div > div:last-child > div {
+    justify-content: center;
+  }
+}

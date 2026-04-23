@@ -18,7 +18,6 @@ Learn, Create and Grow with AI. We deliver practical, hands-on AI education that
 - **Trust Line**: Trusted by Leading Institutions — Empowering the next generation of innovators
 
 ### Key Statistics (Home)
-- 500+ Students Trained
 - 50+ Workshops Done
 - 4 Programs
 - 98% Satisfaction Rate
@@ -34,9 +33,12 @@ Learn, Create and Grow with AI. We deliver practical, hands-on AI education that
 1. **100% Practical** — No boring PowerPoints. Live AI demonstrations and hands-on activities.
 2. **Customized Content** — Every workshop is tailored to the audience.
 3. **Immediate Results** — Participants start using AI tools from Day 1.
-4. **Expert Led** — 15+ years of experience in AI and technology.
+4. **Expert Led** — AI trainer & creator, author of 3 books, 32 AI projects delivered.
 5. **Post-Workshop Support** — Continued guidance and resources after the workshop.
 6. **Affordable & Scalable** — Programs designed for all budget levels.
+
+### Founder
+**Ajit — AI Finance Guy**. Founder, AI Trainer & Creator. Author of 3 books, 32 AI projects delivered, speaker at webinars, seminars and courses across India. Mission: make practical AI accessible to every Indian — no coding required.
 
 ### Industry Statistics
 - 85% of jobs will be AI-impacted by 2030
