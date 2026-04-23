@@ -29,4 +29,4 @@ To democratize AI education by making it accessible, practical, and engaging for
 - Phone: +91 8007280721
 - Email: info@aifreedom.in
 - WhatsApp: https://wa.me/918007280721
-- Website: https://aifreedom.in
+- Website: https://www.aifreedom.in

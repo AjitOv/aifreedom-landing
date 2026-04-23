@@ -1,6 +1,6 @@
 /* TEAM */
 Name: AI Freedom Institute
-Site: https://aifreedom.in
+Site: https://www.aifreedom.in
 Contact: info@aifreedom.in
 Phone: +91 8007280721
 Location: India

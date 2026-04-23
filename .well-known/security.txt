@@ -1,4 +1,4 @@
 Contact: mailto:info@aifreedom.in
 Contact: tel:+918007280721
 Preferred-Languages: en, hi
-Canonical: https://aifreedom.in/.well-known/security.txt
+Canonical: https://www.aifreedom.in/.well-known/security.txt

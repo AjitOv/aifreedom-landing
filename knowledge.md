@@ -256,7 +256,7 @@ A: Businesses typically save ₹50K-₹2L per month on operations and marketing.
 - **Organization**: AI Freedom Institute
 - **Phone**: +91 8007280721
 - **Email**: info@aifreedom.in
-- **Website**: https://aifreedom.in
+- **Website**: https://www.aifreedom.in
 - **WhatsApp**: https://wa.me/918007280721
 - **Service Area**: Pan-India (on-site and virtual)
 - **Languages**: English, Hindi

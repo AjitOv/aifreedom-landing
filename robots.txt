@@ -11,9 +11,9 @@ Allow: /llms-full.txt
 Allow: /knowledge.md
 Allow: /md/
 
-Sitemap: https://aifreedom.in/sitemap.xml
+Sitemap: https://www.aifreedom.in/sitemap.xml
 
 # LLM-friendly content
-# llms.txt: https://aifreedom.in/llms.txt
-# llms-full.txt: https://aifreedom.in/llms-full.txt
-# knowledge.md: https://aifreedom.in/knowledge.md
+# llms.txt: https://www.aifreedom.in/llms.txt
+# llms-full.txt: https://www.aifreedom.in/llms-full.txt
+# knowledge.md: https://www.aifreedom.in/knowledge.md

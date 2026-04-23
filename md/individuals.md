@@ -53,4 +53,4 @@ Beginner-friendly, no coding needed. Master AI tools that help you create, earn,
 
 Contact: +91 8007280721 | info@aifreedom.in
 WhatsApp: https://wa.me/918007280721
-Website: https://aifreedom.in/individuals
+Website: https://www.aifreedom.in/individuals

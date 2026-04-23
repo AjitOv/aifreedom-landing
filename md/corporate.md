@@ -41,4 +41,4 @@ AI Productivity Workshop for Teams — automate repetitive tasks, boost output, 
 
 Contact: +91 8007280721 | info@aifreedom.in
 WhatsApp: https://wa.me/918007280721
-Website: https://aifreedom.in/corporate
+Website: https://www.aifreedom.in/corporate

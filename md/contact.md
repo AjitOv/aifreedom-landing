@@ -9,7 +9,7 @@ Book a free demo, ask questions, or discuss how AI can help you.
 - **Phone**: +91 8007280721
 - **Email**: info@aifreedom.in
 - **WhatsApp**: https://wa.me/918007280721
-- **Website**: https://aifreedom.in
+- **Website**: https://www.aifreedom.in
 - **Response Time**: 2-4 hours during business hours (9 AM – 9 PM IST)
 
 ## Contact Form
@@ -30,5 +30,5 @@ The contact form collects:
 
 ## Book a Free Demo
 
-Contact us at +91 8007280721 or fill the form at https://aifreedom.in/contact
+Contact us at +91 8007280721 or fill the form at https://www.aifreedom.in/contact
 WhatsApp: https://wa.me/918007280721

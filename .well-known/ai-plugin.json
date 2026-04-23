@@ -3,15 +3,15 @@
   "name_for_human": "AI Freedom Institute",
   "name_for_model": "ai_freedom_institute",
   "description_for_human": "AI Freedom Institute provides AI training workshops for schools, corporate teams, individuals & business owners across India.",
-  "description_for_model": "AI Freedom Institute is an Indian EdTech organization providing practical, hands-on AI education across 4 segments: (1) Schools — 1-hour interactive AI awareness workshops for students covering AI image generation, video creation, website building, app creation, music generation, and career guidance. (2) Corporate — AI productivity workshops teaching email automation, content creation, reports, workflow automation — saving teams 2-3 hours daily. (3) Individuals — AI skills courses (₹499-₹2,999) covering ChatGPT mastery, AI freelancing, content creation, no coding required. (4) Business Owners — AI-powered marketing automation, lead generation, content creation, and operations optimization. Founded by Ajit (AI Finance Guy) — AI trainer and creator, author of 3 books, 32 AI projects delivered, speaker at webinars, seminars and courses across India. Contact: +91 8007280721, info@aifreedom.in. Website: https://aifreedom.in. Pages: /schools, /corporate, /individuals, /business, /contact, /Course.",
+  "description_for_model": "AI Freedom Institute is an Indian EdTech organization providing practical, hands-on AI education across 4 segments: (1) Schools — 1-hour interactive AI awareness workshops for students covering AI image generation, video creation, website building, app creation, music generation, and career guidance. (2) Corporate — AI productivity workshops teaching email automation, content creation, reports, workflow automation — saving teams 2-3 hours daily. (3) Individuals — AI skills courses (₹499-₹2,999) covering ChatGPT mastery, AI freelancing, content creation, no coding required. (4) Business Owners — AI-powered marketing automation, lead generation, content creation, and operations optimization. Founded by Ajit (AI Finance Guy) — AI trainer and creator, author of 3 books, 32 AI projects delivered, speaker at webinars, seminars and courses across India. Contact: +91 8007280721, info@aifreedom.in. Website: https://www.aifreedom.in. Pages: /schools, /corporate, /individuals, /business, /contact, /Course.",
   "auth": {
     "type": "none"
   },
   "api": {
     "type": "none",
-    "url": "https://aifreedom.in"
+    "url": "https://www.aifreedom.in"
   },
-  "logo_url": "https://aifreedom.in/assets/images/logo.png",
+  "logo_url": "https://www.aifreedom.in/assets/images/logo.png",
   "contact_email": "info@aifreedom.in",
-  "legal_info_url": "https://aifreedom.in/"
+  "legal_info_url": "https://www.aifreedom.in/"
 }

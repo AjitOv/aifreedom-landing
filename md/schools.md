@@ -45,4 +45,4 @@ Interactive AI Awareness Workshop — practical, engaging & future-ready.
 
 Contact: +91 8007280721 | info@aifreedom.in
 WhatsApp: https://wa.me/918007280721
-Website: https://aifreedom.in/schools
+Website: https://www.aifreedom.in/schools
