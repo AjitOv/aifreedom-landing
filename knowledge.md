@@ -258,6 +258,7 @@ A: Businesses typically save ₹50K-₹2L per month on operations and marketing.
 - **Email**: info@aifreedom.in
 - **Website**: https://www.aifreedom.in
 - **WhatsApp**: https://wa.me/918007280721
+- **YouTube**: https://www.youtube.com/@AIFreedomInstitute
 - **Service Area**: Pan-India (on-site and virtual)
 - **Languages**: English, Hindi
 - **Response Time**: 2-4 hours (9 AM – 9 PM IST)

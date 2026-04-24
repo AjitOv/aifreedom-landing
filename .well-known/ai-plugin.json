@@ -13,5 +13,8 @@
   },
   "logo_url": "https://www.aifreedom.in/assets/images/logo.png",
   "contact_email": "info@aifreedom.in",
-  "legal_info_url": "https://www.aifreedom.in/"
+  "legal_info_url": "https://www.aifreedom.in/",
+  "same_as": [
+    "https://www.youtube.com/@AIFreedomInstitute"
+  ]
 }
