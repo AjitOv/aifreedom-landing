@@ -246,11 +246,14 @@ function escapeHtml(str) {
    Opens a lightweight modal → collects name/email/phone → pays.
    ═══════════════════════════════════════════════════════════════════ */
 
-function openCourseCheckout(courseName, amount) {
+function openCourseCheckout(courseName, amount, options) {
   // Remove any existing modal
   const existing = document.getElementById('rzpQuickModal');
   if (existing) existing.remove();
 
+  const opts = options || {};
+  const courseId = opts.courseId || null;   // e.g. 'ai-basics' — enables entitlement + redirect
+  const redirectTo = opts.redirectTo || null; // defaults to '/course-player?course=<courseId>&paid=1'
   const amountPaise = parseInt(amount, 10);
   const amountRupees = '₹' + (amountPaise / 100).toLocaleString('en-IN');
 
@@ -396,8 +399,26 @@ function openCourseCheckout(courseName, amount) {
           const verifyData = await verifyRes.json();
           if (!verifyRes.ok || !verifyData.success) throw new Error(verifyData.error || 'Verification failed.');
 
-          // Show success toast
-          showQuickSuccessToast(name, courseName, response.razorpay_payment_id);
+          // Grant entitlement for the course (localStorage-based, device-bound)
+          if (courseId) {
+            try {
+              localStorage.setItem('af_paid_' + courseId, JSON.stringify({
+                paymentId: response.razorpay_payment_id,
+                orderId:   response.razorpay_order_id,
+                courseName,
+                name,
+                email,
+                paidAt: Date.now(),
+              }));
+            } catch (e) { /* storage full / blocked — redirect will still mark as paid via ?paid=1 */ }
+
+            // Show success state, then redirect to the course player
+            const target = redirectTo || ('/course-player?course=' + encodeURIComponent(courseId) + '&paid=1');
+            showRedirectSuccessToast(name, courseName, response.razorpay_payment_id, target);
+          } else {
+            // Fallback: original toast behaviour for callers that don't pass a courseId
+            showQuickSuccessToast(name, courseName, response.razorpay_payment_id);
+          }
         } catch (err) {
           alert(
             `Payment was captured but verification failed: ${err.message}\n` +
@@ -419,6 +440,47 @@ function openCourseCheckout(courseName, amount) {
     });
     rzp.open();
   });
+}
+
+/* ── Success toast with auto-redirect to course player ─────────────
+   Used when checkout is initiated from a course landing page. Shows
+   a 2-second confirmation, then sends the student into the player. */
+function showRedirectSuccessToast(name, courseName, paymentId, target) {
+  // Block further interaction; prevent accidental double-clicks on the page
+  document.body.style.overflow = 'hidden';
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position:fixed;inset:0;z-index:999999;
+    background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;padding:16px;
+    animation:rzpFadeIn 0.25s ease;
+  `;
+  overlay.innerHTML = `
+    <style>@keyframes rzpFadeIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}</style>
+    <div style="background:#16161f;border:1px solid rgba(0,200,150,0.4);border-radius:18px;padding:36px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,0.6);">
+      <div style="font-size:3.5rem;line-height:1;margin-bottom:12px;">✅</div>
+      <div style="color:#4ade80;font-weight:800;font-size:1.35rem;margin-bottom:8px;">Payment Verified</div>
+      <div style="color:rgba(255,255,255,0.8);font-size:0.98rem;line-height:1.55;margin-bottom:6px;">
+        Welcome, <strong style="color:#fff;">${escapeHtml(name)}</strong>! You're enrolled in
+        <strong style="color:#fff;">${escapeHtml(courseName)}</strong>.
+      </div>
+      <div style="color:rgba(255,255,255,0.55);font-size:0.88rem;margin:18px 0 14px;">Redirecting you to the course…</div>
+      <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
+        <div id="rzpRedirectBar" style="height:100%;width:0;background:linear-gradient(135deg,#4ade80,#00c896);transition:width 2s linear;"></div>
+      </div>
+      <div style="color:rgba(255,255,255,0.3);font-size:0.72rem;margin-top:16px;">Payment ID: ${escapeHtml(paymentId)}</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Kick off progress bar animation next frame
+  requestAnimationFrame(() => {
+    const bar = document.getElementById('rzpRedirectBar');
+    if (bar) bar.style.width = '100%';
+  });
+
+  setTimeout(() => { window.location.href = target; }, 2000);
 }
 
 /* ── Success toast for quick checkout ────────────────────────────── */
