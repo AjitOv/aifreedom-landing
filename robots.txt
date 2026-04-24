@@ -6,10 +6,14 @@ Allow: /individuals
 Allow: /business
 Allow: /contact
 Allow: /Course
+Allow: /courses/
+Allow: /blog/
+Allow: /rss.xml
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /knowledge.md
 Allow: /md/
+Disallow: /api/
 
 Sitemap: https://www.aifreedom.in/sitemap.xml
 

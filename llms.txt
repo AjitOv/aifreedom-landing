@@ -18,6 +18,15 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 - [Business](https://www.aifreedom.in/business): AI-powered marketing, lead gen, content & operations for business owners
 - [Contact](https://www.aifreedom.in/contact): Book a free demo — form, phone, email, WhatsApp
 - [Course Hub](https://www.aifreedom.in/Course): OTT-style course catalog with AI courses from ₹499
+- [Blog](https://www.aifreedom.in/blog/): Practical AI guides and tutorials for Indian students, professionals, and business owners
+
+## Course Landing Pages
+
+- [AI Basics — Zero to Hero](https://www.aifreedom.in/courses/ai-basics): ₹499 · 10 lessons · no-code AI foundation
+- [AI Prompt Engineering](https://www.aifreedom.in/courses/ai-prompt-engineering): ₹699 · 10 lessons · 10x better AI output
+- [AI Freelancing Masterclass](https://www.aifreedom.in/courses/ai-freelancing): ₹1,499 · 10 lessons · ₹50K/month blueprint
+- [AI Se Kamao — Earn with AI](https://www.aifreedom.in/courses/ai-se-kamao): ₹2,999 · 10 lessons · 10 income streams
+- [AI Trading Mastery](https://www.aifreedom.in/courses/ai-trading): ₹2,999 · 10 lessons · AI-powered market analysis
 
 ## Markdown Mirrors
 

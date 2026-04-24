@@ -256,6 +256,77 @@ img { max-width: 100%; display: block; }
 .cl-footer a { color: var(--cl-text-2); margin: 0 10px; }
 .cl-footer a:hover { color: #fff; }
 
+/* ── Breadcrumb nav ───────────────────────────────────────────── */
+.cl-breadcrumb { padding: 8px 0 0; font-size: 0.82rem; color: var(--cl-text-3); }
+.cl-breadcrumb a { color: var(--cl-text-2); }
+.cl-breadcrumb a:hover { color: #fff; }
+.cl-breadcrumb .sep { opacity: 0.4; margin: 0 8px; }
+.cl-breadcrumb .curr { color: var(--cl-text-2); }
+
+/* ── Related courses section ─────────────────────────────────── */
+.cl-related { padding: 60px 0; background: var(--cl-bg-2); border-top: 1px solid var(--cl-border); }
+.cl-related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+.cl-related-card {
+  display: block; background: var(--cl-card); border: 1px solid var(--cl-border); border-radius: var(--cl-radius);
+  padding: 22px; transition: transform 0.15s ease, border-color 0.2s ease;
+}
+.cl-related-card:hover { transform: translateY(-3px); border-color: rgba(106,17,203,0.4); }
+.cl-related-card .cl-rc-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; margin-bottom: 12px; }
+.cl-related-card .cl-rc-title { color: #fff; font-weight: 700; font-size: 1rem; margin: 0 0 6px; line-height: 1.35; }
+.cl-related-card .cl-rc-desc { color: var(--cl-text-2); font-size: 0.85rem; margin: 0 0 14px; line-height: 1.55; }
+.cl-related-card .cl-rc-price { display: flex; gap: 10px; align-items: baseline; }
+.cl-related-card .cl-rc-price .now { color: var(--cl-green-2); font-weight: 800; font-size: 1.1rem; }
+.cl-related-card .cl-rc-price .old { color: var(--cl-text-3); text-decoration: line-through; font-size: 0.85rem; }
+.cl-related-card .cl-rc-cta { display: inline-block; margin-top: 12px; color: var(--cl-green-2); font-size: 0.85rem; font-weight: 600; }
+
+/* ── Blog (index + post) ──────────────────────────────────────── */
+.bl-hero { padding: 56px 0 24px; text-align: center; }
+.bl-hero h1 { font-size: clamp(2rem, 4vw, 2.6rem); margin: 0 0 12px; font-weight: 800; letter-spacing: -0.02em; }
+.bl-hero p { color: var(--cl-text-2); margin: 0; max-width: 640px; margin: 0 auto; font-size: 1.05rem; }
+
+.bl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding-bottom: 40px; }
+.bl-card { display: block; background: var(--cl-card); border: 1px solid var(--cl-border); border-radius: var(--cl-radius); padding: 24px; transition: transform .15s, border-color .2s; }
+.bl-card:hover { transform: translateY(-3px); border-color: rgba(0,200,150,0.4); }
+.bl-card-tag { display: inline-block; padding: 4px 10px; background: rgba(0,200,150,0.12); color: var(--cl-green-2); font-size: 0.72rem; font-weight: 700; border-radius: 999px; margin-bottom: 12px; }
+.bl-card h3 { margin: 0 0 8px; font-size: 1.15rem; font-weight: 700; line-height: 1.35; color: #fff; }
+.bl-card p { margin: 0 0 14px; color: var(--cl-text-2); font-size: 0.92rem; line-height: 1.55; }
+.bl-card-meta { font-size: 0.8rem; color: var(--cl-text-3); display: flex; gap: 14px; }
+.bl-card-meta span { display: inline-flex; align-items: center; gap: 5px; }
+.bl-card-cta { display: inline-block; margin-top: 14px; color: var(--cl-green-2); font-size: 0.88rem; font-weight: 600; }
+
+/* Article page */
+.bl-article { padding: 40px 0 60px; }
+.bl-article-wrap { max-width: 760px; margin: 0 auto; }
+.bl-article-head { margin-bottom: 36px; }
+.bl-article-head .bl-tag { display: inline-block; padding: 5px 12px; background: rgba(0,200,150,0.12); color: var(--cl-green-2); font-size: 0.78rem; font-weight: 700; border-radius: 999px; margin-bottom: 16px; }
+.bl-article h1 { font-size: clamp(1.9rem, 3.8vw, 2.6rem); line-height: 1.2; margin: 0 0 16px; font-weight: 800; letter-spacing: -0.02em; }
+.bl-article-meta { display: flex; gap: 18px; color: var(--cl-text-3); font-size: 0.88rem; flex-wrap: wrap; }
+.bl-article-meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+.bl-article-body { font-size: 1.05rem; line-height: 1.75; color: var(--cl-text-2); }
+.bl-article-body h2 { color: #fff; font-size: 1.5rem; margin: 40px 0 14px; font-weight: 700; letter-spacing: -0.01em; }
+.bl-article-body h3 { color: #fff; font-size: 1.2rem; margin: 30px 0 10px; font-weight: 700; }
+.bl-article-body p { margin: 0 0 18px; }
+.bl-article-body ul, .bl-article-body ol { margin: 0 0 20px; padding-left: 22px; }
+.bl-article-body li { margin-bottom: 8px; }
+.bl-article-body a { color: var(--cl-green-2); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.bl-article-body a:hover { color: #fff; }
+.bl-article-body strong { color: #fff; }
+.bl-article-body blockquote { border-left: 3px solid var(--cl-primary); padding: 8px 20px; color: var(--cl-text-2); background: rgba(106,17,203,0.08); border-radius: 0 8px 8px 0; margin: 24px 0; font-style: italic; }
+.bl-article-body code { background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 5px; font-size: 0.92em; color: #c4b5fd; font-family: 'Courier New', monospace; }
+.bl-article-body hr { border: none; border-top: 1px solid var(--cl-border); margin: 40px 0; }
+.bl-article-body .bl-callout { background: linear-gradient(135deg, rgba(106,17,203,0.1), rgba(37,117,252,0.05)); border: 1px solid rgba(106,17,203,0.3); border-radius: 12px; padding: 20px 24px; margin: 28px 0; }
+.bl-article-body .bl-callout strong { color: #c4b5fd; }
+
+.bl-article-cta { background: var(--cl-card); border: 1px solid var(--cl-border); border-radius: var(--cl-radius-lg); padding: 28px; margin: 40px 0; text-align: center; }
+.bl-article-cta h3 { margin: 0 0 10px; color: #fff; font-size: 1.25rem; }
+.bl-article-cta p { margin: 0 0 16px; color: var(--cl-text-2); font-size: 0.95rem; }
+
+.bl-author-card { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center; background: var(--cl-card); border: 1px solid var(--cl-border); border-radius: var(--cl-radius); padding: 20px; margin-top: 40px; }
+.bl-author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--cl-gradient); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.bl-author-card h4 { margin: 0 0 4px; color: #fff; font-size: 1rem; }
+.bl-author-card p { margin: 0; color: var(--cl-text-2); font-size: 0.88rem; line-height: 1.55; }
+
 /* ── Sticky mobile CTA ────────────────────────────────────────── */
 @media (max-width: 720px) {
   .cl-sticky-cta {

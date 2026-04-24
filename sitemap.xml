@@ -106,6 +106,20 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://www.aifreedom.in/blog/</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aifreedom.in/blog/chatgpt-for-indian-students</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- LLM Content Files -->
   <url>
     <loc>https://www.aifreedom.in/llms.txt</loc>

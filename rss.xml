@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI Freedom Institute — Blog</title>
+    <link>https://www.aifreedom.in/blog/</link>
+    <atom:link href="https://www.aifreedom.in/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Practical AI guides, tutorials and case studies for Indian students, professionals and business owners. Written in simple Hinglish by Ajit (AI Finance Guy).</description>
+    <language>en-IN</language>
+    <copyright>© 2026 AI Freedom Institute. All Rights Reserved.</copyright>
+    <managingEditor>info@aifreedom.in (Ajit)</managingEditor>
+    <webMaster>info@aifreedom.in (Ajit)</webMaster>
+    <lastBuildDate>Thu, 24 Apr 2026 10:00:00 +0530</lastBuildDate>
+    <generator>Static site on Vercel</generator>
+    <image>
+      <url>https://www.aifreedom.in/assets/images/logo.png</url>
+      <title>AI Freedom Institute</title>
+      <link>https://www.aifreedom.in/</link>
+    </image>
+
+    <item>
+      <title>How to Use ChatGPT for Studies in India — Complete 2026 Guide</title>
+      <link>https://www.aifreedom.in/blog/chatgpt-for-indian-students</link>
+      <guid isPermaLink="true">https://www.aifreedom.in/blog/chatgpt-for-indian-students</guid>
+      <pubDate>Thu, 24 Apr 2026 10:00:00 +0530</pubDate>
+      <author>info@aifreedom.in (Ajit)</author>
+      <category>AI for Students</category>
+      <description>Practical step-by-step guide to using ChatGPT for studies in India — notes, revision, essays, project prep, exam strategy. Honest, not cheating. Written in simple Hinglish.</description>
+    </item>
+
+  </channel>
+</rss>
