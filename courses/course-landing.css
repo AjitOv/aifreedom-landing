@@ -327,6 +327,40 @@ img { max-width: 100%; display: block; }
 .bl-author-card h4 { margin: 0 0 4px; color: #fff; font-size: 1rem; }
 .bl-author-card p { margin: 0; color: var(--cl-text-2); font-size: 0.88rem; line-height: 1.55; }
 
+/* ── Lead-magnet card (used in blog posts) ───────────────────── */
+.lead-magnet { margin: 32px 0; }
+.lm-card {
+  display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: flex-start;
+  background: var(--cl-card); border: 1px solid rgba(74,222,128,0.3); border-radius: var(--cl-radius-lg);
+  padding: 22px 24px;
+  background-image: linear-gradient(135deg, rgba(74,222,128,0.05), rgba(106,17,203,0.05));
+}
+.lm-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+.lm-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; color: var(--cl-green-2); margin-bottom: 6px; }
+.lm-title { margin: 0 0 6px; color: #fff; font-size: 1.2rem; font-weight: 700; line-height: 1.35; }
+.lm-sub { margin: 0 0 14px; color: var(--cl-text-2); font-size: 0.92rem; line-height: 1.55; }
+.lm-form { display: flex; flex-direction: column; gap: 8px; }
+.lm-input {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; color: #fff; font: inherit; font-size: 0.95rem; padding: 12px 14px; box-sizing: border-box; outline: none;
+  transition: border-color 0.15s;
+}
+.lm-input:focus { border-color: rgba(74,222,128,0.55); }
+.lm-input::placeholder { color: var(--cl-text-3); }
+.lm-btn {
+  background: linear-gradient(135deg,#00c896,#4ade80); border: none; border-radius: 10px;
+  color: #0a0a0f; font: inherit; font-weight: 700; font-size: 0.95rem; padding: 13px 18px; cursor: pointer; margin-top: 4px;
+  transition: transform .1s, opacity .15s;
+}
+.lm-btn:hover { transform: translateY(-1px); }
+.lm-btn:disabled { opacity: 0.6; cursor: wait; }
+.lm-error { color: #fca5a5; font-size: 0.85rem; padding: 8px 12px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); border-radius: 8px; }
+.lm-bonus { color: var(--cl-text-3); font-size: 0.78rem; margin-top: 8px; }
+.lm-claimed { padding: 14px 16px; border-radius: 10px; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); color: var(--cl-text-2); font-size: 0.95rem; }
+.lm-claimed strong { color: var(--cl-green-2); }
+.lm-claimed a { color: var(--cl-green-2); text-decoration: underline; font-weight: 600; }
+@media (max-width: 580px) { .lm-card { grid-template-columns: 1fr; } .lm-icon { width: 50px; height: 50px; font-size: 1.5rem; } }
+
 /* ── Sticky mobile CTA ────────────────────────────────────────── */
 @media (max-width: 720px) {
   .cl-sticky-cta {

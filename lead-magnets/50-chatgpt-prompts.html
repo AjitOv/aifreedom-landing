@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>50 ChatGPT Prompts for Indian Professionals — Free PDF | AI Freedom Institute</title>
+  <meta name="description" content="50 copy-paste ChatGPT prompts organised by category — emails, productivity, research, content, marketing, jobs, studies, finance. Free download.">
+  <meta name="author" content="Ajit (AI Finance Guy)">
+  <!-- This is a lead-magnet thank-you page — keep it crawlable but don't compete with blog content -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.aifreedom.in/lead-magnets/50-chatgpt-prompts">
+
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #0f172a;
+      --ink-2: #475569;
+      --ink-3: #94a3b8;
+      --rule: rgba(15,23,42,0.08);
+      --primary: #6A11CB;
+      --accent: #00c896;
+      --code-bg: #f5f3ff;
+      --code-border: rgba(106,17,203,0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 32px 22px 80px; }
+
+    /* Action bar (only on screen) */
+    .lm-actions {
+      position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      padding: 12px 22px; border-bottom: 1px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .lm-actions .lm-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); text-decoration: none; }
+    .lm-actions .lm-brand img { width: 28px; height: 28px; border-radius: 6px; }
+    .lm-actions button {
+      background: linear-gradient(135deg,#6A11CB,#2575fc); color: #fff; border: none; border-radius: 8px;
+      padding: 9px 18px; font: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer;
+    }
+
+    /* Cover */
+    .cover { padding: 28px 0 36px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; }
+    .cover-tag { display: inline-block; padding: 5px 12px; background: var(--code-bg); color: var(--primary); border: 1px solid var(--code-border); border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+    .cover h1 { margin: 0 0 12px; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; }
+    .cover-sub { font-size: 1.05rem; color: var(--ink-2); margin: 0 0 22px; }
+    .cover-meta { display: flex; gap: 18px; color: var(--ink-3); font-size: 0.9rem; flex-wrap: wrap; }
+    .cover-meta strong { color: var(--ink); }
+
+    /* Intro callout */
+    .intro {
+      background: linear-gradient(135deg, rgba(106,17,203,0.06), rgba(0,200,150,0.04));
+      border: 1px solid rgba(106,17,203,0.18); border-radius: 14px;
+      padding: 22px 24px; margin-bottom: 36px;
+    }
+    .intro h2 { margin: 0 0 10px; font-size: 1.05rem; color: var(--primary); }
+    .intro p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
+    .intro p + p { margin-top: 8px; }
+
+    /* Category */
+    .cat { margin-top: 44px; }
+    .cat-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+    .cat-num { width: 36px; height: 36px; background: var(--ink); color: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    .cat-head h2 { margin: 0; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.015em; }
+    .cat-head .icon { font-size: 1.4rem; }
+
+    /* Prompt */
+    .p { margin: 18px 0; }
+    .p-label { font-size: 0.78rem; color: var(--ink-3); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .p-title { font-weight: 700; color: var(--ink); margin: 0 0 10px; font-size: 1rem; }
+    .p-body { background: var(--code-bg); border: 1px solid var(--code-border); border-radius: 10px; padding: 14px 16px; color: var(--ink); font-size: 0.93rem; line-height: 1.65; white-space: pre-wrap; }
+    .p-tip { margin: 8px 0 0; font-size: 0.83rem; color: var(--ink-2); font-style: italic; }
+
+    /* End CTA */
+    .end-cta {
+      margin-top: 60px; padding: 28px; background: #0a0a0f; color: #fff; border-radius: 18px;
+      text-align: center;
+    }
+    .end-cta h2 { margin: 0 0 8px; font-size: 1.4rem; color: #fff; }
+    .end-cta p { color: rgba(255,255,255,0.72); margin: 0 0 18px; font-size: 0.95rem; }
+    .end-cta a { display: inline-block; background: linear-gradient(135deg,#6A11CB,#2575fc); color: #fff; padding: 12px 28px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+
+    .footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--ink-3); font-size: 0.82rem; text-align: center; }
+    .footer a { color: var(--ink-2); }
+
+    /* Print */
+    @media print {
+      .lm-actions, .end-cta { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .wrap { max-width: none; padding: 0; }
+      .cover { padding-top: 0; }
+      .cat { page-break-inside: avoid; }
+      .p { page-break-inside: avoid; }
+      .p-body { background: #f8f8f8; border: 1px solid #ccc; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lm-actions">
+    <a class="lm-brand" href="/"><img src="/assets/images/logo.png" alt="AI Freedom Institute"><span>AI Freedom Institute</span></a>
+    <button onclick="window.print()">📄 Save as PDF</button>
+  </div>
+
+  <div class="wrap">
+
+    <section class="cover">
+      <span class="cover-tag">Free Lead Magnet</span>
+      <h1>50 ChatGPT Prompts for Indian Professionals</h1>
+      <p class="cover-sub">Copy-paste templates for emails, productivity, research, content, marketing, jobs, studies, negotiation, decisions, and personal finance — written for the Indian work context.</p>
+      <div class="cover-meta">
+        <span>👨‍💻 <strong>By Ajit</strong> (AI Finance Guy)</span>
+        <span>📚 50 prompts · 10 categories</span>
+        <span>📅 v1 · April 2026</span>
+      </div>
+    </section>
+
+    <div class="intro">
+      <h2>How to use these prompts</h2>
+      <p>Each prompt is in <strong>square brackets [ ]</strong> wherever you should fill in your specific input. Just paste the whole prompt into ChatGPT, replace the bracketed placeholders, and run it. Most work just as well with Gemini, Claude, and Copilot.</p>
+      <p><strong>Pro tip:</strong> Save your top 5 prompts in ChatGPT's "Saved Prompts" feature so you don't have to retype them. The same prompt works 10× better than typing instructions from scratch every time.</p>
+    </div>
+
+    <!-- ────────── 1. EMAIL & COMMUNICATION ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">01</div><span class="icon">✉️</span><h2>Email &amp; Communication</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #1 · Reply faster</div>
+        <div class="p-title">Reply to an email in your voice, fast</div>
+        <div class="p-body">Reply to this email in my voice — friendly but professional, under 80 words. End with one clear next step. Keep my Indian English tone (avoid American expressions).
+
+Email I received:
+"""
+[paste the incoming email here]
+"""</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #2 · Cold outreach</div>
+        <div class="p-title">Cold email a potential client</div>
+        <div class="p-body">Write a 90-word cold email to [target person's role] at [company name]. Goal: book a 15-minute discovery call. Mention one specific thing about their company that shows I've done research: [specific observation]. End with a single direct ask. Indian context, no over-the-top flattery.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #3 · Difficult message</div>
+        <div class="p-title">Decline an invitation politely</div>
+        <div class="p-body">Help me politely decline this request without burning the relationship. Write 2 versions — one warmer, one more direct. Both under 60 words.
+
+Request: [paste request]</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #4 · Summarise long thread</div>
+        <div class="p-title">Summarise a long email thread</div>
+        <div class="p-body">Summarise this email thread in 5 bullet points: (1) what's the main decision, (2) who's responsible for what, (3) what's blocked, (4) deadline, (5) what's needed from me.
+
+Thread:
+"""
+[paste thread]
+"""</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #5 · Translate</div>
+        <div class="p-title">English → professional Hindi (or vice versa)</div>
+        <div class="p-body">Translate this email to professional Hindi suitable for a corporate audience. Keep it formal but warm. Avoid Sanskritised Hindi — use commonly understood vocabulary.
+
+Email: [paste]</div>
+      </div>
+    </section>
+
+    <!-- ────────── 2. PRODUCTIVITY & PLANNING ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">02</div><span class="icon">⚡</span><h2>Productivity &amp; Planning</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #6 · Daily plan</div>
+        <div class="p-title">Generate today's plan in 30 seconds</div>
+        <div class="p-body">I have these tasks today: [list 5-10 tasks with rough effort]. I have [X hours] available. Order them by impact (highest first) and group them into 2-3 focused blocks. Include 1 break and a 15-minute end-of-day review.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #7 · Project breakdown</div>
+        <div class="p-title">Break a project into a schedule</div>
+        <div class="p-body">I have to deliver [project description] in [N days]. Break this into a day-by-day plan. For each day, give: (1) the goal, (2) hours required, (3) deliverable, (4) what could go wrong. End with a list of dependencies I should resolve early.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #8 · Meeting prep</div>
+        <div class="p-title">Prep for a meeting in 1 minute</div>
+        <div class="p-body">Meeting agenda: [paste]. Attendees: [names + roles]. My objective: [your goal]. Give me: 5 smart questions to ask, 3 likely concerns from this audience, and 2 facts I should know going in. India context if relevant.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #9 · Decision matrix</div>
+        <div class="p-title">Compare options against criteria</div>
+        <div class="p-body">I'm choosing between these options: [option A], [option B], [option C].
+My priorities (weight 1-5): [criterion 1: weight], [criterion 2: weight], [criterion 3: weight].
+Score each option on each criterion 1-5 with a 1-line reason. Calculate weighted scores and recommend.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #10 · Weekly review</div>
+        <div class="p-title">Friday evening reflection</div>
+        <div class="p-body">Help me reflect on this week. Ask me 5 questions one at a time, wait for my answer to each. Cover: wins, losses, energy, who helped me, what to do differently. After all 5, summarise and suggest one focus for next week.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 3. RESEARCH & LEARNING ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">03</div><span class="icon">📚</span><h2>Research &amp; Learning</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #11 · Explain like I'm 12</div>
+        <div class="p-title">Make any topic simple</div>
+        <div class="p-body">Explain [topic] like I'm a Class 8 Indian student. Use one Indian everyday-life analogy. Then quiz me with 3 short questions to see if I understood. Wait for my answers before giving feedback.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #12 · Multiple angles</div>
+        <div class="p-title">Get 10 angles on a topic</div>
+        <div class="p-body">Give me 10 different angles to think about [topic / problem]. Mix obvious + surprising + contrarian. One sentence each. After the list, mark the 3 most underexplored.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #13 · Verify a claim</div>
+        <div class="p-title">Reality-check a claim</div>
+        <div class="p-body">Someone said: "[paste claim]". Steel-man it (best version of the argument), then list 3 specific reasons it might be wrong, with what kind of source would help me verify. Don't make up specific stats — just point me where to look.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #14 · Skim long doc</div>
+        <div class="p-title">Compress a long PDF / report</div>
+        <div class="p-body">Summarise this document for someone who has 90 seconds. Output: (1) one-line executive summary, (2) 5 key facts as bullets, (3) one chart/data point worth noticing, (4) one open question I should investigate further.
+
+Document:
+"""
+[paste]
+"""</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #15 · Personal tutor</div>
+        <div class="p-title">Step-by-step learning</div>
+        <div class="p-body">You are my private tutor for [subject]. My current level: [beginner / intermediate / advanced]. Today I want to understand [specific concept]. Teach me step-by-step in simple Hinglish with one Indian example, then quiz me with 3 questions and grade my answers.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 4. CONTENT CREATION ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">04</div><span class="icon">✍️</span><h2>Content Creation</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #16 · Hooks</div>
+        <div class="p-title">10 viral hook variations</div>
+        <div class="p-body">Give me 10 viral hook openers for a [Reel / YouTube Short / LinkedIn post] about [topic]. Mix curiosity, contradiction, payoff promises, and a stat. Each under 12 words. Indian audience.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #17 · Long-form outline</div>
+        <div class="p-title">Outline a 1000-word blog</div>
+        <div class="p-body">Outline a 1000-word blog post for an Indian audience on "[title]". Target search query: "[query]". Include: H1, intro hook, 5-6 H2 sections (each with 2-3 H3 sub-points), 1 callout box idea, and a conclusion CTA. Do NOT write the body yet.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #18 · LinkedIn carousel</div>
+        <div class="p-title">9-slide carousel script</div>
+        <div class="p-body">Write a 9-slide LinkedIn carousel for: "[insight / lesson]". Format: slide 1 = hook only, slides 2-7 = one tactic per slide with one example, slide 8 = a soft CTA asking for a comment, slide 9 = author bio for [your name + role]. Indian B2B audience.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #19 · Repurpose</div>
+        <div class="p-title">Turn 1 idea into 5 formats</div>
+        <div class="p-body">Take this idea and produce 5 different formats: (1) tweet, (2) LinkedIn post, (3) Instagram caption, (4) YouTube Short script (45 sec), (5) email subject + 3-line preview. Same core insight, different angle each time.
+
+Idea: [paste]</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #20 · Headline test</div>
+        <div class="p-title">A/B 5 headlines</div>
+        <div class="p-body">Give me 5 headlines for [topic / page]. Mix curiosity, benefit, contrarian, list, how-to. For each, predict CTR on a scale of 1-5 with one reason, and flag any that might trigger clickbait sensitivity.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 5. MARKETING & SALES ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">05</div><span class="icon">📈</span><h2>Marketing &amp; Sales</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #21 · Customer persona</div>
+        <div class="p-title">Build a customer profile</div>
+        <div class="p-body">My product/service is [describe]. Build a detailed Indian customer persona: name, age, city tier, profession, income range, daily frustrations, what they're scrolling on Instagram/YouTube, what they wish someone solved for them. End with 3 messaging angles that would resonate with this person.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #22 · Sales page</div>
+        <div class="p-title">High-converting sales page outline</div>
+        <div class="p-body">Outline a sales page for [product] priced at ₹[price] for [target audience]. Include: hero (problem + promise), 3 pain points, what's inside (10 bullets), 3 testimonial slots, value stack with anchored prices, FAQ (6 questions), guarantee, urgency, and final CTA. Don't write yet — just outline.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #23 · Ad copy</div>
+        <div class="p-title">Meta ads — 5 angles</div>
+        <div class="p-body">Write 5 Meta ad variations for [product / service] targeting Indian [audience]. Each: a 7-word hook, 3 lines of body, single CTA. Mix angles: pain-led, aspiration-led, social proof, contrarian, scarcity. Plain language — no "🚀 unlock" hype.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #24 · Objection handling</div>
+        <div class="p-title">Counter the top objections</div>
+        <div class="p-body">My product is [describe + price]. List the 7 most likely customer objections (price, time, trust, etc.). For each, write a 2-sentence honest counter that doesn't feel defensive. End with 3 "yes-trigger" questions a salesperson can ask early to prevent these objections.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #25 · Follow-up sequence</div>
+        <div class="p-title">5-email follow-up after a demo</div>
+        <div class="p-body">Write a 5-email follow-up sequence after a sales demo where the prospect showed interest but didn't commit. Email lengths: 90 / 70 / 50 / 50 / 30 words. Send schedule: day 1, 3, 7, 14, 21. Each email has a different angle. End every email with a soft, single ask.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 6. JOB & CAREER ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">06</div><span class="icon">💼</span><h2>Job &amp; Career</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #26 · Resume bullet</div>
+        <div class="p-title">Rewrite a resume bullet with metrics</div>
+        <div class="p-body">Rewrite this resume bullet to sound impactful, quantified, and senior. Use the X-Y-Z formula (accomplished X, as measured by Y, by doing Z). Indian English, no American expressions.
+
+Original: "[paste your bullet]"</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #27 · Cover letter</div>
+        <div class="p-title">Tailored cover letter</div>
+        <div class="p-body">Write a 3-paragraph cover letter for [role] at [company]. My background: [2-3 lines]. Why this company: [1 specific reason]. Tone: confident, not desperate. Indian English. End with a clear next step.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #28 · Interview prep</div>
+        <div class="p-title">Mock interview questions</div>
+        <div class="p-body">Act as a hiring manager for [role] at [type of company]. Ask me 8 interview questions, one at a time. Mix: behavioural, technical, role-specific, culture-fit. Wait for my answer to each, then give brief feedback (1-2 lines, what was strong, what to improve).</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #29 · Salary negotiation</div>
+        <div class="p-title">Counter an offer</div>
+        <div class="p-body">I got an offer of ₹[X] for [role] at [company]. I want to negotiate to ₹[Y]. Help me draft a 90-word counter — confident, specific reasons (skills, market data, scope), no pleading. End by asking when they can confirm.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #30 · LinkedIn profile</div>
+        <div class="p-title">LinkedIn About section</div>
+        <div class="p-body">Write my LinkedIn About section. Role: [title]. 3 wins/strengths: [list]. Industry: [industry]. Ideal next role/clients: [describe]. Tone: confident first-person, 220 words, scannable. Indian context. Open with a story-style hook, not a job title.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 7. STUDIES & ACADEMICS ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">07</div><span class="icon">🎓</span><h2>Studies &amp; Academics</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #31 · Active recall</div>
+        <div class="p-title">Self-test from notes</div>
+        <div class="p-body">You are a tough [Class 10/12/college] examiner for [subject]. Generate 5 short-answer questions on "[topic]". Wait for my answers before showing yours. After I respond, mark me out of 10 and explain my mistakes simply.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #32 · Exam strategy</div>
+        <div class="p-title">3-day exam crunch plan</div>
+        <div class="p-body">I have [N days] until my [exam]. I've covered [X]% of syllabus. Weak topics: [list]. Strong topics: [list]. Build me an hour-by-hour 3-day plan. Prioritise high-weightage chapters, build in revision time, and add a final-day "do-not-touch-new-topics" rule.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #33 · Essay critique</div>
+        <div class="p-title">Improve your essay (without rewriting)</div>
+        <div class="p-body">Critique this essay. Give me 5 specific, actionable suggestions to make it stronger. DO NOT rewrite or add content — only point out what to fix and how. Cover: structure, opening hook, evidence, conclusion, grammar.
+
+Essay:
+"""
+[paste]
+"""</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #34 · Concept analogy</div>
+        <div class="p-title">Make any concept stick</div>
+        <div class="p-body">Explain [concept] with one Indian-context analogy that an 8-year-old would understand. Then explain the same concept formally for a college-level audience. Show me both side-by-side.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #35 · Project ideas</div>
+        <div class="p-title">10 college project ideas</div>
+        <div class="p-body">I'm a [year] [stream] college student in India. Suggest 10 project ideas on "[broad topic]" that I can finish in [time available]. For each: difficulty (1-5), tools needed, key challenge, and an example existing project to study. End with the 3 most resume-impressive picks.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 8. NEGOTIATION & PERSUASION ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">08</div><span class="icon">🤝</span><h2>Negotiation &amp; Persuasion</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #36 · Pre-negotiation</div>
+        <div class="p-title">Plan before a negotiation</div>
+        <div class="p-body">I'm negotiating [topic] with [counterparty]. My BATNA (best alternative): [alternative]. Their likely BATNA: [guess]. Help me: (1) the highest realistic ask, (2) my walk-away number, (3) 3 concessions I can offer that cost me little, (4) one question that surfaces their real priority.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #37 · Asking for a raise</div>
+        <div class="p-title">Rehearse a raise conversation</div>
+        <div class="p-body">Role-play as my manager. Open with a friendly check-in. I'll ask for a raise. You push back with realistic objections. I respond. Continue for 6-8 turns. After, give me 3 specific things I did well and 3 I should change.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #38 · Sell up</div>
+        <div class="p-title">Pitch your idea to a senior</div>
+        <div class="p-body">I want to pitch [idea] to [their role]. They're skeptical because [their concern]. Write me a 90-second verbal pitch that: opens with their pain, presents the idea in one line, gives 2 quick proof points, addresses the concern head-on, and ends with the smallest possible commitment ask.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #39 · Difficult feedback</div>
+        <div class="p-title">Give hard feedback gracefully</div>
+        <div class="p-body">I need to give [person] feedback that [their behaviour] isn't working. Write what I'd say in a 1:1, using the SBI format (Situation, Behaviour, Impact). Keep it under 60 seconds when spoken. End by asking them what they think.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #40 · Defuse anger</div>
+        <div class="p-title">Respond to an angry email</div>
+        <div class="p-body">I got this angry email/message: "[paste]". Help me respond in a way that: acknowledges their feeling, takes responsibility for what's actually mine, separates the emotion from the issue, and ends with a concrete next step. Keep it under 90 words.</div>
+      </div>
+    </section>
+
+    <!-- ────────── 9. DECISION-MAKING ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">09</div><span class="icon">🧭</span><h2>Decision-Making</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #41 · Pre-mortem</div>
+        <div class="p-title">Imagine the failure first</div>
+        <div class="p-body">I'm about to do [decision / project]. Imagine it's 6 months from now and this has completely failed. Write the post-mortem: what 5 things most likely went wrong, what early warning signs would I have ignored, and what 3 changes today would prevent each.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #42 · Reversibility test</div>
+        <div class="p-title">Test if a decision is reversible</div>
+        <div class="p-body">I'm considering [decision]. Help me classify it: (1) Is it reversible or one-way? (2) What's the worst realistic outcome? (3) What's the cost of waiting another month? (4) If you could only ask me 3 questions before I decide, what would they be?</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #43 · Stakeholder mapping</div>
+        <div class="p-title">Map who matters for this call</div>
+        <div class="p-body">Decision: [describe]. List the stakeholders affected, ranked by influence. For each, give: their likely position (support / neutral / oppose), their #1 concern, and one move I should make to address it. End with the smallest stakeholder set I actually need on my side.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #44 · 10/10/10</div>
+        <div class="p-title">Suzy Welch's 10/10/10 framework</div>
+        <div class="p-body">Apply the 10/10/10 rule to this decision: [describe]. How will I feel about this in 10 minutes, 10 months, and 10 years? Be specific for each timeframe. End with: which timeframe should weigh most for this particular call, and why.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #45 · Steel-man</div>
+        <div class="p-title">Argue against your own position</div>
+        <div class="p-body">My current position: "[your opinion]". Steel-man the strongest argument against this — better than I'd make myself. Then list the 3 facts/observations that, if true, should change my mind. Where can I check those?</div>
+      </div>
+    </section>
+
+    <!-- ────────── 10. PERSONAL FINANCE ────────── -->
+    <section class="cat">
+      <div class="cat-head"><div class="cat-num">10</div><span class="icon">💰</span><h2>Personal Finance</h2></div>
+
+      <div class="p"><div class="p-label">Prompt #46 · Budget review</div>
+        <div class="p-title">Find leaks in your budget</div>
+        <div class="p-body">My monthly take-home is ₹[X]. My fixed expenses: [list]. Variable expenses: [list]. Help me: (1) flag 3 categories where I'm probably overspending vs Indian middle-class norms, (2) suggest 3 specific cuts I likely won't miss, (3) calculate what I could redirect to investments.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #47 · SIP planning</div>
+        <div class="p-title">Goal-based SIP plan</div>
+        <div class="p-body">I want to save ₹[goal] in [N years] for [purpose]. Currently I save ₹[Y]/month. Build a goal-based SIP allocation: how much I need to invest monthly assuming 11% annual return, what mix of equity/debt makes sense for this horizon, and 3 specific Indian fund categories (not specific schemes — categories) to research. Add a clear "this is education, not advice" disclaimer.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #48 · Tax-saving</div>
+        <div class="p-title">80C smart allocation</div>
+        <div class="p-body">My annual income is ₹[X]. I haven't used my 80C limit yet. List the top 5 80C options for an Indian salaried professional, with: lock-in period, expected return, liquidity, and best-fit profile. Recommend a split for someone in their [age range] with [risk tolerance]. Add the standard "consult a CA" disclaimer.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #49 · Emergency fund</div>
+        <div class="p-title">Build a 6-month emergency fund</div>
+        <div class="p-body">My monthly necessary expenses (rent, food, EMIs, utilities, transport): ₹[X]. Build me a 12-month plan to save 6× this in an emergency fund. Include: monthly savings target, where to park it (Indian options + why), what NOT to use it for, and a milestone tracker.</div>
+      </div>
+
+      <div class="p"><div class="p-label">Prompt #50 · Investment audit</div>
+        <div class="p-title">Audit your current investments</div>
+        <div class="p-body">My current investments: [list — type, amount, age]. Audit them: (1) Am I over-concentrated in any one asset class? (2) What's the rough cost (expense ratio + tax) on each? (3) Am I missing any major asset class (international equity, gold, etc.)? End with the 3 changes that would have the biggest impact, ranked by ease.</div>
+      </div>
+    </section>
+
+    <div class="end-cta">
+      <h2>Want to go deeper?</h2>
+      <p>If you liked these prompts, the <strong>AI Prompt Engineering Course</strong> goes 10× deeper — chain-of-thought, few-shot, custom GPTs, and 100+ more templates. Today only ₹699 (was ₹1,750).</p>
+      <a href="/courses/ai-prompt-engineering">Master Prompts →</a>
+    </div>
+
+    <div class="footer">
+      © 2026 AI Freedom Institute · <a href="https://www.aifreedom.in">aifreedom.in</a> · <a href="mailto:info@aifreedom.in">info@aifreedom.in</a> · You can freely save, print, and use these prompts. Please don't repackage them as your own product.
+    </div>
+
+  </div>
+</body>
+</html>
