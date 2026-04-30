@@ -9,6 +9,9 @@ Allow: /Course
 Allow: /courses/
 Allow: /blog/
 Allow: /rss.xml
+Allow: /privacy
+Allow: /terms
+Allow: /ads.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /knowledge.md

@@ -106,6 +106,20 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Legal -->
+  <url>
+    <loc>https://www.aifreedom.in/privacy</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.aifreedom.in/terms</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://www.aifreedom.in/blog/</loc>

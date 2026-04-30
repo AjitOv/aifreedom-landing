@@ -50,6 +50,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/courses/course-landing.css">
+  <meta name="google-adsense-account" content="ca-pub-9730255492246554">
 
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WHSWQDS6');</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZJLJ0JMXN"></script>
@@ -123,9 +124,15 @@
         <h2>{{SECTION_HEADING_2}}</h2>
         <p>{{SECTION_2_CONTENT}}</p>
 
+        <!-- Ad: mid-article. Replace data-ad-slot with a real slot ID from AdSense. -->
+        <div class="adsense-slot" data-ad-slot="PASTE_AD_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true" style="margin:32px 0;min-height:90px;"></div>
+
         <!-- Use <h2>/<h3>, <ol>/<ul>/<li>, <blockquote>, <strong>, <em>,
              <a href="...">, <code>, <hr>, .bl-callout as needed -->
         <!-- ================= YOUR CONTENT ENDS ================= -->
+
+        <!-- Ad: end-of-article. -->
+        <div class="adsense-slot" data-ad-slot="PASTE_AD_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true" style="margin:32px 0;min-height:90px;"></div>
       </div>
 
       <!-- Inline CTA (pick the course most relevant to the post) -->
@@ -148,8 +155,9 @@
   <footer class="cl-footer">
     <div class="cl-container">
       © 2026 AI Freedom Institute. All Rights Reserved.
-      <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/Course">All Courses</a> · <a href="/blog/">Blog</a> · <a href="/contact">Contact</a></div>
+      <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/Course">All Courses</a> · <a href="/blog/">Blog</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="#" onclick="event.preventDefault();afConsentReset();">Manage cookies</a></div>
     </div>
   </footer>
+  <script src="/ads-consent.js" async></script>
 </body>
 </html>
