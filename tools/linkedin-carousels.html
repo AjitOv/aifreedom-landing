@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Carousels — Copy & Paste Ready | AI Freedom Institute (Internal)</title>
+
+  <!-- Don't index this utility -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-2: #10101a;
+      --card: #16161f;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --text-2: rgba(255,255,255,0.72);
+      --text-3: rgba(255,255,255,0.45);
+      --primary: #6A11CB;
+      --primary-2: #2575fc;
+      --green: #4ade80;
+      --green-bg: rgba(74,222,128,0.12);
+      --gradient: linear-gradient(135deg, #6A11CB, #2575fc);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    /* Header */
+    header { padding-bottom: 28px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+    header h1 { font-size: clamp(1.6rem, 3vw, 2rem); margin: 0 0 6px; letter-spacing: -0.02em; font-weight: 800; }
+    header .sub { color: var(--text-2); font-size: 0.95rem; margin: 0; }
+    header .badge { display: inline-block; padding: 4px 10px; background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); border-radius: 999px; font-size: 0.72rem; font-weight: 700; margin-bottom: 14px; }
+    .toc { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .toc a { padding: 6px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; color: var(--text-2); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .toc a:hover { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+
+    /* Section */
+    section { margin-top: 48px; scroll-margin-top: 20px; }
+    section h2 { font-size: 1.4rem; margin: 0 0 6px; font-weight: 800; letter-spacing: -0.01em; }
+    section .meta { color: var(--text-3); font-size: 0.85rem; margin: 0 0 22px; }
+
+    /* Block (caption or slide) */
+    .block { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; position: relative; transition: border-color 0.15s; }
+    .block:hover { border-color: rgba(74,222,128,0.4); }
+    .block-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .block-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.06em; }
+    .block-tag.caption { color: #c4b5fd; }
+    .block-tag.headline { color: #67e8f9; }
+    .copy-btn {
+      background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.3);
+      border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .copy-btn:hover { background: rgba(74,222,128,0.2); }
+    .copy-btn.copied { background: var(--green); color: #0a0a0f; border-color: var(--green); }
+    .block-content { color: var(--text-2); font-size: 0.95rem; white-space: pre-wrap; word-break: break-word; line-height: 1.65; }
+    .block-content strong { color: var(--text); }
+    .block-content.headline-text { font-weight: 700; color: var(--text); font-size: 1.05rem; }
+    .slide-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 720px) { .slide-row { grid-template-columns: 1fr; } }
+
+    .slide { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; transition: border-color 0.15s; }
+    .slide:hover { border-color: rgba(74,222,128,0.4); }
+    .slide-num { display: inline-block; width: 26px; height: 26px; background: var(--gradient); border-radius: 8px; color: #fff; font-weight: 800; text-align: center; line-height: 26px; font-size: 0.85rem; margin-right: 8px; vertical-align: middle; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--green); color: #0a0a0f; padding: 12px 22px; border-radius: 999px;
+      font-weight: 700; font-size: 0.9rem; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s; z-index: 1000;
+      box-shadow: 0 10px 40px rgba(74,222,128,0.4);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .tip { background: linear-gradient(135deg, rgba(106,17,203,0.1), rgba(37,117,252,0.05)); border: 1px solid rgba(106,17,203,0.3); border-radius: 12px; padding: 16px 20px; margin: 20px 0; color: var(--text-2); font-size: 0.92rem; }
+    .tip strong { color: #c4b5fd; }
+    .canva-list { margin: 14px 0 0 18px; padding: 0; }
+    .canva-list li { margin-bottom: 6px; }
+
+    code { background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; color: #c4b5fd; font-family: 'SF Mono', Menlo, monospace; }
+    a { color: var(--green); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <span class="badge">🔒 Internal · Not indexed</span>
+      <h1>LinkedIn Carousels — Copy & Paste Ready</h1>
+      <p class="sub">3 carousels for sprint days 2 / 5 / 8. Click any "Copy" button to copy that block to your clipboard, then paste into LinkedIn (or Canva). Captions go in the LinkedIn post body; slides go in the carousel PDF.</p>
+      <div class="toc">
+        <a href="#l1">L1 — 5 AI Tools</a>
+        <a href="#l2">L2 — Save 2-3 hrs/day</a>
+        <a href="#l3">L3 — AI Se Kamao</a>
+        <a href="#canva">Canva Tips</a>
+      </div>
+    </header>
+
+    <!-- ====== CAROUSEL L1 ====== -->
+    <section id="l1">
+      <h2>📅 Day 2 — L1: 5 AI Tools Every Indian Professional Should Use</h2>
+      <p class="meta">Best post time: Mon/Tue 12 PM IST · Hook: free tools + time saved · Soft CTA: comment "PROMPTS"</p>
+
+      <div class="block">
+        <div class="block-head"><span class="block-tag caption">📝 Post Caption (paste above carousel)</span><button class="copy-btn" data-target="l1-caption">Copy</button></div>
+        <div class="block-content" id="l1-caption">I save ~3 hours every working day with these 5 AI tools. None require coding. Most are free. Swipe → ➡️
+
+Which one are you NOT using yet? Comment below.
+
+Follow me for daily AI tips that save Indian professionals 2-3 hours/day.
+
+#AI #ChatGPT #Productivity #IndianProfessionals #AIFinanceGuy #AIFreedomInstitute</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">1</span> Slide 1 — Hook</span><button class="copy-btn" data-target="l1-s1">Copy</button></div>
+        <div class="block-content headline-text" id="l1-s1">5 AI tools every Indian professional should use in 2026
+
+(Most are FREE. None require coding.)
+
+Swipe →</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">2</span> Slide 2</span><button class="copy-btn" data-target="l1-s2">Copy</button></div>
+        <div class="block-content" id="l1-s2"><strong>1. ChatGPT — your 24/7 assistant</strong>
+
+▸ Drafts emails 10x faster
+▸ Summarizes long PDFs in seconds
+▸ Plans your week in 30 seconds
+▸ Free tier handles 95% of work
+
+Use it for every repetitive task.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">3</span> Slide 3</span><button class="copy-btn" data-target="l1-s3">Copy</button></div>
+        <div class="block-content" id="l1-s3"><strong>2. Google Gemini — research with current info</strong>
+
+▸ Free, no subscription needed
+▸ Live web access (better than ChatGPT for facts)
+▸ Generous daily limits
+▸ Great for India-specific queries
+
+Best for fact-checking + research.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">4</span> Slide 4</span><button class="copy-btn" data-target="l1-s4">Copy</button></div>
+        <div class="block-content" id="l1-s4"><strong>3. Notion AI — meeting notes that write themselves</strong>
+
+▸ Auto-summarizes calls
+▸ Generates action items
+▸ Pulls insights from rough notes
+▸ Worth every rupee
+
+Game-changer for managers.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">5</span> Slide 5</span><button class="copy-btn" data-target="l1-s5">Copy</button></div>
+        <div class="block-content" id="l1-s5"><strong>4. Otter.ai — never take meeting notes again</strong>
+
+▸ Records + transcribes calls
+▸ Tags speakers automatically
+▸ 300 free minutes/month
+▸ Searchable transcript history
+
+Stop scribbling. Start listening.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">6</span> Slide 6</span><button class="copy-btn" data-target="l1-s6">Copy</button></div>
+        <div class="block-content" id="l1-s6"><strong>5. Perplexity — Google but smarter</strong>
+
+▸ Answers with cited sources
+▸ Real-time research
+▸ Free tier is enough
+▸ Stops you opening 10 tabs
+
+Use this instead of Google for any "how do I..." question.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">7</span> Slide 7</span><button class="copy-btn" data-target="l1-s7">Copy</button></div>
+        <div class="block-content" id="l1-s7"><strong>My daily flow with these 5</strong>
+
+🕘 9 AM — Otter records standup
+🕙 10 AM — ChatGPT drafts emails
+🕚 11 AM — Perplexity for research
+🕐 1 PM — Notion AI summarises notes
+🕓 4 PM — Gemini fact-checks reports
+
+Saves ~3 hours every single day.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">8</span> Slide 8</span><button class="copy-btn" data-target="l1-s8">Copy</button></div>
+        <div class="block-content" id="l1-s8"><strong>The skill that beats all tools</strong>
+
+Knowing the right prompts.
+
+Same AI. Same tool. Different prompt.
+
+10x output difference.
+
+(Comment "PROMPTS" — I'll DM my list of 50 prompts.)</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">9</span> Slide 9 — CTA / Author</span><button class="copy-btn" data-target="l1-s9">Copy</button></div>
+        <div class="block-content" id="l1-s9"><strong>About Ajit — AI Finance Guy</strong>
+
+Founder, AI Freedom Institute
+📚 Author of 3 books
+🧠 32 AI projects delivered
+🎤 Webinars + seminars across India
+
+Follow for daily AI tips →</div>
+      </div>
+    </section>
+
+    <!-- ====== CAROUSEL L2 ====== -->
+    <section id="l2">
+      <h2>📅 Day 5 — L2: How I Save 2-3 Hours Every Working Day</h2>
+      <p class="meta">Best post time: Fri 11 AM IST · Hook: math + workflow specificity · Soft CTA: comment "WORKFLOW"</p>
+
+      <div class="block">
+        <div class="block-head"><span class="block-tag caption">📝 Post Caption</span><button class="copy-btn" data-target="l2-caption">Copy</button></div>
+        <div class="block-content" id="l2-caption">3 hours saved every working day = 60 hours/month = 720 hours/year.
+
+That's a full month of your life back, every year.
+
+Here are the 5 specific workflows I use →
+
+Comment "WORKFLOW" and I'll DM you the full PDF with all the prompts.
+
+#AI #Productivity #ChatGPT #WorkSmart #AIFinanceGuy</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">1</span> Slide 1 — Hook</span><button class="copy-btn" data-target="l2-s1">Copy</button></div>
+        <div class="block-content headline-text" id="l2-s1">How I save 2-3 hours every working day with AI
+
+5 specific workflows
+(with the exact prompts I use)
+
+Swipe →</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">2</span> Slide 2</span><button class="copy-btn" data-target="l2-s2">Copy</button></div>
+        <div class="block-content" id="l2-s2"><strong>Workflow 1: Email triage</strong>
+<em>Saves 45 min/day</em>
+
+I forward email to ChatGPT →
+"Reply in my voice, friendly tone, under 80 words. End with a clear next step."
+
+Edit + send.
+
+5 minutes instead of 15 per email.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">3</span> Slide 3</span><button class="copy-btn" data-target="l2-s3">Copy</button></div>
+        <div class="block-content" id="l2-s3"><strong>Workflow 2: Meeting prep</strong>
+<em>Saves 20 min/meeting</em>
+
+Paste agenda + LinkedIn of attendees →
+"Give me 5 questions to ask, 3 likely concerns from this audience, and key facts I should know."
+
+30 seconds of prep. Walk in confident.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">4</span> Slide 4</span><button class="copy-btn" data-target="l2-s4">Copy</button></div>
+        <div class="block-content" id="l2-s4"><strong>Workflow 3: Report writing</strong>
+<em>Saves 90 min</em>
+
+Paste raw data → ChatGPT:
+"Write a 1-page executive summary for [audience]. Focus on [angle]. Include one chart suggestion."
+
+I polish + send.
+
+A 2-hour task in 30 minutes.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">5</span> Slide 5</span><button class="copy-btn" data-target="l2-s5">Copy</button></div>
+        <div class="block-content" id="l2-s5"><strong>Workflow 4: Research</strong>
+<em>Saves 60 min</em>
+
+Step 1: Perplexity for cited sources
+Step 2: ChatGPT to synthesize them
+Step 3: Notion to file the output
+
+90 minutes of research → 15 minutes.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">6</span> Slide 6</span><button class="copy-btn" data-target="l2-s6">Copy</button></div>
+        <div class="block-content" id="l2-s6"><strong>Workflow 5: Slide decks</strong>
+<em>Saves 60 min</em>
+
+Upload notes to Gamma.app →
+AI generates 10 slides automatically.
+
+I edit text + brand colors.
+
+A 90-minute deck in 20 minutes.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">7</span> Slide 7</span><button class="copy-btn" data-target="l2-s7">Copy</button></div>
+        <div class="block-content" id="l2-s7"><strong>The math</strong>
+
+45 + 20 + 90 + 60 + 60 = 4.5 hrs/day
+
+Realistically 2-3 hrs after edits.
+
+Still 60 hours/month.
+
+That's a 12-day vacation, free, every year.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">8</span> Slide 8</span><button class="copy-btn" data-target="l2-s8">Copy</button></div>
+        <div class="block-content" id="l2-s8"><strong>What separates winners from rest</strong>
+
+Tools don't matter. Workflow does.
+
+The right prompt, at the right step, with the right context = 10x output.
+
+Master the workflow. Tool changes don't matter.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">9</span> Slide 9 — CTA</span><button class="copy-btn" data-target="l2-s9">Copy</button></div>
+        <div class="block-content" id="l2-s9"><strong>Want all 25 prompts I use daily?</strong>
+
+Comment "WORKFLOW" — I'll DM you the PDF.
+
+(Free. No opt-in. Just useful.)
+
+Follow for more 👇
+
+— Ajit, AI Finance Guy</div>
+      </div>
+    </section>
+
+    <!-- ====== CAROUSEL L3 ====== -->
+    <section id="l3">
+      <h2>📅 Day 8 — L3: AI Se Kamao Reality Check (5 Ways)</h2>
+      <p class="meta">Best post time: Mon 12 PM IST · Hook: anti-hype angle · Soft CTA: comment "KAMAO"</p>
+
+      <div class="block">
+        <div class="block-head"><span class="block-tag caption">📝 Post Caption</span><button class="copy-btn" data-target="l3-caption">Copy</button></div>
+        <div class="block-content" id="l3-caption">"AI se paise kamao" — YouTube pe 100 video hain, 99 fake.
+
+Honest reality: 5 ways that actually work. Real numbers. Time-to-first-rupee. Read what NO one else is telling you →
+
+Comment "KAMAO" and I'll DM you my decision tree to pick the right one for YOU.
+
+#AISeKamao #FreelanceIndia #SideHustle #AIFreedomInstitute #AIFinanceGuy</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">1</span> Slide 1 — Hook</span><button class="copy-btn" data-target="l3-s1">Copy</button></div>
+        <div class="block-content headline-text" id="l3-s1">AI se paise kamane ke 5 tarike
+
+But I want you to know which DON'T work.
+
+Honest review · Real numbers · Decision tree at the end
+
+Swipe →</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">2</span> Slide 2</span><button class="copy-btn" data-target="l3-s2">Copy</button></div>
+        <div class="block-content" id="l3-s2"><strong>First, the truth</strong>
+
+AI is a tool, not magic.
+
+Income comes from your skill + consistency.
+
+Anyone promising "₹1 lakh in 30 days" is selling, not teaching.
+
+Read on for what actually works →</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">3</span> Slide 3</span><button class="copy-btn" data-target="l3-s3">Copy</button></div>
+        <div class="block-content" id="l3-s3"><strong>1. AI Freelancing (Fiverr/Upwork)</strong>
+
+💰 ₹15K-80K/month
+⏱ 2-4 weeks to first ₹
+💸 ₹0 investment
+🎯 Best for: Beginners
+
+⚠️ Pitfall: First 2 weeks brutal — no reviews, no orders. Most quit here.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">4</span> Slide 4</span><button class="copy-btn" data-target="l3-s4">Copy</button></div>
+        <div class="block-content" id="l3-s4"><strong>2. AI Content Agency</strong>
+
+💰 ₹50K-2L/month
+⏱ 1-2 months to first ₹
+💸 ₹0-5K invest (tools)
+🎯 Best for: Marketers
+
+⚠️ Pitfall: Client acquisition is the bottleneck. LinkedIn outreach + cold email skills required.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">5</span> Slide 5</span><button class="copy-btn" data-target="l3-s5">Copy</button></div>
+        <div class="block-content" id="l3-s5"><strong>3. Faceless YouTube</strong>
+
+💰 ₹0-5L/month (highly variable)
+⏱ 6-12 months to first ₹
+💸 ₹2-10K invest (AI voice + video)
+🎯 Best for: Patient long-game players
+
+⚠️ Pitfall: 80% channels fail. YouTube tightening AI-only rules in 2024-25.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">6</span> Slide 6</span><button class="copy-btn" data-target="l3-s6">Copy</button></div>
+        <div class="block-content" id="l3-s6"><strong>4. AI Copywriting</strong>
+
+💰 ₹5K-50K per project
+⏱ 1-3 months to first ₹
+💸 ₹0 invest
+🎯 Best for: Writers + sales-savvy
+
+⚠️ Pitfall: AI alone doesn't sell. Psychology + structure required. You're the copywriter, AI is the assistant.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">7</span> Slide 7</span><button class="copy-btn" data-target="l3-s7">Copy</button></div>
+        <div class="block-content" id="l3-s7"><strong>5. AI Micro-SaaS</strong>
+
+💰 ₹10K-5L MRR (recurring)
+⏱ 2-6 months to first ₹
+💸 ₹5-25K invest (hosting, API)
+🎯 Best for: Tech-curious builders
+
+⚠️ Pitfall: 90% fail at distribution, not building. Marketing skill > coding skill.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">8</span> Slide 8</span><button class="copy-btn" data-target="l3-s8">Copy</button></div>
+        <div class="block-content" id="l3-s8"><strong>The math everyone misses</strong>
+
+₹50K/month = 5 clients × ₹10K each
+
+NOT 100 clients.
+NOT viral.
+Just 5 paying customers.
+
+That's it.
+
+The bottleneck is finding those 5.</div>
+      </div>
+
+      <div class="slide">
+        <div class="block-head"><span class="block-tag headline"><span class="slide-num">9</span> Slide 9 — CTA</span><button class="copy-btn" data-target="l3-s9">Copy</button></div>
+        <div class="block-content" id="l3-s9"><strong>Which one for YOU?</strong>
+
+Comment "KAMAO" → I'll DM you my decision tree (free PDF).
+
+Pick ONE method.
+Commit 90 days.
+Scale.
+
+— Ajit, AI Finance Guy
+Founder, AI Freedom Institute</div>
+      </div>
+    </section>
+
+    <!-- ====== CANVA TIPS ====== -->
+    <section id="canva">
+      <h2>🎨 Canva Execution Tips</h2>
+      <p class="meta">A few rules to keep all 3 carousels visually consistent</p>
+
+      <div class="tip">
+        <strong>Template:</strong> Search "linkedin carousel dark" in Canva → pick a 1080×1080 vertical-stack template.<br><br>
+        <strong>Brand colors:</strong> Background <code>#0a0a0f</code> · Card <code>#16161f</code> · Accent green <code>#4ade80</code> · Purple gradient <code>#6A11CB → #2575fc</code><br><br>
+        <strong>Font:</strong> <strong>Inter</strong> (matches your website) for body · <strong>Anton</strong> or <strong>Bebas Neue</strong> for hero headlines on slide 1<br><br>
+        <strong>Slide 1 rule:</strong> Zero body text. Just the headline + arrow ➡️. Maximum impact.<br><br>
+        <strong>Last slide rule:</strong> Always founder bio + soft CTA. Identical across all 3 carousels for brand consistency.<br><br>
+        <strong>Export:</strong> PDF (LinkedIn auto-detects carousel format from PDF).<br><br>
+        <strong>Posting:</strong> Best times for B2B India = Mon/Tue/Wed 11 AM-1 PM IST. Use the suggested time per carousel above.
+      </div>
+
+      <div class="tip">
+        <strong>📌 Reply playbook for "PROMPTS" / "WORKFLOW" / "KAMAO" comments:</strong><br><br>
+        1. Reply publicly: "Sent! 📩 (check DMs)"<br>
+        2. DM the person with the promised PDF + a soft course pitch.<br>
+        3. After 24 hours, send a follow-up DM: "Did the PDF help? Any specific question?"<br>
+        4. Track every commenter as a warm lead — these convert 5-10× better than cold traffic.
+      </div>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast">✓ Copied to clipboard</div>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const targetId = btn.getAttribute('data-target');
+        const el = document.getElementById(targetId);
+        if (!el) return;
+        // Convert HTML content to plain text (preserve line breaks, strip tags)
+        const tmp = document.createElement('div');
+        tmp.innerHTML = el.innerHTML
+          .replace(/<br\s*\/?>/gi, '\n')
+          .replace(/<\/p>/gi, '\n\n')
+          .replace(/<\/div>/gi, '\n');
+        const text = (tmp.textContent || tmp.innerText || '').trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.classList.add('copied');
+          btn.textContent = '✓ Copied';
+          showToast();
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.textContent = 'Copy';
+          }, 1800);
+        } catch (e) {
+          // Fallback — select text manually
+          const range = document.createRange();
+          range.selectNodeContents(el);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          alert('Press Cmd/Ctrl+C to copy the highlighted text.');
+        }
+      });
+    });
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast() {
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+  </script>
+
+</body>
+</html>

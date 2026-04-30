@@ -1431,6 +1431,33 @@ textarea.form-input {
   .skills-list { grid-template-columns: 1fr; }
 }
 
+/* Hero — animated neural network visual (replaces emoji) */
+.hero-neural { width: 100%; height: 100%; max-width: 320px; max-height: 320px; }
+.hero-neural .hn-links { opacity: 0.32; stroke-dasharray: 2 5; animation: hnFlow 4s linear infinite; }
+.hero-neural .hn-links + .hn-links { animation-direction: reverse; animation-duration: 5s; }
+.hero-neural .hn-n { transform-box: fill-box; transform-origin: center; animation: hnPulse 2.6s ease-in-out infinite; }
+.hero-neural .hn-sparks circle { opacity: 0.85; }
+@keyframes hnPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.22); opacity: 1; }
+}
+@keyframes hnFlow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -28; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-neural .hn-links,
+  .hero-neural .hn-n,
+  .hero-neural .hn-sparks circle { animation: none !important; }
+  .hero-neural .hn-sparks { display: none; }
+}
+.hero-neural-wrap { animation: hnBreathe 6s ease-in-out infinite; }
+@keyframes hnBreathe {
+  0%, 100% { box-shadow: 0 0 60px rgba(0,198,255,0.18) inset, 0 0 0 rgba(106,17,203,0); }
+  50%      { box-shadow: 0 0 80px rgba(0,198,255,0.28) inset, 0 0 40px rgba(106,17,203,0.25); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-neural-wrap { animation: none; } }
+
 /* FAQ */
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary { transition: color .2s ease; }
