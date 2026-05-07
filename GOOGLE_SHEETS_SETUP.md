@@ -1,117 +1,134 @@
-# How to Connect the Contact Form to Google Sheets
+# How to Connect Leads to a Google Sheet
 
-Follow these steps to receive all form submissions in a Google Sheet + email notification.
+Every form submission across the site (lead magnet downloads + the 4 business tools at /businesstools) will appear in one Google Sheet, plus an email notification.
 
-## Step 1: Create a Google Sheet
+**Time required:** ~5 minutes.
 
-1. Go to [Google Sheets](https://sheets.google.com)
-2. Create a new spreadsheet
-3. Name it: **"AI Freedom Institute - Leads"**
-4. In Row 1, add these headers (exactly as shown):
+## Step 1 — Create the Google Sheet
 
-| A | B | C | D | E | F | G |
-|---|---|---|---|---|---|---|
-| Timestamp | Name | Phone | Email | School | Role | Message |
+1. Go to <https://sheets.google.com>
+2. Create a blank spreadsheet, rename it: **AI Freedom — Leads**
+3. In Row 1, paste these column headers (copy this whole line and paste into A1, it auto-splits):
 
-## Step 2: Open Apps Script
+```
+Timestamp	Tool	Name	Email	Phone	Business	Source	Magnet ID
+```
 
-1. In your Google Sheet, click **Extensions → Apps Script**
+You should now have 8 columns: A–H.
+
+## Step 2 — Add the Apps Script
+
+1. In your Google Sheet: **Extensions → Apps Script**
 2. Delete any existing code in the editor
-3. Paste the following code:
+3. Paste this code:
 
 ```javascript
-// Google Apps Script — Form Handler for AI Freedom Institute
-// This receives form data and saves it to this spreadsheet
+// AI Freedom Institute — Leads handler
+// Receives form data from aifreedom.in/api/lead and appends to this sheet.
 
-const NOTIFICATION_EMAIL = "info@aifreedom.in"; // Change if needed
+const NOTIFICATION_EMAIL = "info@aifreedom.in"; // change if needed
+const SEND_EMAIL = true;                         // set false to silence emails
 
 function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     const data = JSON.parse(e.postData.contents);
-    
-    // Append row to sheet
+
+    const timestamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+
     sheet.appendRow([
-      new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      timestamp,
+      data.tool || data.role || "",     // Tool (e.g., "AI Growth Consultant Report")
       data.name || "",
-      data.phone || "",
       data.email || "",
-      data.school || "",
-      data.role || "",
-      data.message || ""
+      data.phone || "",
+      data.business || "",
+      data.source || "",
+      data.magnet || ""                 // the slug, useful for filtering
     ]);
-    
-    // Send email notification
-    if (NOTIFICATION_EMAIL) {
-      const subject = `🎯 New Lead: ${data.school || "Unknown School"} - AI Freedom Institute`;
-      const body = `
-New Workshop Inquiry Received!
-================================
 
-Name: ${data.name}
-Phone: ${data.phone}
-Email: ${data.email}
-School/College: ${data.school}
-Role: ${data.role || "Not specified"}
-Message: ${data.message || "No message"}
+    if (SEND_EMAIL && NOTIFICATION_EMAIL) {
+      const subj = "🎯 New lead: " + (data.tool || "Form submission") + (data.business ? " — " + data.business : "");
+      const body = [
+        "New lead from aifreedom.in",
+        "================================",
+        "",
+        "Tool:     " + (data.tool || "(none)"),
+        "Name:     " + (data.name || "(none)"),
+        "Email:    " + (data.email || "(none)"),
+        "Phone:    " + (data.phone || "(none)"),
+        "Business: " + (data.business || "(none)"),
+        "Source:   " + (data.source || "(none)"),
+        "",
+        "Submitted: " + timestamp,
+      ].join("\n");
 
-Submitted: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}
-
----
-This lead was submitted via aifreedom.in
-      `;
-      
-      MailApp.sendEmail({
-        to: NOTIFICATION_EMAIL,
-        subject: subject,
-        body: body
-      });
+      MailApp.sendEmail({ to: NOTIFICATION_EMAIL, subject: subj, body: body });
     }
-    
+
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "success", message: "Data saved" }))
+      .createTextOutput(JSON.stringify({ status: "success" }))
       .setMimeType(ContentService.MimeType.JSON);
-      
+
   } catch (error) {
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
+      .createTextOutput(JSON.stringify({ status: "error", message: String(error) }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
-function doGet(e) {
+function doGet() {
   return ContentService
-    .createTextOutput(JSON.stringify({ status: "ok", message: "AI Freedom Form Handler Active" }))
+    .createTextOutput(JSON.stringify({ status: "ok", message: "AI Freedom Leads handler active" }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
-## Step 3: Deploy as Web App
+4. Save (⌘S / Ctrl+S). Name it: **AI Freedom Leads Handler**.
 
-1. Click **Deploy → New Deployment**
-2. Click the ⚙️ gear icon → Select **Web app**
-3. Set these options:
-   - **Description**: "AI Freedom Form Handler"
-   - **Execute as**: Me (your email)
-   - **Who has access**: **Anyone**
+## Step 3 — Deploy as a Web App
+
+1. Click **Deploy → New deployment**
+2. Click the gear icon (top-left of the dialog) → choose **Web app**
+3. Settings:
+   - **Description:** AI Freedom Leads
+   - **Execute as:** Me (your email)
+   - **Who has access:** **Anyone** ← critical, must be Anyone (not "Anyone with Google account")
 4. Click **Deploy**
-5. Click **Authorize access** → Choose your Google account → Allow permissions
-6. **Copy the Web App URL** — it looks like:
-   `https://script.google.com/macros/s/AKfycbx.../exec`
-
-## Step 4: Add the URL to Your Website
-
-Give me the Web App URL and I'll update the landing page code. Or replace it yourself in `index.html` — search for:
+5. Click **Authorize access** → pick your Google account → **Allow**
+6. Copy the **Web app URL**. It looks like:
 
 ```
-GOOGLE_SCRIPT_URL
+https://script.google.com/macros/s/AKfycbx.../exec
 ```
 
-And replace with your actual URL.
+## Step 4 — Plug the URL into Vercel
 
-## That's it! 🎉
+Two ways:
 
-Every form submission will now:
-- ✅ Save to your Google Sheet automatically
-- ✅ Send you an email notification at info@aifreedom.in
-- ✅ Show success message to the visitor
+### Option A — let Claude do it (paste the URL in chat)
+
+Just paste the URL here and Claude will add it as the `LEAD_FORWARDING_URL` env var on Vercel and redeploy.
+
+### Option B — DIY in your terminal
+
+```bash
+cd "/Users/ajitovhal/ai-freedom-engine/landing"
+echo "https://script.google.com/macros/s/AKfycbx.../exec" | vercel env add LEAD_FORWARDING_URL production
+vercel --prod
+```
+
+## Step 5 — Test
+
+Submit any of the 4 tools at <https://www.aifreedom.in/businesstools> with your real details. Within a few seconds, you should see:
+
+- A new row in your Google Sheet
+- An email notification at info@aifreedom.in
+
+## Updating the Apps Script later
+
+If you change the script, you must **Deploy → Manage deployments → pencil icon → New version → Deploy**. The URL stays the same.
+
+## Backfilling old leads
+
+Leads submitted before you set this up are in Vercel function logs at <https://vercel.com/ajitovs-projects/landing/logs> (filter for `[lead]`). Anything from before today is recoverable from there.

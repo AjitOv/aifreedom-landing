@@ -103,6 +103,46 @@
     {
       "source": "/security.txt",
       "destination": "/.well-known/security.txt"
+    },
+    {
+      "source": "/businesstools/_next/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/_next/:path*"
+    },
+    {
+      "source": "/businesstools/api/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/api/:path*"
+    },
+    {
+      "source": "/businesstools/consultant",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/consultant"
+    },
+    {
+      "source": "/businesstools/consultant/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/consultant/:path*"
+    },
+    {
+      "source": "/businesstools/social-posts",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/social-posts"
+    },
+    {
+      "source": "/businesstools/social-posts/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/social-posts/:path*"
+    },
+    {
+      "source": "/businesstools/cold-email",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/cold-email"
+    },
+    {
+      "source": "/businesstools/cold-email/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/cold-email/:path*"
+    },
+    {
+      "source": "/businesstools/swot",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/swot"
+    },
+    {
+      "source": "/businesstools/swot/:path*",
+      "destination": "https://ai-business-consultant-chi.vercel.app/businesstools/swot/:path*"
     }
   ],
   "trailingSlash": false,

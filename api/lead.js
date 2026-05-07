@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
 
-  const { email, name, magnet } = req.body || {};
+  const { email, name, phone, magnet, businessName } = req.body || {};
 
   // Basic validation
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -33,6 +33,22 @@ module.exports = async function handler(req, res) {
       title: '50 ChatGPT Prompts for Indian Professionals',
       url:   '/lead-magnets/50-chatgpt-prompts',
     },
+    'ai-growth-consultant': {
+      title: 'AI Growth Consultant Report',
+      url:   null,
+    },
+    'social-media-posts': {
+      title: 'Social Media Post Generator',
+      url:   null,
+    },
+    'cold-email-writer': {
+      title: 'Cold Email Writer',
+      url:   null,
+    },
+    'competitor-swot': {
+      title: 'Competitor SWOT Analyzer',
+      url:   null,
+    },
   };
 
   const m = MAGNETS[magnet];
@@ -40,18 +56,25 @@ module.exports = async function handler(req, res) {
 
   // Forward to Google Apps Script (if configured)
   const forwardingUrl = process.env.LEAD_FORWARDING_URL;
+  const sourceUrl = (req.headers && (req.headers.referer || req.headers.referrer)) || '';
   if (forwardingUrl) {
     try {
       await fetch(forwardingUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name:   name || '',
-          email:  email,
-          school: '',
-          role:   'Lead Magnet: ' + m.title,
-          message: 'Downloaded: ' + m.title,
-          phone: '',
+          // Modern, clearly-named fields used by the new Apps Script schema:
+          tool:     m.title,
+          magnet:   magnet,
+          name:     name || '',
+          email:    email,
+          phone:    phone || '',
+          business: businessName || '',
+          source:   sourceUrl,
+          // Legacy fields kept for backward compatibility with the older Apps Script:
+          school:   '',
+          role:     'Lead Magnet: ' + m.title,
+          message:  businessName ? ('Used: ' + m.title + ' — Business: ' + businessName) : ('Used: ' + m.title),
         }),
       });
     } catch (err) {
@@ -61,7 +84,7 @@ module.exports = async function handler(req, res) {
   }
 
   // Always log so leads aren't lost even if forwarding fails
-  console.log('[lead]', JSON.stringify({ email, name: name || '', magnet, ts: Date.now() }));
+  console.log('[lead]', JSON.stringify({ email, name: name || '', phone: phone || '', magnet, businessName: businessName || '', tool: m.title, source: sourceUrl, ts: Date.now() }));
 
   return res.status(200).json({
     success: true,
