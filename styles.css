@@ -1431,40 +1431,30 @@ textarea.form-input {
   .skills-list { grid-template-columns: 1fr; }
 }
 
-/* Hero — founder photo visual (replaces emoji + neural net) */
-.hero-founder-wrap { animation: founderBreathe 6s ease-in-out infinite; transition: transform .3s ease; }
-.hero-founder-wrap:hover { transform: scale(1.02); }
-@keyframes founderBreathe {
-  0%, 100% { box-shadow: 0 0 60px rgba(0,198,255,0.18) inset, 0 16px 40px rgba(0,0,0,0.18), 0 0 0 rgba(106,17,203,0); }
-  50%      { box-shadow: 0 0 80px rgba(0,198,255,0.28) inset, 0 16px 40px rgba(0,0,0,0.18), 0 0 50px rgba(106,17,203,0.25); }
+/* Hero — animated neural network visual (replaces emoji) */
+.hero-neural { width: 100%; height: 100%; max-width: 320px; max-height: 320px; }
+.hero-neural .hn-links { opacity: 0.32; stroke-dasharray: 2 5; animation: hnFlow 4s linear infinite; }
+.hero-neural .hn-links + .hn-links { animation-direction: reverse; animation-duration: 5s; }
+.hero-neural .hn-n { transform-box: fill-box; transform-origin: center; animation: hnPulse 2.6s ease-in-out infinite; }
+.hero-neural .hn-sparks circle { opacity: 0.85; }
+@keyframes hnPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.22); opacity: 1; } }
+@keyframes hnFlow  { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -28; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-neural .hn-links, .hero-neural .hn-n, .hero-neural .hn-sparks circle { animation: none !important; }
+  .hero-neural .hn-sparks { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .hero-founder-wrap { animation: none; } }
+.hero-neural-wrap { animation: hnBreathe 6s ease-in-out infinite; }
+@keyframes hnBreathe {
+  0%, 100% { box-shadow: 0 0 60px rgba(0,198,255,0.18) inset, 0 0 0 rgba(106,17,203,0); }
+  50%      { box-shadow: 0 0 80px rgba(0,198,255,0.28) inset, 0 0 40px rgba(106,17,203,0.25); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-neural-wrap { animation: none; } }
 
-/* Founder section — round avatar with image fallback */
+/* Founder section — round avatar */
 #founder img.founder-photo {
   width: 120px; height: 120px; border-radius: 50%; object-fit: cover; display: block;
   background: linear-gradient(135deg, #1E3C72, #6A11CB);
 }
-
-/* Founder video lite-embed */
-.founder-video {
-  position: relative; max-width: 720px; margin: 24px auto 0;
-  aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
-  background: #0a0a0f; cursor: pointer;
-  box-shadow: 0 12px 40px rgba(15,23,42,0.18);
-}
-.founder-video img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; transition: opacity .2s; }
-.founder-video:hover img { opacity: 1; }
-.founder-video .play-btn {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 76px; height: 76px; border-radius: 50%;
-  background: rgba(0,0,0,0.65); border: 3px solid #fff;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1.8rem; padding-left: 6px;
-  transition: transform .2s, background .2s;
-}
-.founder-video:hover .play-btn { transform: translate(-50%, -50%) scale(1.08); background: var(--accent); }
-.founder-video iframe { width: 100%; height: 100%; border: 0; }
 
 /* FAQ */
 .faq-item summary::-webkit-details-marker { display: none; }

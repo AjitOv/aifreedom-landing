@@ -35,6 +35,27 @@
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+  <!-- ====== FOUNDER VIDEO SCHEMA ====== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Meet Ajit — AI Finance Guy & Founder of AI Freedom Institute",
+    "description": "Founder introduction: Ajit shares the mission behind AI Freedom Institute and his AI-finance approach for Indian traders and investors.",
+    "thumbnailUrl": "https://img.youtube.com/vi/yBAPk8Sh-zA/maxresdefault.jpg",
+    "uploadDate": "2026-05-08",
+    "contentUrl": "https://www.youtube.com/watch?v=yBAPk8Sh-zA",
+    "embedUrl": "https://www.youtube.com/embed/yBAPk8Sh-zA",
+    "inLanguage": ["en-IN", "hi-IN"],
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": "AI Freedom Institute",
+      "url": "https://www.aifreedom.in",
+      "logo": { "@type": "ImageObject", "url": "https://www.aifreedom.in/assets/images/logo.png" }
+    }
+  }
+  </script>
+
   <style>
     :root {
       --flash-red: #ef4444;
@@ -256,8 +277,50 @@
           </div>
         </div>
       </div>
+
+      <!-- Founder video — lite-embed -->
+      <div style="text-align:center;margin:30px auto 8px;color:var(--cl-text-3);font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">▶ Watch Ajit's Story · 2 min</div>
+      <div class="founder-video-lite" id="founderVideo" role="button" tabindex="0" aria-label="Play founder video">
+        <img src="https://img.youtube.com/vi/yBAPk8Sh-zA/maxresdefault.jpg" alt="Watch Ajit's story — founder of AI Freedom Institute" loading="lazy">
+        <div class="founder-video-play" aria-hidden="true">▶</div>
+      </div>
     </div>
   </section>
+
+  <style>
+    .founder-video-lite {
+      position: relative; max-width: 720px; margin: 0 auto;
+      aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
+      background: #000; cursor: pointer;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+      border: 1px solid var(--cl-border);
+    }
+    .founder-video-lite img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; transition: opacity .2s; }
+    .founder-video-lite:hover img { opacity: 1; }
+    .founder-video-lite .founder-video-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 84px; height: 84px; border-radius: 50%;
+      background: rgba(0,0,0,0.65); border: 3px solid #fff;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 2rem; padding-left: 8px;
+      transition: transform .2s, background .2s;
+    }
+    .founder-video-lite:hover .founder-video-play { transform: translate(-50%, -50%) scale(1.08); background: var(--cl-primary); }
+    .founder-video-lite iframe { width: 100%; height: 100%; border: 0; display: block; }
+  </style>
+
+  <script>
+    (function () {
+      var wrap = document.getElementById('founderVideo');
+      if (!wrap) return;
+      function load() {
+        wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/yBAPk8Sh-zA?autoplay=1&rel=0&modestbranding=1" title="Meet Ajit — AI Finance Guy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        wrap.style.cursor = 'default';
+      }
+      wrap.addEventListener('click', load);
+      wrap.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(); } });
+    })();
+  </script>
 
   <!-- ────────── GUARANTEES ────────── -->
   <section class="cl-section cl-section-alt">
