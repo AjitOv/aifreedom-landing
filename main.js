@@ -9,7 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initCounterAnimations();
   initSmoothScroll();
+  initFounderVideo();
 });
+
+/* ===== FOUNDER VIDEO LITE-EMBED =====
+   Replaces the static thumbnail with the YouTube iframe on click,
+   so the homepage doesn't pay the iframe weight on every load. */
+function initFounderVideo() {
+  const wrap = document.getElementById('founderVideo');
+  if (!wrap) return;
+  const load = () => {
+    const id = 'yBAPk8Sh-zA';
+    wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1" title="Meet Ajit — AI Finance Guy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    wrap.style.cursor = 'default';
+  };
+  wrap.addEventListener('click', load);
+  wrap.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(); } });
+}
 
 /* ===== NAVBAR SCROLL ===== */
 function initNavbar() {
