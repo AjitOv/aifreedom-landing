@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/AjitOv/aifreedom-landing#readme",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "razorpay": "^2.9.6"
   }
 }
