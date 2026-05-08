@@ -43,12 +43,6 @@ Beginner-friendly, no coding needed. Master AI tools that help you create, earn,
 
 1. Watch Free Intro → 2. Enroll in Course → 3. Learn & Practice → 4. Start Earning
 
-## Success Stories
-
-- "Earning ₹30K/month creating AI content." — Rahul S., Freelancer, Pune
-- "I use AI everyday now — for work, projects, and studying." — Priya K., Student, Mumbai
-- "I was scared of AI but this course made it so easy." — Amit T., Professional, Bangalore
-
 ## Enroll Now
 
 Contact: +91 8007280721 | info@aifreedom.in

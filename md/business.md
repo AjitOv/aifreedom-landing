@@ -37,12 +37,6 @@ Stop doing everything manually — let AI supercharge your growth.
 3. Implementation — Set up AI tools, train team
 4. Growth & Support — Ongoing optimization
 
-## Business Owner Results
-
-- "Marketing costs dropped 60%, leads increased 3x." — Vikram M., E-commerce
-- "Content creation cost went from ₹50K to ₹0." — Neha P., Restaurant Chain
-- "AI chatbot handles 80% of queries." — Deepak R., Service Business
-
 ## Book a Strategy Call
 
 Contact: +91 8007280721 | info@aifreedom.in

@@ -47,11 +47,6 @@ Learn, Create and Grow with AI. We deliver practical, hands-on AI education that
 - 3x productivity boost with AI
 - 1 hour to get started
 
-### Testimonials (Home)
-- "The AI workshop was absolutely transformative for our students." — Principal, Leading School, Maharashtra
-- "Our team saved 2-3 hours daily after implementing the AI tools." — HR Manager, IT Company, Pune
-- "I started freelancing with AI tools right after the course. Within 2 months, ₹30K+/month." — Saurabh K., Individual Learner
-
 ---
 
 ## 🏫 Schools Page (/schools)
@@ -93,11 +88,6 @@ Interactive AI Awareness Workshop — practical, engaging & future-ready. Give y
 | 04 | Career Guidance | Future career paths and opportunities in the AI era |
 
 > "From curiosity to clarity in just 60 minutes"
-
-### Student Testimonials
-- "I never knew AI could do so many things! The image generation part blew my mind." — Student, Class 10, Pune
-- "This workshop was amazing! I built a website using AI in just 2 minutes." — Student, Class 12, Mumbai
-- "Our students were engaged from start to finish. Aligned perfectly with NEP 2020." — Principal, CBSE School
 
 ### Benefits for Schools
 1. **Enhances School Reputation** — Position as innovative, future-ready institution
@@ -207,11 +197,6 @@ Beginner-friendly, no coding needed. Master AI tools that help you create, earn,
 | 03 | Learn & Practice | Step-by-step lessons with hands-on projects |
 | 04 | Start Earning | Apply your skills to freelance, create, or land a job |
 
-### Success Stories
-- "I started with zero knowledge and now earning ₹30K/month creating AI content." — Rahul S., Freelancer, Pune
-- "The course is so simple and practical. I use AI everyday now." — Priya K., Student, Mumbai
-- "I was scared of AI but this course made it so easy." — Amit T., Professional, Bangalore
-
 ### Available Courses
 - AI Basics — Zero to Hero (₹499)
 - AI Prompt Engineering (₹699)
@@ -271,11 +256,6 @@ AI-powered marketing, content creation, lead generation & business automation. S
 | 02 | AI Audit | Identify which tasks can be automated with AI |
 | 03 | Implementation | Set up AI tools and train your team |
 | 04 | Growth & Support | Ongoing support to optimize and scale |
-
-### Business Testimonials
-- "Marketing costs dropped by 60% and leads increased by 3x." — Vikram M., E-commerce Owner
-- "I used to spend ₹50K/month on content. Now AI does it for free." — Neha P., Restaurant Chain Owner
-- "AI chatbot handles 80% of customer queries automatically." — Deepak R., Service Business Owner
 
 ### Lead Form (Business)
 - Name (required)
