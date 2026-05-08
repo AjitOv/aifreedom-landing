@@ -458,6 +458,48 @@ p { color: var(--text-secondary); }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+/* Urgency variant — amber/red accent for hero hooks */
+.hero-badge.hero-badge-urgent {
+  color: #fbbf24;
+  background: rgba(251,191,36,0.10);
+  border: 1px solid rgba(251,191,36,0.3);
+}
+.hero-badge.hero-badge-urgent .badge-pulse {
+  background: #fbbf24;
+  box-shadow: 0 0 10px rgba(251,191,36,0.6);
+}
+.hero h1 .highlight-text.highlight-urgent {
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Scarcity strip under CTAs */
+.hero-scarcity {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin: 20px 0 8px;
+  padding: 10px 16px;
+  background: rgba(239,68,68,0.10);
+  border: 1px solid rgba(239,68,68,0.28);
+  border-radius: 12px;
+  color: #fecaca;
+  font-size: 0.88rem;
+  max-width: 560px;
+}
+.hero-scarcity strong { color: #fff; font-weight: 700; }
+.hero-scarcity-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #ef4444;
+  flex-shrink: 0;
+  animation: scarcity-pulse 1.4s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(239,68,68,0.7);
+}
+@keyframes scarcity-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%     { opacity: 0.4; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scarcity-dot { animation: none; }
+}
 .hero-subtitle {
   font-size: 1.15rem;
   color: rgba(255,255,255,0.75);
