@@ -29,9 +29,10 @@
 
   --text: #1E293B;
   --text-secondary: #475569;
-  --text-light: #94A3B8;
+  --text-light: #64748B;          /* Slate-500 — 4.61:1 on white (was #94A3B8 = 2.56:1, failed AA) */
   --text-white: #FFFFFF;
   --text-on-dark: #CBD5E1;
+  --accent-strong: #0e7490;       /* Cyan-700 — 4.83:1 on white. Use for accent TEXT on light bgs. var(--accent) is bright and only safe on dark bgs / large surfaces. */
 
   --border: #E2E8F0;
   --border-light: #F1F5F9;
