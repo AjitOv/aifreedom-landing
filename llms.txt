@@ -21,6 +21,10 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 - [Course Hub](https://www.aifreedom.in/Course): OTT-style course catalog with AI courses from ₹499
 - [Blog](https://www.aifreedom.in/blog/): Practical AI guides and tutorials for Indian students, professionals, and business owners
 
+## Flagship Offline Program
+
+- [AI Mastery Program](https://www.aifreedom.in/offers/ai-mastery-program): ₹25,000 (was ₹85,000) · live mentor-led offline classroom training · 30 seats per batch · covers AI tools, prompts, content creation, freelancing, automation, websites, resume; includes ₹15,000+ in bonus templates &amp; community access · Book a free demo first
+
 ## Course Landing Pages
 
 - [AI Basics — Zero to Hero](https://www.aifreedom.in/courses/ai-basics): ₹499 · 10 lessons · no-code AI foundation

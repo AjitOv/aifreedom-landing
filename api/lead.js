@@ -49,6 +49,10 @@ module.exports = async function handler(req, res) {
       title: 'Competitor SWOT Analyzer',
       url:   null,
     },
+    'mastery-program-demo': {
+      title: 'AI Mastery Program — Demo Booking',
+      url:   null,   // No download — pure lead capture for the offline program
+    },
   };
 
   const m = MAGNETS[magnet];
