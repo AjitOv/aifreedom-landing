@@ -74,6 +74,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- AI Train The Trainer (30-day certification) -->
+  <url>
+    <loc>https://www.aifreedom.in/offers/ai-train-the-trainer</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Individual Course Landing Pages -->
   <url>
     <loc>https://www.aifreedom.in/courses/ai-basics</loc>
