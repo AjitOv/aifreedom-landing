@@ -23,6 +23,7 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 
 ## Flagship Programs
 
+- [2-Day Live AI Workshop](https://www.aifreedom.in/offers/2-day-ai-workshop): ₹3,999 (worth ₹25,000+) · 2-day live online hands-on workshop · build AI websites, mobile apps, web apps &amp; business automation without coding · ChatGPT, Claude, Midjourney, Replit, FlutterFlow, Supabase, Make · beginner-friendly · certificate included · 5 hands-on projects · Hinglish
 - [AI Mastery Program](https://www.aifreedom.in/offers/ai-mastery-program): ₹25,000 (was ₹85,000) · live mentor-led offline classroom training · 30 seats per batch · covers AI tools, prompts, content creation, freelancing, automation, websites, resume; includes ₹15,000+ in bonus templates &amp; community access · Book a free demo first
 - [AI Train The Trainer — 30-Day Certification](https://www.aifreedom.in/offers/ai-train-the-trainer): 30-day live cohort + certification · 3 tiers (₹9,999 Basic / ₹24,999 Professional / ₹49,999 Master Trainer with EMI) · trains corporate professionals, educators &amp; consultants to deliver AI workshops · includes prompt library, slide decks, client outreach scripts &amp; community access
 
