@@ -13,6 +13,7 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 ## Pages
 
 - [Home](https://www.aifreedom.in/): Hub page — 4 AI program funnels, features, testimonials, stats
+- [Marketplace](https://www.aifreedom.in/marketplace): India's AI creator ecosystem — categories (AI agencies, SaaS, trading platforms, creator tools, automation studios, education brands); Cohort 0 applications open; featured-builder &amp; founder-story slots reserved for early applicants
 - [Schools](https://www.aifreedom.in/schools): 1-hour AI awareness workshops for school & college students
 - [Corporate](https://www.aifreedom.in/corporate): AI productivity & automation training for teams — save 2-3 hours daily
 - [Individuals](https://www.aifreedom.in/individuals): Learn AI skills (image gen, video, content, freelancing) — no coding
