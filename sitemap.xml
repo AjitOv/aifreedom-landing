@@ -58,6 +58,14 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- Teach With Us (Trainer/Creator Onboarding) -->
+  <url>
+    <loc>https://www.aifreedom.in/teach</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Course Hub -->
   <url>
     <loc>https://www.aifreedom.in/Course</loc>

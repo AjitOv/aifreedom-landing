@@ -20,6 +20,7 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 - [Business](https://www.aifreedom.in/business): AI-powered marketing, lead gen, content & operations for business owners
 - [Contact](https://www.aifreedom.in/contact): Book a free demo — form, phone, email, WhatsApp
 - [Course Hub](https://www.aifreedom.in/Course): OTT-style course catalog with AI courses from ₹499
+- [Teach With Us](https://www.aifreedom.in/teach): Trainer & creator onboarding — apply to teach AI workshops, build recorded courses, or run live cohorts. Paid per session + revenue share on courses.
 - [Blog](https://www.aifreedom.in/blog/): Practical AI guides and tutorials for Indian students, professionals, and business owners
 
 ## Flagship Programs
