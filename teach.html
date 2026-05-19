@@ -315,10 +315,10 @@
   <section class="section section-gradient" id="apply">
     <div class="container">
       <div class="form-section animate-on-scroll">
-        <div class="form-card">
+        <div class="form-card" id="teachFormCard">
           <h3>Apply to Teach With Us</h3>
-          <p>Takes 3 minutes. We'll reach out within 48 hours.</p>
-          <form id="teachForm" onsubmit="handleTeachApplication(event)">
+          <p>Takes 3 minutes. We review every application and reach out within 48 hours.</p>
+          <form id="teachForm" novalidate>
             <div class="form-group">
               <label for="t-name">Full Name *</label>
               <input type="text" class="form-input" id="t-name" name="name" placeholder="E.g. Priya Sharma" required>
@@ -380,9 +380,18 @@
               <label for="t-why">Why do you want to teach with us? (optional)</label>
               <textarea class="form-input" id="t-why" name="why" rows="3" placeholder="A line or two — your motivation, who you want to teach, anything we should know."></textarea>
             </div>
-            <button type="submit" class="btn btn-accent btn-large form-btn">Send Application via WhatsApp →</button>
-            <p class="urgency-text">📩 Your application opens WhatsApp prefilled with your details — just tap Send.</p>
+            <div id="teachError" style="display:none;padding:12px 14px;margin-bottom:14px;border-radius:10px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;font-size:0.92rem;"></div>
+            <button type="submit" class="btn btn-accent btn-large form-btn" id="teachSubmitBtn">Submit Application →</button>
+            <p class="urgency-text">🔒 Your application is saved securely. We'll follow up on WhatsApp within 48 hours.</p>
           </form>
+        </div>
+        <div class="form-card" id="teachSuccessCard" style="display:none;text-align:center;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.4);">
+          <div style="font-size:3rem;line-height:1;">🎉</div>
+          <h3 style="color:#4ade80;margin-top:14px;">Application received, <span id="teachSuccessName">friend</span>!</h3>
+          <p>We've logged your details. Our team reviews every application personally — expect a WhatsApp message from us within 48 hours.</p>
+          <p style="margin-top:18px;">Want to skip the queue? Send us a short intro on WhatsApp right now:</p>
+          <a id="teachWaLink" href="https://wa.me/918007280721" target="_blank" rel="noopener" class="btn btn-accent btn-large" style="margin-top:8px;background:#25D366;color:#fff;">💬 Message Us on WhatsApp</a>
+          <p style="font-size:0.85rem;color:var(--text-light,#9ca3af);margin-top:18px;">In the meantime, browse our existing programs on the <a href="/Course">Course Hub</a> to see what we already teach.</p>
         </div>
       </div>
     </div>
@@ -412,49 +421,115 @@
 
   <script src="main.js"></script>
   <script>
-    function handleTeachApplication(e) {
-      e.preventDefault();
-      const f = e.target;
-      const v = (n) => (f.querySelector('[name="'+n+'"]')?.value || '').trim();
-      const fields = [
-        ['Name', v('name')],
-        ['Phone', v('phone')],
-        ['Email', v('email')],
-        ['City', v('city')],
-        ['Expertise', v('expertise')],
-        ['Experience', v('experience')],
-        ['Preferred format', v('format')],
-        ['Portfolio', v('portfolio')],
-        ['Why', v('why')]
-      ];
-      const lines = fields
-        .filter(([_, val]) => val)
-        .map(([label, val]) => label + ': ' + val);
-      const intro = "Hi AI Freedom Institute — I'd like to apply as a trainer/creator.";
-      const body = encodeURIComponent(intro + '\n\n' + lines.join('\n'));
-      const waUrl = 'https://wa.me/918007280721?text=' + body;
+    (function () {
+      var form = document.getElementById('teachForm');
+      var formCard = document.getElementById('teachFormCard');
+      var successCard = document.getElementById('teachSuccessCard');
+      var successName = document.getElementById('teachSuccessName');
+      var waLink = document.getElementById('teachWaLink');
+      var errBox = document.getElementById('teachError');
+      var submitBtn = document.getElementById('teachSubmitBtn');
+      if (!form) return;
 
-      if (window.gtag) {
-        gtag('event', 'teacher_application', {
-          event_category: 'lead',
-          event_label: v('expertise') || 'unspecified'
-        });
+      function getVal(n) {
+        var el = form.querySelector('[name="' + n + '"]');
+        return (el && el.value || '').trim();
+      }
+      function showErr(msg) {
+        errBox.textContent = msg;
+        errBox.style.display = 'block';
+        errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      function hideErr() { errBox.style.display = 'none'; errBox.textContent = ''; }
+
+      function buildWaMessage(name, fields) {
+        var intro = "Hi AI Freedom Institute — I just applied as a trainer/creator on /teach.";
+        var lines = fields
+          .filter(function (p) { return p[1]; })
+          .map(function (p) { return p[0] + ': ' + p[1]; });
+        return encodeURIComponent(intro + '\n\n' + lines.join('\n'));
       }
 
-      window.open(waUrl, '_blank');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideErr();
 
-      const btn = f.querySelector('button[type="submit"]');
-      if (btn) {
-        const original = btn.innerHTML;
-        btn.innerHTML = '✓ Redirecting to WhatsApp…';
-        btn.style.background = 'var(--success)';
-        setTimeout(() => {
-          btn.innerHTML = original;
-          btn.style.background = '';
-          f.reset();
-        }, 3500);
-      }
-    }
+        var name = getVal('name');
+        var phone = getVal('phone');
+        var email = getVal('email');
+        var city = getVal('city');
+        var expertise = getVal('expertise');
+        var experience = getVal('experience');
+        var format = getVal('format');
+        var portfolio = getVal('portfolio');
+        var why = getVal('why');
+
+        if (!name)       return showErr('Please enter your full name.');
+        if (!phone || phone.replace(/\D/g, '').length < 10) return showErr('Please enter a valid WhatsApp number (at least 10 digits).');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr('Please enter a valid email address.');
+        if (!city)       return showErr('Please enter your city.');
+        if (!expertise)  return showErr('Please select your primary AI topic.');
+        if (!experience) return showErr('Please select your experience level.');
+        if (!format)     return showErr('Please select your preferred teaching format.');
+
+        var businessName = [
+          'City: ' + city,
+          'Expertise: ' + expertise,
+          'Experience: ' + experience,
+          'Format: ' + format,
+          portfolio ? 'Portfolio: ' + portfolio : null,
+          why ? 'Why: ' + why : null
+        ].filter(Boolean).join(' | ');
+
+        var waBody = buildWaMessage(name, [
+          ['Name', name], ['Phone', phone], ['Email', email], ['City', city],
+          ['Expertise', expertise], ['Experience', experience], ['Format', format],
+          ['Portfolio', portfolio], ['Why', why]
+        ]);
+        var waUrl = 'https://wa.me/918007280721?text=' + waBody;
+
+        submitBtn.disabled = true;
+        var origText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Submitting…';
+
+        function showSuccess() {
+          if (window.gtag) {
+            gtag('event', 'teacher_application', {
+              event_category: 'lead',
+              event_label: expertise || 'unspecified'
+            });
+          }
+          waLink.href = waUrl;
+          successName.textContent = name.split(' ')[0];
+          formCard.style.display = 'none';
+          successCard.style.display = 'block';
+          successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            name: name,
+            phone: phone,
+            magnet: 'trainer-onboarding',
+            businessName: businessName
+          })
+        })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+          .then(function (res) {
+            if (!res.ok || !res.body.success) throw new Error(res.body && res.body.error || 'Server error');
+            showSuccess();
+          })
+          .catch(function (err) {
+            // Backend failed — never lose the lead. Open WhatsApp prefilled so user can still reach us.
+            console.error('Trainer application backend error:', err);
+            window.open(waUrl, '_blank');
+            showSuccess();
+          });
+      });
+    })();
   </script>
 </body>
 </html>

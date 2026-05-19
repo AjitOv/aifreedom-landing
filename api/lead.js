@@ -57,6 +57,10 @@ module.exports = async function handler(req, res) {
       title: '2-Day Live AI Workshop — Seat Reservation',
       url:   null,   // No download — lead capture for the ₹3,999 live workshop
     },
+    'trainer-onboarding': {
+      title: 'Trainer / Creator Application',
+      url:   null,   // No download — application form on /teach
+    },
   };
 
   const m = MAGNETS[magnet];
