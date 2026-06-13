@@ -5,8 +5,14 @@ Allow: /corporate
 Allow: /individuals
 Allow: /business
 Allow: /contact
+Allow: /teach
 Allow: /Course
 Allow: /courses/
+Allow: /offers/
+Allow: /marketplace
+Allow: /businesstools/
+Allow: /lead-magnets/
+Allow: /tools/
 Allow: /blog/
 Allow: /rss.xml
 Allow: /privacy
