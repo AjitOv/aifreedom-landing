@@ -57,7 +57,7 @@
   --max-width: 1200px;
   --navbar-h: 72px;
 
-  --font-h: 'Poppins', sans-serif;
+  --font-h: 'Space Grotesk', 'Poppins', sans-serif;
   --font-b: 'Inter', sans-serif;
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1519,4 +1519,88 @@ textarea.form-input {
   #founder > .container > div > div:last-child > div {
     justify-content: center;
   }
+}
+
+/* ===================================================================
+   PREMIUM POLISH LAYER
+   Typography tracking, optical depth, refined motion. Additive — kept
+   at the end so it tunes the existing system without restructuring it.
+   =================================================================== */
+
+/* — Optical type rendering — */
+body { text-rendering: optimizeLegibility; font-feature-settings: "kern" 1, "liga" 1; letter-spacing: -0.005em; }
+
+/* Space Grotesk reads best with slight negative tracking at display sizes.
+   Tightens large headings; leaves small UI text alone. */
+h1, h2 { letter-spacing: -0.025em; }
+h3, h4 { letter-spacing: -0.015em; }
+.hero h1 { letter-spacing: -0.03em; line-height: 1.08; }
+.hero-subtitle { letter-spacing: -0.01em; }
+
+/* Gradient highlight: add a touch more weight + smoother stops */
+.hero h1 .highlight-text { background-size: 100%; }
+
+/* — Softer, more diffuse elevation — premium shadows are large-radius + low-alpha — */
+:root {
+  --shadow-md: 0 6px 24px -8px rgba(15,23,42,0.12);
+  --shadow-lg: 0 18px 48px -16px rgba(15,23,42,0.18);
+  --shadow-xl: 0 32px 64px -24px rgba(15,23,42,0.22);
+}
+
+/* — Cards: hairline border that warms on hover, smoother lift — */
+.feature-card, .benefit-card {
+  border-color: rgba(15,23,42,0.07);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.feature-card:hover, .benefit-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0,198,255,0.28);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Icon tiles: subtle inner ring + crisper gradient */
+.feature-icon, .benefit-icon {
+  background: linear-gradient(135deg, rgba(106,17,203,0.10), rgba(0,198,255,0.10));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  color: var(--primary);
+}
+
+/* — Buttons: deeper, layered shadow + crisper press feedback — */
+.btn { letter-spacing: -0.01em; }
+.btn-accent {
+  box-shadow: 0 8px 24px -8px rgba(0,198,255,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -10px rgba(0,198,255,0.55), inset 0 1px 0 rgba(255,255,255,0.22);
+}
+.btn-accent:active { transform: translateY(0); }
+.btn-outline-white { border-color: rgba(255,255,255,0.25); backdrop-filter: blur(2px); }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
+
+/* — Navbar: glassier when scrolled — */
+.navbar.scrolled {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+}
+
+/* — Section eyebrow: refined chip — */
+.section-label { letter-spacing: 1.8px; backdrop-filter: blur(4px); }
+
+/* — Badges & pills inherit tighter tracking for a designed feel — */
+.hero-badge { letter-spacing: 0.01em; }
+
+/* — Accessible focus ring (premium sites never drop this) — */
+a:focus-visible, button:focus-visible, .btn:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* — Respect reduced-motion — */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
