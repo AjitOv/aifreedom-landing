@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Creator — AI Freedom Institute</title>
+  <meta name="description" content="A creator's course website on AI Freedom Institute — browse their AI courses, podcasts and videos, and learn directly from India's AI educators.">
+  <meta name="author" content="AI Freedom Institute">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.aifreedom.in/creator">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://www.aifreedom.in/creator">
+  <meta property="og:title" content="Creator — AI Freedom Institute">
+  <meta property="og:description" content="Browse AI courses, podcasts and videos from creators on AI Freedom Institute.">
+  <meta property="og:image" content="https://www.aifreedom.in/assets/images/og-image.png">
+  <meta property="og:site_name" content="AI Freedom Institute">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Creator — AI Freedom Institute">
+  <meta name="twitter:image" content="https://www.aifreedom.in/assets/images/og-image.png">
+
+  <meta name="theme-color" content="#6A11CB">
+  <meta name="geo.region" content="IN">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WHSWQDS6');</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZJLJ0JMXN"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PZJLJ0JMXN',{page_title:'Creator',send_page_view:true});</script>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== CREATOR PAGE — scoped premium layout ===== */
+    .cr-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Profile hero */
+    .cr-hero { position: relative; padding: calc(var(--navbar-h) + 56px) 0 56px; overflow: hidden; }
+    .cr-hero-bg { position: absolute; inset: 0; background:
+        radial-gradient(900px 500px at 15% -10%, rgba(106,17,203,0.20), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(0,198,255,0.16), transparent 55%),
+        var(--bg-darker); z-index: 0; }
+    .cr-hero-bg::after { content:""; position:absolute; inset:0;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        background-size: 48px 48px; mask-image: radial-gradient(circle at 50% 0%, #000, transparent 75%); }
+    .cr-hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
+    .cr-avatar { width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
+        border: 3px solid rgba(255,255,255,0.12); box-shadow: 0 20px 50px -16px rgba(0,0,0,0.6), 0 0 60px rgba(106,17,203,0.35); }
+    .cr-id-badge { display:inline-flex; align-items:center; gap:8px; font-size:0.78rem; font-weight:600; letter-spacing:0.04em;
+        color:#c4b5fd; background:rgba(106,17,203,0.18); border:1px solid rgba(167,139,250,0.3); padding:6px 14px; border-radius:100px; margin-bottom:14px; }
+    .cr-id-badge svg { width:14px; height:14px; }
+    .cr-name { font-family: var(--font-h); font-size: clamp(2rem, 4.5vw, 3.1rem); font-weight:700; line-height:1.05; letter-spacing:-0.03em; color:#fff; margin:0; }
+    .cr-handle { color: var(--accent-light); font-weight:600; margin: 6px 0 0; }
+    .cr-title { color: var(--text-on-dark); margin: 4px 0 0; }
+    .cr-bio { color: var(--text-on-dark); max-width: 620px; margin: 16px 0 0; line-height: 1.7; }
+    .cr-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+    .cr-chip { display:inline-flex; align-items:center; gap:7px; font-size:0.84rem; font-weight:600; color:#e2e8f0;
+        background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10); padding:7px 14px; border-radius:100px; }
+    .cr-chip svg { width:15px; height:15px; color: var(--accent-light); }
+    .cr-cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top: 26px; }
+
+    /* Stats strip */
+    .cr-stats { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; position:relative; z-index:2; }
+    .cr-stat { background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 22px; text-align:center; }
+    .cr-stat-num { font-family: var(--font-h); font-size: 1.9rem; font-weight:700; color:#fff; letter-spacing:-0.02em; }
+    .cr-stat-label { color: var(--text-on-dark); font-size: 0.86rem; margin-top: 4px; }
+
+    /* Sections */
+    .cr-section { padding: 64px 0; }
+    .cr-section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom: 28px; flex-wrap:wrap; }
+    .cr-section-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing:-0.025em; margin:0; }
+    .cr-section-head p { color: var(--text-light); margin: 6px 0 0; }
+    .cr-seeall { font-weight:600; color: var(--primary); display:inline-flex; align-items:center; gap:6px; }
+    .cr-seeall svg { width:16px; height:16px; }
+
+    /* Course grid */
+    .cr-courses { display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .cr-course { display:flex; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius: var(--radius-lg); overflow:hidden;
+        transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+    .cr-course:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(0,198,255,0.28); }
+    .cr-course-top { height: 120px; display:flex; align-items:center; justify-content:center; position:relative; }
+    .cr-course-top svg { width: 40px; height: 40px; color:#fff; }
+    .cr-course-body { padding: 20px; display:flex; flex-direction:column; flex:1; }
+    .cr-course-tag { font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color: var(--accent-strong); }
+    .cr-course-title { font-family:var(--font-h); font-size:1.1rem; font-weight:700; letter-spacing:-0.02em; margin:8px 0 6px; color:var(--text); }
+    .cr-course-desc { color: var(--text-secondary); font-size:0.92rem; line-height:1.6; flex:1; }
+    .cr-course-foot { display:flex; align-items:center; justify-content:space-between; margin-top:16px; }
+    .cr-course-meta { font-size:0.82rem; color: var(--text-light); }
+    .cr-course-price { font-family:var(--font-h); font-weight:700; font-size:1.15rem; color: var(--text); }
+    .cr-course-price small { font-weight:500; font-size:0.8rem; color: var(--text-light); }
+    .cr-course-cta { display:block; text-align:center; margin: 0 20px 20px; padding:11px; border-radius: var(--radius-sm); font-weight:600; font-size:0.9rem;
+        background: linear-gradient(135deg, var(--secondary-start), var(--secondary-end)); color:#fff; }
+
+    /* Podcasts / videos */
+    .cr-pods { display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .cr-pod { background:#fff; border:1px solid var(--border); border-radius: var(--radius-lg); overflow:hidden; transition: var(--tr); }
+    .cr-pod:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .cr-pod-thumb { aspect-ratio: 16/9; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1e293b, #0f172a); position:relative; }
+    .cr-pod-thumb svg { width:46px; height:46px; color:#fff; opacity:.92; }
+    .cr-pod-dur { position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.7); color:#fff; font-size:0.72rem; font-weight:600; padding:3px 8px; border-radius:6px; }
+    .cr-pod-body { padding:16px 18px; }
+    .cr-pod-title { font-family:var(--font-h); font-weight:600; font-size:0.98rem; letter-spacing:-0.01em; color:var(--text); }
+    .cr-pod-meta { color: var(--text-light); font-size:0.82rem; margin-top:6px; }
+
+    /* Empty / channel callout */
+    .cr-channel { display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:space-between;
+        background: linear-gradient(135deg, rgba(106,17,203,0.06), rgba(0,198,255,0.06)); border:1px solid var(--border);
+        border-radius: var(--radius-xl); padding: 32px; }
+    .cr-channel-l { display:flex; align-items:center; gap:18px; }
+    .cr-channel-ic { width:56px; height:56px; border-radius:16px; background:#FF0000; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+    .cr-channel-ic svg { width:30px; height:30px; color:#fff; }
+    .cr-channel h3 { margin:0; font-size:1.2rem; letter-spacing:-0.02em; }
+    .cr-channel p { margin:4px 0 0; color: var(--text-light); }
+
+    /* About */
+    .cr-about { background: var(--bg-light); border:1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; }
+    .cr-about h2 { font-size:1.5rem; letter-spacing:-0.025em; margin:0 0 14px; }
+    .cr-about p { color: var(--text-secondary); line-height:1.8; max-width: 760px; }
+
+    /* Become-a-creator band */
+    .cr-join { text-align:center; background: var(--bg-darker); border-radius: var(--radius-xl); padding: 56px 32px; position:relative; overflow:hidden; }
+    .cr-join::before { content:""; position:absolute; inset:0; background: radial-gradient(600px 300px at 50% 0%, rgba(0,198,255,0.18), transparent 60%); }
+    .cr-join > * { position:relative; z-index:2; }
+    .cr-join h2 { color:#fff; font-size: clamp(1.6rem,3vw,2.2rem); letter-spacing:-0.03em; margin:0 0 12px; }
+    .cr-join p { color: var(--text-on-dark); max-width: 560px; margin: 0 auto 26px; }
+
+    @media (max-width: 860px) {
+      .cr-hero-inner { grid-template-columns: 1fr; text-align:center; gap: 22px; }
+      .cr-avatar { margin: 0 auto; width: 132px; height: 132px; }
+      .cr-meta, .cr-cta-row { justify-content:center; }
+      .cr-bio { margin-left:auto; margin-right:auto; }
+      .cr-courses, .cr-pods { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .cr-courses, .cr-pods { grid-template-columns: 1fr; }
+      .cr-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-business">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHSWQDS6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand"><img src="assets/images/logo.png" alt="AI Freedom Institute Logo"><div class="navbar-brand-text"><span class="navbar-brand-name">AI Freedom Institute</span><span class="navbar-brand-tagline">Empowering Students with AI</span></div></a>
+      <div class="navbar-menu" id="navbarMenu">
+        <a href="/">Home</a><a href="/Course">Courses</a><a href="/schools">Schools</a><a href="/corporate">Corporate</a><a href="/business">Business</a><a href="/teach">Teach</a>
+        <a href="/teach" class="navbar-cta">Become a Creator</a>
+      </div>
+      <div class="navbar-toggle" id="navbarToggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- CREATOR HERO -->
+  <header class="cr-hero">
+    <div class="cr-hero-bg"></div>
+    <div class="cr-wrap">
+      <div class="cr-hero-inner">
+        <img id="crAvatar" class="cr-avatar" src="assets/images/founder-ajit.jpg" alt="Creator">
+        <div>
+          <span class="cr-id-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Verified Creator</span>
+          <h1 class="cr-name" id="crName">Creator</h1>
+          <p class="cr-handle" id="crHandle"></p>
+          <p class="cr-title" id="crTitle"></p>
+          <p class="cr-bio" id="crBio"></p>
+          <div class="cr-meta" id="crMeta"></div>
+          <div class="cr-cta-row" id="crCtas"></div>
+        </div>
+      </div>
+      <div class="cr-stats" id="crStats"></div>
+    </div>
+  </header>
+
+  <!-- COURSES -->
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <div class="cr-section-head">
+        <div>
+          <h2 id="crCoursesTitle">Courses</h2>
+          <p id="crCoursesSub">Self-paced AI courses — learn at your own pace, lifetime access.</p>
+        </div>
+      </div>
+      <div class="cr-courses" id="crCourses"></div>
+    </div>
+  </section>
+
+  <!-- PODCASTS / VIDEOS -->
+  <section class="cr-section" style="padding-top:0;">
+    <div class="cr-wrap">
+      <div class="cr-section-head">
+        <div>
+          <h2>Podcast &amp; Videos</h2>
+          <p>Free lessons, breakdowns and conversations on practical AI.</p>
+        </div>
+      </div>
+      <div id="crPodsWrap"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="cr-section" style="padding-top:0;">
+    <div class="cr-wrap">
+      <div class="cr-about">
+        <h2 id="crAboutTitle">About</h2>
+        <p id="crAbout"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BECOME A CREATOR -->
+  <section class="cr-section" style="padding-top:0;">
+    <div class="cr-wrap">
+      <div class="cr-join">
+        <h2>Want your own creator page?</h2>
+        <p>Upload your courses, publish your podcast, and get a premium course website like this one — with your own audience on AI Freedom Institute.</p>
+        <a href="/teach" class="btn btn-accent btn-large">Become a Creator →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="/" class="navbar-brand"><img src="assets/images/logo.png" alt="AI Freedom Institute Logo"><div class="navbar-brand-text"><span class="navbar-brand-name" style="color:#fff;">AI Freedom Institute</span><span class="navbar-brand-tagline">Empowering Students with AI</span></div></a><p>Practical AI education from India's AI creators — courses, podcasts and live programs.</p></div>
+        <div class="footer-col"><h4>Explore</h4><a href="/Course">All Creators</a><a href="/Course">Courses</a><a href="/teach">Become a Creator</a><a href="/marketplace">Marketplace</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/">Home</a><a href="/contact">Contact</a><a href="/blog">Blog</a><a href="/privacy">Privacy</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="tel:+918007280721">📞 +91 8007280721</a><a href="mailto:info@aifreedom.in">✉️ info@aifreedom.in</a><a href="https://wa.me/918007280721" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 AI Freedom Institute. All Rights Reserved.</span><span>Made with ❤️ in India</span></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  /* ===================================================================
+     CREATOR DATA — each creator is one entry. Add creators here (or wire
+     to a backend/CMS later). Page reads ?id= from the URL; defaults to
+     the first creator. All content below is real.
+     =================================================================== */
+  const ICON = {
+    book:'<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+    zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    briefcase:'<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+    wallet:'<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+    trending:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+    play:'<polygon points="6 3 20 12 6 21 6 3"/>',
+    youtube:'<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+    award:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+    mic:'<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>',
+  };
+  const svg = (k,s=24)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]||''}</svg>`;
+
+  const CREATORS = {
+    ajit: {
+      name: 'Ajit Ovhal',
+      handle: '@AIFreedomInstitute',
+      title: 'Founder, AI Trainer & Creator',
+      avatar: 'assets/images/founder-ajit.jpg',
+      bio: "I teach practical, no-code AI to students, professionals and business owners across India. Author of 3 books, 32 AI projects delivered, and host of the AI Freedom channel.",
+      about: "Ajit is the founder of AI Freedom Institute — an AI trainer and creator who has delivered 32 AI projects and authored 3 books. He has led webinars, seminars and courses across India focused on practical, no-code AI adoption. His mission is simple: help everyday people actually use AI to learn faster, work smarter and earn more — without needing to code.",
+      chips: [
+        { icon:'award', text:'Author of 3 Books' },
+        { icon:'zap', text:'32 AI Projects Delivered' },
+        { icon:'mic', text:'Speaker across India' },
+      ],
+      stats: [
+        { num:'5', label:'Courses published' },
+        { num:'3', label:'Books authored' },
+        { num:'32', label:'AI projects delivered' },
+      ],
+      youtube: 'https://www.youtube.com/@AIFreedomInstitute',
+      courses: [
+        { title:'AI Basics — Zero to Hero', tag:'Beginner', icon:'book', grad:'linear-gradient(135deg,#00C6FF,#2575FC)', desc:'AI fundamentals, ChatGPT, Gemini and the essential AI tools — your complete no-code foundation.', meta:'10 lessons', price:'₹499', url:'/courses/ai-basics' },
+        { title:'AI Prompt Engineering', tag:'Intermediate', icon:'zap', grad:'linear-gradient(135deg,#6A11CB,#2575FC)', desc:'Master prompting for 10x better output across ChatGPT, Claude, Gemini and image models.', meta:'10 lessons', price:'₹699', url:'/courses/ai-prompt-engineering' },
+        { title:'AI Freelancing Masterclass', tag:'Earn', icon:'briefcase', grad:'linear-gradient(135deg,#10B981,#00C6FF)', desc:'Monetise AI skills on Fiverr, Upwork and beyond — gig setup, client acquisition, delivery.', meta:'10 lessons', price:'₹1,499', url:'/courses/ai-freelancing' },
+        { title:'AI Se Kamao — Earn with AI', tag:'Earn', icon:'wallet', grad:'linear-gradient(135deg,#00C6FF,#10B981)', desc:'A practical system to earn with AI — freelancing, content creation and automation income streams.', meta:'12 lessons', price:'₹2,999', url:'/courses/ai-se-kamao' },
+        { title:'AI Trading Mastery', tag:'Advanced', icon:'trending', grad:'linear-gradient(135deg,#A855F7,#FF6EB4)', desc:'Use AI for stock-market analysis, smarter research and disciplined investment strategy.', meta:'10 lessons', price:'₹2,999', url:'/courses/ai-trading' },
+      ],
+      // Real podcast/video episodes go here once published. Empty = show the channel callout (honest, no placeholders).
+      podcasts: [],
+    },
+  };
+
+  function pickCreator() {
+    const id = new URLSearchParams(location.search).get('id');
+    return CREATORS[id] || CREATORS[Object.keys(CREATORS)[0]];
+  }
+
+  function render(c) {
+    document.title = `${c.name} — AI Creator | AI Freedom Institute`;
+    document.getElementById('crAvatar').src = c.avatar;
+    document.getElementById('crAvatar').alt = c.name;
+    document.getElementById('crName').textContent = c.name;
+    document.getElementById('crHandle').textContent = c.handle || '';
+    document.getElementById('crTitle').textContent = c.title || '';
+    document.getElementById('crBio').textContent = c.bio || '';
+    document.getElementById('crAboutTitle').textContent = `About ${c.name.split(' ')[0]}`;
+    document.getElementById('crAbout').textContent = c.about || c.bio || '';
+    document.getElementById('crCoursesTitle').textContent = `Courses by ${c.name.split(' ')[0]}`;
+
+    document.getElementById('crMeta').innerHTML = (c.chips||[]).map(ch =>
+      `<span class="cr-chip">${svg(ch.icon,15)} ${ch.text}</span>`).join('');
+
+    const ctas = [];
+    if (c.youtube) ctas.push(`<a href="${c.youtube}" target="_blank" rel="noopener" class="btn btn-accent btn-large">${svg('youtube',18)} Subscribe on YouTube</a>`);
+    ctas.push(`<a href="#crCourses" class="btn btn-outline-white btn-large" style="border-color:rgba(255,255,255,0.3);color:#fff;">Browse courses</a>`);
+    document.getElementById('crCtas').innerHTML = ctas.join('');
+
+    document.getElementById('crStats').innerHTML = (c.stats||[]).map(s =>
+      `<div class="cr-stat"><div class="cr-stat-num">${s.num}</div><div class="cr-stat-label">${s.label}</div></div>`).join('');
+
+    document.getElementById('crCourses').innerHTML = (c.courses||[]).map(co => `
+      <div class="cr-course">
+        <div class="cr-course-top" style="background:${co.grad};">${svg(co.icon,40)}</div>
+        <div class="cr-course-body">
+          <span class="cr-course-tag">${co.tag}</span>
+          <div class="cr-course-title">${co.title}</div>
+          <p class="cr-course-desc">${co.desc}</p>
+          <div class="cr-course-foot">
+            <span class="cr-course-meta">${co.meta}</span>
+            <span class="cr-course-price">${co.price}</span>
+          </div>
+        </div>
+        <a href="${co.url}" class="cr-course-cta">View course →</a>
+      </div>`).join('');
+
+    const pods = c.podcasts || [];
+    const wrap = document.getElementById('crPodsWrap');
+    if (pods.length) {
+      wrap.className = 'cr-pods';
+      wrap.innerHTML = pods.map(p => `
+        <a class="cr-pod" href="${p.url}" target="_blank" rel="noopener">
+          <div class="cr-pod-thumb">${svg('play',46)}${p.dur?`<span class="cr-pod-dur">${p.dur}</span>`:''}</div>
+          <div class="cr-pod-body"><div class="cr-pod-title">${p.title}</div><div class="cr-pod-meta">${p.meta||''}</div></div>
+        </a>`).join('');
+    } else {
+      // Honest empty state — link to the real channel instead of fake episode cards
+      wrap.innerHTML = `
+        <div class="cr-channel">
+          <div class="cr-channel-l">
+            <div class="cr-channel-ic">${svg('youtube',30)}</div>
+            <div>
+              <h3>Watch on the AI Freedom channel</h3>
+              <p>New AI breakdowns, tutorials and conversations every week.</p>
+            </div>
+          </div>
+          <a href="${c.youtube||'#'}" target="_blank" rel="noopener" class="btn btn-accent">Open channel →</a>
+        </div>`;
+    }
+  }
+
+  render(pickCreator());
+  </script>
+</body>
+</html>

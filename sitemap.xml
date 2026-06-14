@@ -66,12 +66,20 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- Course Hub -->
+  <!-- Course Hub — AI courses by creators -->
   <url>
     <loc>https://www.aifreedom.in/Course</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Creator course website (per-creator template) -->
+  <url>
+    <loc>https://www.aifreedom.in/creator</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- AI Mastery Program (offline) -->

@@ -7,6 +7,7 @@ Allow: /business
 Allow: /contact
 Allow: /teach
 Allow: /Course
+Allow: /creator
 Allow: /courses/
 Allow: /offers/
 Allow: /marketplace
