@@ -38,18 +38,32 @@
     /* ===== CREATOR PAGE — scoped premium layout ===== */
     .cr-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    /* Profile hero */
-    .cr-hero { position: relative; padding: calc(var(--navbar-h) + 56px) 0 56px; overflow: hidden; }
-    .cr-hero-bg { position: absolute; inset: 0; background:
-        radial-gradient(900px 500px at 15% -10%, rgba(106,17,203,0.20), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(0,198,255,0.16), transparent 55%),
-        var(--bg-darker); z-index: 0; }
-    .cr-hero-bg::after { content:""; position:absolute; inset:0;
-        background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-        background-size: 48px 48px; mask-image: radial-gradient(circle at 50% 0%, #000, transparent 75%); }
-    .cr-hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
-    .cr-avatar { width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
-        border: 3px solid rgba(255,255,255,0.12); box-shadow: 0 20px 50px -16px rgba(0,0,0,0.6), 0 0 60px rgba(106,17,203,0.35); }
+    /* Profile hero with banner */
+    .cr-hero { position: relative; background: var(--bg-darker); padding-bottom: 52px; }
+    .cr-banner { height: 300px; position: relative; overflow: hidden;
+        background: linear-gradient(120deg, #2b1055 0%, #1e3c72 48%, #0a3d62 100%); }
+    .cr-banner.has-img { background-size: cover; background-position: center; }
+    .cr-banner::after { content:""; position:absolute; inset:0; z-index:2;
+        background: linear-gradient(180deg, rgba(10,15,30,0) 35%, rgba(10,15,30,0.92) 100%),
+            radial-gradient(760px 320px at 82% -25%, rgba(0,198,255,0.28), transparent 60%); }
+    .cr-banner-pattern { position:absolute; inset:0; z-index:1;
+        background-image: linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+        background-size: 44px 44px; mask-image: radial-gradient(circle at 72% 0%, #000, transparent 72%); }
+    .cr-profile { position: relative; z-index: 3; margin-top: -92px; }
+    .cr-profile-top { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .cr-avatar { width: 156px; height: 156px; border-radius: 50%; object-fit: cover;
+        border: 5px solid var(--bg-darker); background: var(--bg-darker); box-shadow: 0 18px 44px -14px rgba(0,0,0,0.75); }
+    /* Social bar */
+    .cr-socials { display:flex; gap:10px; padding-bottom: 10px; flex-wrap:wrap; }
+    .cr-social { width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+        background: rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13); color:#fff; transition: var(--tr); }
+    .cr-social:hover { transform: translateY(-3px); }
+    .cr-social svg { width:21px; height:21px; }
+    .cr-social.youtube:hover { background:#FF0000; border-color:#FF0000; }
+    .cr-social.instagram:hover { background: radial-gradient(circle at 30% 110%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-color:transparent; }
+    .cr-social.facebook:hover { background:#1877F2; border-color:#1877F2; }
+    .cr-social.linkedin:hover { background:#0A66C2; border-color:#0A66C2; }
+    .cr-info { margin-top: 24px; }
     .cr-id-badge { display:inline-flex; align-items:center; gap:8px; font-size:0.78rem; font-weight:600; letter-spacing:0.04em;
         color:#c4b5fd; background:rgba(106,17,203,0.18); border:1px solid rgba(167,139,250,0.3); padding:6px 14px; border-radius:100px; margin-bottom:14px; }
     .cr-id-badge svg { width:14px; height:14px; }
@@ -129,9 +143,13 @@
     .cr-join p { color: var(--text-on-dark); max-width: 560px; margin: 0 auto 26px; }
 
     @media (max-width: 860px) {
-      .cr-hero-inner { grid-template-columns: 1fr; text-align:center; gap: 22px; }
-      .cr-avatar { margin: 0 auto; width: 132px; height: 132px; }
-      .cr-meta, .cr-cta-row { justify-content:center; }
+      .cr-banner { height: 220px; }
+      .cr-profile { margin-top: -70px; }
+      .cr-profile-top { justify-content: center; }
+      .cr-avatar { width: 128px; height: 128px; }
+      .cr-socials { padding-bottom: 0; justify-content: center; width: 100%; }
+      .cr-info { text-align: center; }
+      .cr-meta, .cr-cta-row { justify-content: center; }
       .cr-bio { margin-left:auto; margin-right:auto; }
       .cr-courses, .cr-pods { grid-template-columns: 1fr 1fr; }
     }
@@ -159,19 +177,20 @@
 
   <!-- CREATOR HERO -->
   <header class="cr-hero">
-    <div class="cr-hero-bg"></div>
-    <div class="cr-wrap">
-      <div class="cr-hero-inner">
+    <div class="cr-banner" id="crBanner"><div class="cr-banner-pattern"></div></div>
+    <div class="cr-wrap cr-profile">
+      <div class="cr-profile-top">
         <img id="crAvatar" class="cr-avatar" src="assets/images/founder-ajit.jpg" alt="Creator">
-        <div>
-          <span class="cr-id-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Verified Creator</span>
-          <h1 class="cr-name" id="crName">Creator</h1>
-          <p class="cr-handle" id="crHandle"></p>
-          <p class="cr-title" id="crTitle"></p>
-          <p class="cr-bio" id="crBio"></p>
-          <div class="cr-meta" id="crMeta"></div>
-          <div class="cr-cta-row" id="crCtas"></div>
-        </div>
+        <div class="cr-socials" id="crSocials"></div>
+      </div>
+      <div class="cr-info">
+        <span class="cr-id-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Verified Creator</span>
+        <h1 class="cr-name" id="crName">Creator</h1>
+        <p class="cr-handle" id="crHandle"></p>
+        <p class="cr-title" id="crTitle"></p>
+        <p class="cr-bio" id="crBio"></p>
+        <div class="cr-meta" id="crMeta"></div>
+        <div class="cr-cta-row" id="crCtas"></div>
       </div>
       <div class="cr-stats" id="crStats"></div>
     </div>
@@ -254,6 +273,10 @@
     youtube:'<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
     award:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
     mic:'<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>',
+    instagram:'<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>',
+    facebook:'<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+    linkedin:'<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>',
+    twitter:'<path d="M4 4l11.733 16H20L8.267 4zM4 20l6.768-6.768M13.232 10.768L20 4"/>',
   };
   const svg = (k,s=24)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]||''}</svg>`;
 
@@ -265,6 +288,16 @@
       avatar: 'assets/images/founder-ajit.jpg',
       bio: "I teach practical, no-code AI to students, professionals and business owners across India. Author of 3 books, 32 AI projects delivered, and host of the AI Freedom channel.",
       about: "Ajit is the founder of AI Freedom Institute — an AI trainer and creator who has delivered 32 AI projects and authored 3 books. He has led webinars, seminars and courses across India focused on practical, no-code AI adoption. His mission is simple: help everyday people actually use AI to learn faster, work smarter and earn more — without needing to code.",
+      // Optional banner image (1500x500-ish). Empty = premium gradient banner.
+      banner: '',
+      // Social links — only links with a real URL are shown. Add the real
+      // Instagram / Facebook / LinkedIn URLs here and they'll appear automatically.
+      socials: {
+        youtube: 'https://www.youtube.com/@AIFreedomInstitute',
+        instagram: '',
+        facebook: '',
+        linkedin: '',
+      },
       chips: [
         { icon:'award', text:'Author of 3 Books' },
         { icon:'zap', text:'32 AI Projects Delivered' },
@@ -295,6 +328,17 @@
 
   function render(c) {
     document.title = `${c.name} — AI Creator | AI Freedom Institute`;
+
+    // Banner (image if provided, else premium gradient)
+    const banner = document.getElementById('crBanner');
+    if (c.banner) { banner.classList.add('has-img'); banner.style.backgroundImage = `url(${c.banner})`; }
+
+    // Social bar — render only platforms with a real URL
+    const s = c.socials || {};
+    const SOC = [['youtube','youtube','YouTube'],['instagram','instagram','Instagram'],['facebook','facebook','Facebook'],['linkedin','linkedin','LinkedIn'],['twitter','twitter','X']];
+    document.getElementById('crSocials').innerHTML = SOC.filter(([k]) => s[k]).map(([k,icon,label]) =>
+      `<a class="cr-social ${k}" href="${s[k]}" target="_blank" rel="noopener" aria-label="${label}" title="${label}">${svg(icon,21)}</a>`).join('');
+
     document.getElementById('crAvatar').src = c.avatar;
     document.getElementById('crAvatar').alt = c.name;
     document.getElementById('crName').textContent = c.name;
@@ -308,9 +352,9 @@
     document.getElementById('crMeta').innerHTML = (c.chips||[]).map(ch =>
       `<span class="cr-chip">${svg(ch.icon,15)} ${ch.text}</span>`).join('');
 
-    const ctas = [];
-    if (c.youtube) ctas.push(`<a href="${c.youtube}" target="_blank" rel="noopener" class="btn btn-accent btn-large">${svg('youtube',18)} Subscribe on YouTube</a>`);
-    ctas.push(`<a href="#crCourses" class="btn btn-outline-white btn-large" style="border-color:rgba(255,255,255,0.3);color:#fff;">Browse courses</a>`);
+    const ctas = [`<a href="#crCourses" class="btn btn-accent btn-large">Browse courses</a>`];
+    const yt = (c.socials && c.socials.youtube) || c.youtube;
+    if (yt) ctas.push(`<a href="${yt}" target="_blank" rel="noopener" class="btn btn-outline-white btn-large" style="border-color:rgba(255,255,255,0.3);color:#fff;">${svg('youtube',18)} Subscribe</a>`);
     document.getElementById('crCtas').innerHTML = ctas.join('');
 
     document.getElementById('crStats').innerHTML = (c.stats||[]).map(s =>
