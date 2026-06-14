@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Dashboard — AI Freedom Institute</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--bg-light); }
+    /* Gate: hide app until auth resolves to avoid flicker */
+    #dashApp { display:none; }
+    .db-loading { min-height:100vh; display:flex; align-items:center; justify-content:center; color:var(--text-light); font-weight:500; }
+
+    .db-layout { display:grid; grid-template-columns: 248px 1fr; min-height:100vh; }
+    /* Sidebar */
+    .db-side { background: var(--bg-darker); color:#fff; padding:24px 18px; display:flex; flex-direction:column; gap:6px; position:sticky; top:0; height:100vh; }
+    .db-brand { display:flex; align-items:center; gap:10px; padding:6px 8px 20px; }
+    .db-brand img { width:36px; height:36px; border-radius:9px; }
+    .db-brand b { font-family:var(--font-h); font-size:0.96rem; }
+    .db-brand span { display:block; font-size:0.72rem; color:var(--text-on-dark); }
+    .db-nav { display:flex; flex-direction:column; gap:3px; flex:1; }
+    .db-nav a { display:flex; align-items:center; gap:11px; padding:11px 12px; border-radius:10px; color:#cbd5e1; font-weight:500; font-size:0.92rem; cursor:pointer; transition:var(--tr); }
+    .db-nav a:hover { background:rgba(255,255,255,0.06); color:#fff; }
+    .db-nav a.active { background:linear-gradient(135deg,rgba(106,17,203,0.5),rgba(37,117,252,0.4)); color:#fff; }
+    .db-nav svg { width:18px; height:18px; flex:0 0 auto; }
+    .db-side-foot { border-top:1px solid rgba(255,255,255,0.1); padding-top:14px; }
+    .db-user { display:flex; align-items:center; gap:10px; padding:8px; }
+    .db-avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#6A11CB,#2575FC); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; }
+    .db-user-meta { overflow:hidden; }
+    .db-user-meta b { font-size:0.85rem; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .db-user-meta span { font-size:0.74rem; color:var(--text-on-dark); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+    .db-signout { width:100%; margin-top:8px; padding:9px; border-radius:9px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff; font-weight:600; font-size:0.85rem; cursor:pointer; }
+    .db-signout:hover { background:rgba(255,255,255,0.12); }
+
+    /* Main */
+    .db-main { padding: 32px 36px; }
+    .db-head { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+    .db-head h1 { font-family:var(--font-h); font-size:1.6rem; letter-spacing:-0.025em; margin:0; }
+    .db-head p { color:var(--text-light); margin:4px 0 0; font-size:0.92rem; }
+    .db-newbtn { padding:11px 18px; border-radius:var(--radius-sm); font-weight:600; font-size:0.9rem; background:linear-gradient(135deg,var(--secondary-start),var(--secondary-end)); color:#fff; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+    .db-newbtn svg { width:17px; height:17px; }
+
+    /* Stat cards */
+    .db-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:28px; }
+    .db-stat { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; }
+    .db-stat-ic { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; color:#fff; }
+    .db-stat-ic svg { width:20px; height:20px; }
+    .db-stat-num { font-family:var(--font-h); font-size:1.7rem; font-weight:700; letter-spacing:-0.02em; color:var(--text); }
+    .db-stat-label { color:var(--text-light); font-size:0.85rem; margin-top:2px; }
+    .db-stat-note { color:var(--text-light); font-size:0.76rem; margin-top:8px; }
+
+    /* Panel + empty states */
+    .db-panel { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; margin-bottom:22px; }
+    .db-panel h3 { font-family:var(--font-h); font-size:1.1rem; letter-spacing:-0.02em; margin:0 0 4px; }
+    .db-panel .db-psub { color:var(--text-light); font-size:0.88rem; margin:0 0 18px; }
+    .db-empty { text-align:center; padding:44px 20px; }
+    .db-empty-ic { width:60px; height:60px; border-radius:16px; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,rgba(106,17,203,0.1),rgba(0,198,255,0.1)); color:var(--primary); }
+    .db-empty-ic svg { width:28px; height:28px; }
+    .db-empty h4 { font-size:1.05rem; margin:0 0 6px; }
+    .db-empty p { color:var(--text-light); font-size:0.9rem; max-width:380px; margin:0 auto 18px; line-height:1.6; }
+
+    .db-banner { background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(245,158,11,0.04)); border:1px solid rgba(245,158,11,0.3); color:#92400e; border-radius:var(--radius-md); padding:14px 16px; font-size:0.88rem; margin-bottom:24px; }
+
+    @media (max-width: 820px) {
+      .db-layout { grid-template-columns: 1fr; }
+      .db-side { position:static; height:auto; flex-direction:row; flex-wrap:wrap; align-items:center; }
+      .db-nav { flex-direction:row; flex-wrap:wrap; flex:1 1 100%; }
+      .db-stats { grid-template-columns: 1fr 1fr; }
+      .db-main { padding:24px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="db-loading" id="dashLoading">Loading your studio…</div>
+
+  <div id="dashApp">
+    <div class="db-layout">
+      <!-- SIDEBAR -->
+      <aside class="db-side">
+        <a href="/" class="db-brand"><img src="assets/images/logo.png" alt=""><div><b>Creator Studio</b><span>AI Freedom Institute</span></div></a>
+        <nav class="db-nav">
+          <a class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg> Overview</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> My Courses</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Podcast &amp; Videos</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> Analytics</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/></svg> Earnings</a>
+          <a href="/creator?id=ajit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> My Public Page</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> Settings</a>
+        </nav>
+        <div class="db-side-foot">
+          <div class="db-user"><div class="db-avatar" id="dbAvatar">?</div><div class="db-user-meta"><b id="dbName">Creator</b><span id="dbEmail"></span></div></div>
+          <button class="db-signout" id="dbSignout">Sign out</button>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="db-main">
+        <div class="db-head">
+          <div><h1 id="dbHello">Welcome back</h1><p>Here's your creator studio. Publish a course to start tracking performance.</p></div>
+          <button class="db-newbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> New course</button>
+        </div>
+
+        <div class="db-banner">⚙️ Your studio is set up. Course uploads, podcast publishing and live analytics activate once the backend (database + storage) is connected — see the setup notes.</div>
+
+        <!-- Stats: honest zero-state until real data exists -->
+        <div class="db-stats">
+          <div class="db-stat"><div class="db-stat-ic" style="background:linear-gradient(135deg,#6A11CB,#2575FC)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div><div class="db-stat-num">0</div><div class="db-stat-label">Courses published</div><div class="db-stat-note">Publish your first course</div></div>
+          <div class="db-stat"><div class="db-stat-ic" style="background:linear-gradient(135deg,#00C6FF,#2575FC)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="db-stat-num">—</div><div class="db-stat-label">Total views</div><div class="db-stat-note">No data yet</div></div>
+          <div class="db-stat"><div class="db-stat-ic" style="background:linear-gradient(135deg,#10B981,#00C6FF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="db-stat-num">—</div><div class="db-stat-label">Students</div><div class="db-stat-note">No data yet</div></div>
+          <div class="db-stat"><div class="db-stat-ic" style="background:linear-gradient(135deg,#A855F7,#FF6EB4)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="db-stat-num">—</div><div class="db-stat-label">Earnings</div><div class="db-stat-note">No data yet</div></div>
+        </div>
+
+        <!-- Courses panel: empty state -->
+        <div class="db-panel">
+          <h3>My Courses</h3>
+          <p class="db-psub">Upload video lessons, set a price, and publish to your creator page.</p>
+          <div class="db-empty">
+            <div class="db-empty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div>
+            <h4>No courses yet</h4>
+            <p>Create your first course — add lessons, a thumbnail and a price. It'll appear on your public creator page.</p>
+            <button class="db-newbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Create a course</button>
+          </div>
+        </div>
+
+        <!-- Podcast panel: empty state -->
+        <div class="db-panel">
+          <h3>Podcast &amp; Videos</h3>
+          <p class="db-psub">Publish episodes and clips to your creator page.</p>
+          <div class="db-empty">
+            <div class="db-empty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div>
+            <h4>No episodes yet</h4>
+            <p>Add your first podcast episode or video. You can paste a YouTube link or upload a file once storage is connected.</p>
+            <button class="db-newbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Add episode</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  /* Same Supabase config as login.html — keep these two in sync. */
+  const SUPABASE_URL = '';        // <-- paste Project URL
+  const SUPABASE_ANON_KEY = '';   // <-- paste anon public key
+
+  const configured = SUPABASE_URL && SUPABASE_ANON_KEY;
+  const sb = configured ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+  function showApp(user) {
+    document.getElementById('dashLoading').style.display = 'none';
+    document.getElementById('dashApp').style.display = 'block';
+    const email = (user && user.email) || '';
+    const name = (user && user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name)) || (email ? email.split('@')[0] : 'Creator');
+    document.getElementById('dbName').textContent = name;
+    document.getElementById('dbEmail').textContent = email;
+    document.getElementById('dbAvatar').textContent = (name[0] || '?').toUpperCase();
+    document.getElementById('dbHello').textContent = 'Welcome back, ' + name.split(' ')[0];
+  }
+
+  (async () => {
+    if (!configured) {
+      // Preview the studio UI when auth isn't connected yet (no real session to gate on).
+      showApp({ email: '', user_metadata: { full_name: 'Creator (preview)' } });
+      return;
+    }
+    const { data } = await sb.auth.getSession();
+    if (!data || !data.session) { location.replace('/login'); return; }
+    showApp(data.session.user);
+    sb.auth.onAuthStateChange((_e, session) => { if (!session) location.replace('/login'); });
+  })();
+
+  document.getElementById('dbSignout').addEventListener('click', async () => {
+    if (sb) await sb.auth.signOut();
+    location.replace('/login');
+  });
+  </script>
+</body>
+</html>

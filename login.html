@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Login — AI Freedom Institute</title>
+  <meta name="description" content="Log in to your AI Freedom Institute creator studio — manage your courses, podcasts and analytics.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--bg-darker); }
+    .lg-wrap { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; }
+
+    /* Brand panel */
+    .lg-brand { position: relative; overflow: hidden; padding: 56px; display: flex; flex-direction: column; justify-content: space-between;
+      background: linear-gradient(150deg, #2b1055 0%, #1e3c72 50%, #0a3d62 100%); }
+    .lg-brand::after { content:""; position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+      background-size: 46px 46px; mask-image: radial-gradient(circle at 70% 10%, #000, transparent 75%); }
+    .lg-brand > * { position: relative; z-index: 2; }
+    .lg-logo { display:flex; align-items:center; gap:12px; color:#fff; }
+    .lg-logo img { width:44px; height:44px; border-radius:10px; }
+    .lg-logo b { font-family:var(--font-h); font-weight:700; font-size:1.05rem; letter-spacing:-0.01em; }
+    .lg-logo span { display:block; font-size:0.78rem; color:var(--text-on-dark); font-weight:500; }
+    .lg-pitch h1 { font-family:var(--font-h); color:#fff; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.1; letter-spacing:-0.03em; margin:0 0 16px; }
+    .lg-pitch p { color:var(--text-on-dark); font-size:1.05rem; line-height:1.7; max-width:430px; }
+    .lg-points { margin-top:28px; display:flex; flex-direction:column; gap:14px; }
+    .lg-point { display:flex; align-items:center; gap:12px; color:#e2e8f0; font-weight:500; }
+    .lg-point svg { width:22px; height:22px; color:var(--accent-light); flex:0 0 auto; }
+    .lg-foot { color:var(--text-on-dark); font-size:0.85rem; }
+    .lg-foot a { color:var(--accent-light); }
+
+    /* Form panel */
+    .lg-form-wrap { display:flex; align-items:center; justify-content:center; padding: 40px 24px; background: var(--bg); }
+    .lg-card { width:100%; max-width: 400px; }
+    .lg-card h2 { font-family:var(--font-h); font-size:1.7rem; letter-spacing:-0.025em; margin:0 0 6px; }
+    .lg-sub { color:var(--text-light); margin:0 0 28px; }
+    .lg-field { margin-bottom:16px; }
+    .lg-field label { display:block; font-size:0.85rem; font-weight:600; color:var(--text-secondary); margin-bottom:7px; }
+    .lg-input { width:100%; padding:13px 15px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:0.95rem; transition:var(--tr); background:#fff; }
+    .lg-input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,198,255,0.12); }
+    .lg-btn { width:100%; padding:14px; border-radius:var(--radius-sm); font-weight:600; font-size:0.96rem; font-family:var(--font-b);
+      background:linear-gradient(135deg,var(--secondary-start),var(--secondary-end)); color:#fff; cursor:pointer; border:none; transition:var(--tr); }
+    .lg-btn:hover { transform:translateY(-2px); box-shadow:0 12px 28px -10px rgba(106,17,203,0.5); }
+    .lg-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
+    .lg-oauth { width:100%; padding:12px; border-radius:var(--radius-sm); font-weight:600; font-size:0.94rem; background:#fff; color:var(--text);
+      border:1px solid var(--border); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; transition:var(--tr); }
+    .lg-oauth:hover { background:var(--bg-light); border-color:#cbd5e1; }
+    .lg-oauth img { width:18px; height:18px; }
+    .lg-divider { display:flex; align-items:center; gap:14px; color:var(--text-light); font-size:0.82rem; margin:20px 0; }
+    .lg-divider::before, .lg-divider::after { content:""; flex:1; height:1px; background:var(--border); }
+    .lg-row { display:flex; align-items:center; justify-content:space-between; margin: -4px 0 18px; }
+    .lg-link { color:var(--primary); font-weight:600; font-size:0.88rem; cursor:pointer; background:none; border:none; }
+    .lg-toggle { text-align:center; margin-top:22px; color:var(--text-light); font-size:0.9rem; }
+    .lg-toggle button { color:var(--primary); font-weight:600; background:none; border:none; cursor:pointer; font-size:0.9rem; }
+    .lg-msg { padding:12px 14px; border-radius:var(--radius-sm); font-size:0.9rem; margin-bottom:18px; display:none; }
+    .lg-msg.err { display:block; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.35); color:#b91c1c; }
+    .lg-msg.ok { display:block; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.35); color:#047857; }
+    .lg-msg.warn { display:block; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.35); color:#b45309; }
+    .lg-back { display:inline-block; margin-top:24px; color:var(--text-light); font-size:0.85rem; }
+
+    @media (max-width: 880px) {
+      .lg-wrap { grid-template-columns: 1fr; }
+      .lg-brand { display:none; }
+      .lg-form-wrap { min-height:100vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lg-wrap">
+    <!-- BRAND PANEL -->
+    <aside class="lg-brand">
+      <a href="/" class="lg-logo"><img src="assets/images/logo.png" alt="AI Freedom Institute"><span><b>AI Freedom Institute</b>Creator Studio</span></a>
+      <div class="lg-pitch">
+        <h1>Your courses.<br>Your audience.<br>Your studio.</h1>
+        <p>Sign in to manage your courses and podcasts, track performance, and grow your creator page.</p>
+        <div class="lg-points">
+          <div class="lg-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Upload &amp; manage your courses</div>
+          <div class="lg-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Publish your podcast &amp; videos</div>
+          <div class="lg-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> Track views, sales &amp; earnings</div>
+        </div>
+      </div>
+      <div class="lg-foot">New here? <a href="/teach">Apply to become a creator →</a></div>
+    </aside>
+
+    <!-- FORM PANEL -->
+    <main class="lg-form-wrap">
+      <div class="lg-card">
+        <h2 id="lgTitle">Creator login</h2>
+        <p class="lg-sub" id="lgSub">Welcome back — sign in to your studio.</p>
+
+        <div class="lg-msg" id="lgMsg"></div>
+
+        <button class="lg-oauth" id="lgGoogle" type="button">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Continue with Google
+        </button>
+
+        <div class="lg-divider">or</div>
+
+        <form id="lgForm">
+          <div class="lg-field">
+            <label for="lgEmail">Email</label>
+            <input class="lg-input" type="email" id="lgEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="lg-field" id="lgPassWrap">
+            <label for="lgPass">Password</label>
+            <input class="lg-input" type="password" id="lgPass" name="password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <div class="lg-row">
+            <button type="button" class="lg-link" id="lgMagic">Email me a sign-in link</button>
+            <button type="button" class="lg-link" id="lgForgot">Forgot password?</button>
+          </div>
+          <button class="lg-btn" id="lgSubmit" type="submit">Sign in</button>
+        </form>
+
+        <div class="lg-toggle" id="lgToggleWrap">
+          <span id="lgToggleText">Don't have an account?</span>
+          <button id="lgToggle" type="button">Create one</button>
+        </div>
+
+        <a href="/" class="lg-back">← Back to site</a>
+      </div>
+    </main>
+  </div>
+
+  <!-- Supabase Auth (client-side, works on static hosting). anon key is public/safe. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  /* ===================================================================
+     SUPABASE CONFIG — paste your project values here to activate login.
+     Get them at: Supabase dashboard → Project Settings → API
+       • Project URL   (looks like https://xxxx.supabase.co)
+       • anon public key (safe to expose in client code)
+     Then in Supabase → Authentication → Providers, enable Email and Google.
+     =================================================================== */
+  const SUPABASE_URL = '';        // <-- paste Project URL
+  const SUPABASE_ANON_KEY = '';   // <-- paste anon public key
+  const REDIRECT_TO = location.origin + '/dashboard';
+
+  const $ = (id) => document.getElementById(id);
+  const msg = (text, kind='err') => { const m=$('lgMsg'); m.textContent=text; m.className='lg-msg '+kind; };
+  const clearMsg = () => { $('lgMsg').className='lg-msg'; $('lgMsg').textContent=''; };
+
+  let mode = 'signin'; // 'signin' | 'signup'
+  const configured = SUPABASE_URL && SUPABASE_ANON_KEY;
+  const sb = configured ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+  // If already signed in, go straight to the dashboard
+  (async () => {
+    if (!configured) {
+      msg('Login isn’t connected yet. Add your Supabase project URL + anon key in login.html to activate it.', 'warn');
+      return;
+    }
+    const { data } = await sb.auth.getSession();
+    if (data && data.session) location.replace('/dashboard');
+  })();
+
+  function setMode(m) {
+    mode = m;
+    const signup = m === 'signup';
+    $('lgTitle').textContent = signup ? 'Create your creator account' : 'Creator login';
+    $('lgSub').textContent = signup ? 'Start your studio — it takes a minute.' : 'Welcome back — sign in to your studio.';
+    $('lgSubmit').textContent = signup ? 'Create account' : 'Sign in';
+    $('lgToggleText').textContent = signup ? 'Already have an account?' : 'Don’t have an account?';
+    $('lgToggle').textContent = signup ? 'Sign in' : 'Create one';
+    $('lgPass').setAttribute('autocomplete', signup ? 'new-password' : 'current-password');
+    clearMsg();
+  }
+  $('lgToggle').addEventListener('click', () => setMode(mode === 'signin' ? 'signup' : 'signin'));
+
+  function guard() { if (!configured) { msg('Login isn’t connected yet. Add your Supabase keys in login.html.', 'warn'); return false; } return true; }
+
+  // Email + password (sign in / sign up)
+  $('lgForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!guard()) return;
+    clearMsg();
+    const email = $('lgEmail').value.trim();
+    const password = $('lgPass').value;
+    if (!email) return msg('Enter your email.');
+    if (!password || password.length < 6) return msg('Password must be at least 6 characters.');
+    const btn = $('lgSubmit'); btn.disabled = true; const t = btn.textContent; btn.textContent = 'Please wait…';
+    try {
+      if (mode === 'signup') {
+        const { error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: REDIRECT_TO } });
+        if (error) throw error;
+        msg('Check your inbox to confirm your email, then sign in.', 'ok');
+        setMode('signin');
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        location.replace('/dashboard');
+      }
+    } catch (err) { msg(err.message || 'Something went wrong.'); }
+    finally { btn.disabled = false; btn.textContent = t; }
+  });
+
+  // Magic link (passwordless)
+  $('lgMagic').addEventListener('click', async () => {
+    if (!guard()) return;
+    const email = $('lgEmail').value.trim();
+    if (!email) return msg('Enter your email first, then tap the sign-in link button.');
+    try {
+      const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: REDIRECT_TO } });
+      if (error) throw error;
+      msg('Sign-in link sent — check your email.', 'ok');
+    } catch (err) { msg(err.message || 'Could not send link.'); }
+  });
+
+  // Forgot password
+  $('lgForgot').addEventListener('click', async () => {
+    if (!guard()) return;
+    const email = $('lgEmail').value.trim();
+    if (!email) return msg('Enter your email first, then tap “Forgot password”.');
+    try {
+      const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + '/login' });
+      if (error) throw error;
+      msg('Password reset link sent — check your email.', 'ok');
+    } catch (err) { msg(err.message || 'Could not send reset link.'); }
+  });
+
+  // Google OAuth
+  $('lgGoogle').addEventListener('click', async () => {
+    if (!guard()) return;
+    try {
+      const { error } = await sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: REDIRECT_TO } });
+      if (error) throw error;
+    } catch (err) { msg(err.message || 'Google sign-in failed.'); }
+  });
+  </script>
+</body>
+</html>
