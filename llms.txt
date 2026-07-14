@@ -2,7 +2,7 @@
 
 > Empowering Students with AI Skills for the Future
 
-AI Freedom Institute provides practical, hands-on AI training for 4 audiences: Schools, Corporate Teams, Individual Learners, and Business Owners. We deliver interactive AI workshops, productivity training, and career-focused AI courses across India — no coding required. Founded by Ajit (AI Finance Guy) — AI trainer and creator, author of 3 books, 32 AI projects delivered, speaker at webinars, seminars and courses across India.
+AI Freedom Institute provides practical, hands-on AI training for 4 audiences: Schools, Corporate Teams, Individual Learners, and Business Owners. Based in Pune, Maharashtra, we deliver interactive AI workshops, productivity training, and career-focused AI courses — onsite across Pune and live online across India — no coding required. Founded by Ajit (AI Finance Guy) — AI trainer and creator, author of 3 books, 32 AI projects delivered, speaker at webinars, seminars and courses across India.
 
 - Phone: +91 8007280721
 - Email: info@aifreedom.in
@@ -15,7 +15,8 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 - [Home](https://www.aifreedom.in/): Hub page — 4 AI program funnels, features, testimonials, stats
 - [Marketplace](https://www.aifreedom.in/marketplace): India's AI creator ecosystem — categories (AI agencies, SaaS, trading platforms, creator tools, automation studios, education brands); Cohort 0 applications open; featured-builder &amp; founder-story slots reserved for early applicants
 - [Schools](https://www.aifreedom.in/schools): 1-hour AI awareness workshops for school & college students
-- [Corporate](https://www.aifreedom.in/corporate): AI productivity & automation training for teams — save 2-3 hours daily
+- [Corporate](https://www.aifreedom.in/corporate): Corporate AI training — productivity & automation workshops for teams, save 2-3 hours daily
+- [Corporate AI Training in Pune](https://www.aifreedom.in/corporate-ai-training-pune): Onsite AI workshops at Pune offices — Hinjewadi, Kharadi, Baner, Magarpatta, Viman Nagar, PCMC — plus live online sessions
 - [Individuals](https://www.aifreedom.in/individuals): Learn AI skills (image gen, video, content, freelancing) — no coding
 - [Business](https://www.aifreedom.in/business): AI-powered marketing, lead gen, content & operations for business owners
 - [Contact](https://www.aifreedom.in/contact): Book a free demo — form, phone, email, WhatsApp
@@ -43,6 +44,7 @@ AI Freedom Institute provides practical, hands-on AI training for 4 audiences: S
 - [Home](https://www.aifreedom.in/md/home.md)
 - [Schools](https://www.aifreedom.in/md/schools.md)
 - [Corporate](https://www.aifreedom.in/md/corporate.md)
+- [Corporate AI Training in Pune](https://www.aifreedom.in/md/corporate-ai-training-pune.md)
 - [Individuals](https://www.aifreedom.in/md/individuals.md)
 - [Business](https://www.aifreedom.in/md/business.md)
 - [Contact](https://www.aifreedom.in/md/contact.md)

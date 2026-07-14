@@ -1,8 +1,8 @@
-# AI Productivity Workshop for Corporate Teams — AI Freedom Institute
+# Corporate AI Training for Teams — AI Freedom Institute
 
-> Save 2–3 Hours Daily Using AI
+> Corporate AI training that saves your team 2–3 hours daily
 
-AI Productivity Workshop for Teams — automate repetitive tasks, boost output, and transform how your team works.
+Hands-on AI productivity workshops for corporate teams — automate repetitive tasks, boost output, and transform how your team works. Onsite in Pune ([dedicated Pune page](https://www.aifreedom.in/corporate-ai-training-pune)) or live online across India.
 
 ## The Problem: Your Team is Losing Hours Every Day
 
@@ -36,6 +36,20 @@ AI Productivity Workshop for Teams — automate repetitive tasks, boost output, 
 2. Live Workshop — Hands-on with real AI tools
 3. Implementation — Team starts using AI immediately
 4. Follow-Up Support — 30-day assistance
+
+## FAQ
+
+**Do you conduct corporate AI training in Pune?**
+Yes — onsite at offices across Pune (Hinjewadi, Kharadi, Baner, Magarpatta, Viman Nagar, PCMC) and live online for teams anywhere in India.
+
+**How long does the workshop take?**
+Standard sessions are 1–2 hours; half-day, full-day and multi-session formats available.
+
+**Does the team need a technical background?**
+No — designed for non-technical teams. Zero coding required.
+
+**How much does it cost?**
+Custom-quoted by team size, format and scope. Free discovery call first.
 
 ## Book a Corporate Demo
 

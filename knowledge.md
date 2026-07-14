@@ -4,7 +4,7 @@
 
 ## Organization Profile
 
-**AI Freedom Institute** is an Indian EdTech organization specializing in AI education across 4 segments: Schools & Colleges, Corporate Teams, Individual Learners, and Business Owners. Founded in 2024, the institute delivers practical, hands-on AI training — no coding required.
+**AI Freedom Institute** is an Indian EdTech organization based in Pune, Maharashtra, specializing in AI education across 4 segments: Schools & Colleges, Corporate Teams, Individual Learners, and Business Owners. Founded in 2024, the institute delivers practical, hands-on AI training — onsite across Pune (Hinjewadi, Kharadi, Baner, Magarpatta, Viman Nagar, PCMC) and live online across India — no coding required.
 
 ### Mission
 To democratize AI education by making it accessible, practical, and engaging for everyone in India — regardless of their technical background.
