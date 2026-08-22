@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Learning | AI Freedom Institute</title>
+  <meta name="description" content="Your AI Freedom Institute courses — track progress, continue where you left off, and restore access on a new device.">
+  <!-- A personal page: nothing here is useful in search results. -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.aifreedom.in/my-learning">
+
+  <meta name="theme-color" content="#0a0a0f">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="apple-touch-icon" href="/assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZJLJ0JMXN"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PZJLJ0JMXN',{page_title:'My Learning'});</script>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/razorpay-checkout.js" defer></script>
+  <script src="/access.js" defer></script>
+  <script src="/courses/catalogue.js" defer></script>
+
+  <style>
+    :root{
+      --bg:#0a0a0f; --bg-card:rgba(22,22,31,0.85); --bg-elevated:#16161f;
+      --green:#00ff88; --blue:#00d4ff; --purple:#a855f7;
+      --text:#f0f0f5; --text-2:#a0a0b8; --text-3:#6b6b82;
+      --border:rgba(255,255,255,0.08); --border-2:rgba(255,255,255,0.06);
+      --grad:linear-gradient(135deg,#00ff88,#00d4ff);
+      --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      --display:'Space Grotesk','Inter',sans-serif;
+      --r:16px; --r-sm:10px; --r-full:999px;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+      -webkit-font-smoothing:antialiased;}
+    a{color:inherit;}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+    /* nav */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(10,10,15,0.9);
+      backdrop-filter:blur(14px);border-bottom:1px solid var(--border-2);}
+    .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:0.98rem;}
+    .logo img{height:30px;width:auto;}
+    .logo span span{color:var(--green);}
+    .nav-links{display:flex;gap:20px;align-items:center;font-size:0.9rem;font-weight:600;}
+    .nav-links a{color:var(--text-2);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.on{color:var(--green);}
+
+    /* header */
+    .head{padding:44px 0 26px;}
+    .head h1{font-family:var(--display);font-size:2rem;font-weight:800;margin:0 0 8px;}
+    .head p{margin:0;color:var(--text-2);font-size:1rem;line-height:1.6;}
+
+    /* summary stats */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 34px;}
+    .stat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+    .stat b{display:block;font-family:var(--display);font-size:1.75rem;font-weight:800;
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1;}
+    .stat span{display:block;font-size:0.82rem;color:var(--text-3);font-weight:600;margin-top:4px;}
+
+    /* section */
+    .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 16px;}
+    .sec-head h2{font-family:var(--display);font-size:1.2rem;font-weight:800;margin:0;}
+    .sec-head .link{font-size:0.85rem;font-weight:700;color:var(--blue);cursor:pointer;
+      background:none;border:none;text-decoration:underline;font-family:inherit;padding:0;}
+    .sec-head .link:hover{color:var(--green);}
+
+    /* course cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:40px;}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);
+      padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s;}
+    .card.owned{border-color:rgba(0,255,136,0.28);}
+    .card:hover{transform:translateY(-2px);border-color:rgba(0,212,255,0.4);}
+    .card-top{display:flex;gap:14px;align-items:flex-start;}
+    .card-ico{flex:none;width:46px;height:46px;border-radius:12px;background:var(--bg-elevated);
+      border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+    .card-t{flex:1;min-width:0;}
+    .card-t h3{margin:0 0 4px;font-size:1rem;font-weight:700;line-height:1.35;}
+    .card-t p{margin:0;font-size:0.85rem;color:var(--text-3);line-height:1.5;}
+    .badge{display:inline-block;font-size:0.68rem;font-weight:800;letter-spacing:0.5px;
+      padding:4px 9px;border-radius:var(--r-full);text-transform:uppercase;}
+    .badge.own{background:rgba(0,255,136,0.14);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+    .badge.lock{background:rgba(255,255,255,0.06);color:var(--text-3);border:1px solid var(--border);}
+
+    .prog{margin-top:2px;}
+    .prog-bar{height:6px;background:rgba(255,255,255,0.07);border-radius:var(--r-full);overflow:hidden;}
+    .prog-fill{height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .5s ease;}
+    .prog-txt{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--text-3);
+      font-weight:600;margin-top:7px;}
+
+    .card-foot{margin-top:auto;display:flex;gap:10px;align-items:center;}
+    .btn{flex:1;padding:11px 14px;border-radius:var(--r-sm);font-size:0.9rem;font-weight:700;
+      text-align:center;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:opacity .2s;}
+    .btn:hover{opacity:.9;}
+    .btn-go{background:var(--grad);color:#0a0a0f;}
+    .btn-buy{background:rgba(255,255,255,0.07);color:var(--text);border:1px solid var(--border);}
+    .price{font-size:0.9rem;font-weight:800;color:var(--text);white-space:nowrap;}
+    .price s{color:var(--text-3);font-weight:500;margin-right:5px;font-size:0.8rem;}
+
+    /* empty + loading */
+    .empty{background:var(--bg-card);border:1px dashed var(--border);border-radius:var(--r);
+      padding:34px 24px;text-align:center;}
+    .empty h3{margin:0 0 8px;font-size:1.05rem;font-weight:700;}
+    .empty p{margin:0 0 18px;color:var(--text-2);font-size:0.92rem;line-height:1.6;}
+    .empty .btn{display:inline-block;flex:none;padding:11px 22px;}
+    .skel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);
+      height:190px;animation:pulse 1.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:.5}50%{opacity:.85}}
+
+    .foot{border-top:1px solid var(--border-2);padding:26px 0 44px;color:var(--text-3);font-size:0.85rem;
+      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .foot a{color:var(--text-2);text-decoration:none;}
+    .foot a:hover{color:var(--green);}
+
+    @media (max-width:640px){
+      .head h1{font-size:1.55rem;}
+      .stats{grid-template-columns:1fr;gap:10px;}
+      .nav-links{gap:14px;font-size:0.85rem;}
+      .grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap nav-in">
+      <a href="/" class="logo">
+        <img src="/assets/images/logo.png" alt="AI Freedom Institute">
+        <span>AI <span>Freedom</span> Institute</span>
+      </a>
+      <div class="nav-links">
+        <a href="/Course">All Courses</a>
+        <a href="/my-learning" class="on">My Learning</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="head">
+      <h1>My Learning</h1>
+      <p id="headSub">Checking which courses you own…</p>
+    </header>
+
+    <section class="stats" id="stats" hidden>
+      <div class="stat"><b id="stOwned">0</b><span>Courses owned</span></div>
+      <div class="stat"><b id="stDone">0</b><span>Lessons completed</span></div>
+      <div class="stat"><b id="stPct">0%</b><span>Overall progress</span></div>
+    </section>
+
+    <div class="sec-head">
+      <h2 id="ownedHead">My courses</h2>
+      <button class="link" id="restoreLink" type="button">Bought on another device? Restore access</button>
+    </div>
+    <div class="grid" id="ownedGrid">
+      <div class="skel"></div><div class="skel"></div>
+    </div>
+
+    <div class="sec-head"><h2>Explore more</h2></div>
+    <div class="grid" id="otherGrid"></div>
+  </main>
+
+  <footer class="wrap foot">
+    <span>© <span id="yr"></span> AI Freedom Institute</span>
+    <span><a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/contact">Support</a></span>
+  </footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Wait for the deferred scripts before touching AFAccess / AF_CATALOGUE. */
+window.addEventListener('DOMContentLoaded', init);
+
+var STATE = { owned: [], others: [] };
+
+async function init() {
+  var catalogue = window.AF_CATALOGUE || [];
+  if (!window.AFAccess || !catalogue.length) {
+    document.getElementById('headSub').textContent =
+      'Could not load your courses. Please refresh the page.';
+    document.getElementById('ownedGrid').innerHTML = '';
+    return;
+  }
+
+  document.getElementById('restoreLink').onclick = pickCourseToRestore;
+
+  // One /api/check-access call per course, in parallel.
+  var results = await window.AFAccess.checkMany(catalogue.map(function (c) { return c.id; }));
+  var ownedIds = {};
+  results.forEach(function (r) { if (r.access) ownedIds[r.courseId] = r.access; });
+
+  STATE.owned  = catalogue.filter(function (c) { return ownedIds[c.id]; });
+  STATE.others = catalogue.filter(function (c) { return !ownedIds[c.id]; });
+
+  render();
+}
+
+function render() {
+  var ownedGrid = document.getElementById('ownedGrid');
+  var otherGrid = document.getElementById('otherGrid');
+  var sub = document.getElementById('headSub');
+
+  var totalDone = 0, totalLessons = 0;
+  STATE.owned.forEach(function (c) {
+    var p = window.AFAccess.progressFor(c.lessonIds);
+    totalDone += p.done; totalLessons += p.total;
+  });
+
+  if (STATE.owned.length) {
+    document.getElementById('stats').hidden = false;
+    document.getElementById('stOwned').textContent = STATE.owned.length;
+    document.getElementById('stDone').textContent = totalDone;
+    document.getElementById('stPct').textContent =
+      (totalLessons ? Math.round((totalDone / totalLessons) * 100) : 0) + '%';
+    sub.textContent = STATE.owned.length === 1
+      ? 'You own 1 course. Pick up where you left off.'
+      : 'You own ' + STATE.owned.length + ' courses. Pick up where you left off.';
+    ownedGrid.innerHTML = STATE.owned.map(ownedCard).join('');
+  } else {
+    sub.textContent = 'You do not own any courses on this device yet.';
+    document.getElementById('ownedHead').textContent = 'My courses';
+    ownedGrid.innerHTML =
+      '<div class="empty" style="grid-column:1/-1">' +
+        '<h3>Nothing here yet</h3>' +
+        '<p>Courses you buy appear here with your progress. Already bought one on another device? ' +
+        'Use “Restore access” above — you will need the Payment ID from your Razorpay receipt.</p>' +
+        '<a class="btn btn-go" href="/courses/ai-basics">Start with AI Basics — ₹499</a>' +
+      '</div>';
+  }
+
+  otherGrid.innerHTML = STATE.others.map(otherCard).join('');
+}
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function ownedCard(c) {
+  var p = window.AFAccess.progressFor(c.lessonIds);
+  var label = p.done === 0 ? 'Start course' : (p.done === p.total ? 'Review course' : 'Continue');
+  return '' +
+    '<div class="card owned">' +
+      '<div class="card-top">' +
+        '<div class="card-ico">' + esc(c.icon) + '</div>' +
+        '<div class="card-t"><h3>' + esc(c.name) + '</h3><p>' + esc(c.tagline) + '</p></div>' +
+        '<span class="badge own">Owned</span>' +
+      '</div>' +
+      '<div class="prog">' +
+        '<div class="prog-bar"><div class="prog-fill" style="width:' + p.pct + '%"></div></div>' +
+        '<div class="prog-txt"><span>' + p.done + ' of ' + p.total + ' lessons</span><span>' + p.pct + '%</span></div>' +
+      '</div>' +
+      '<div class="card-foot">' +
+        '<a class="btn btn-go" href="/course-player?course=' + encodeURIComponent(c.id) + '">' + label + ' →</a>' +
+      '</div>' +
+    '</div>';
+}
+
+function otherCard(c) {
+  return '' +
+    '<div class="card">' +
+      '<div class="card-top">' +
+        '<div class="card-ico">' + esc(c.icon) + '</div>' +
+        '<div class="card-t"><h3>' + esc(c.name) + '</h3><p>' + esc(c.tagline) + '</p></div>' +
+        '<span class="badge lock">' + c.lessonCount + ' lessons</span>' +
+      '</div>' +
+      '<div class="card-foot">' +
+        '<span class="price"><s>' + esc(c.originalPrice) + '</s>' + esc(c.price) + '</span>' +
+        '<a class="btn btn-buy" href="' + esc(c.salesUrl) + '">View course</a>' +
+      '</div>' +
+    '</div>';
+}
+
+/* Restoring needs to know which course the payment was for. */
+function pickCourseToRestore() {
+  var catalogue = window.AF_CATALOGUE || [];
+  var names = catalogue.map(function (c, i) { return (i + 1) + '. ' + c.name; }).join('\n');
+  var pick = prompt('Which course did you buy?\n\n' + names + '\n\nEnter the number:');
+  if (!pick) return;
+  var idx = parseInt(pick, 10) - 1;
+  if (!(idx >= 0 && idx < catalogue.length)) return alert('Please enter a number from the list.');
+
+  window.AFAccess.openRestoreModal(catalogue[idx].id, function () {
+    location.reload();
+  });
+}
+</script>
+</body>
+</html>

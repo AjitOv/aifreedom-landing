@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Basics — Zero se Hero | Course Player | AI Freedom Institute</title>
+  <title>AI Basics — Zero to Hero | Course Player | AI Freedom Institute</title>
   <meta name="description" content="Watch AI Basics course - Learn AI from zero. Interactive video lessons with progress tracking. AI Freedom Institute.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.aifreedom.in/course-player">
@@ -27,6 +27,7 @@
        payment; it now takes payment inline and unlocks the course on success. -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="/razorpay-checkout.js" defer></script>
+  <script src="/access.js" defer></script>
 
   <!-- Written lesson content (one file per course, keyed by lesson id) -->
   <script src="/courses/content/ai-basics.js" defer></script>
@@ -56,8 +57,8 @@
   <nav class="pl-navbar">
     <div class="pl-navbar-inner">
       <div class="pl-nav-left">
-        <a href="Course" class="pl-back-btn" id="backBtn">← Back to Courses</a>
-        <span class="pl-course-name" id="navCourseName">AI Basics — Zero se Hero</span>
+        <a href="/my-learning" class="pl-back-btn" id="backBtn">← My Learning</a>
+        <span class="pl-course-name" id="navCourseName">AI Basics — Zero to Hero</span>
       </div>
       <div class="pl-nav-right">
         <div class="pl-progress-indicator">
@@ -449,75 +450,18 @@
   let modulesInOrder = [];
 
   // Has the user paid for the current course?
-  // Entitlement is a token the server signed at payment time. The browser
-  // cannot validate it (it does not have the key), so it is checked against
-  // /api/check-access. Previously any truthy localStorage value unlocked the
-  // course, which meant a one-line console command bypassed payment.
-  function readStoredAccess(courseId) {
-    try {
-      const raw = localStorage.getItem('af_access_' + courseId);
-      if (!raw) return null;
-      const parsed = JSON.parse(raw);
-      return parsed && parsed.token ? parsed : null;
-    } catch (e) { return null; }
-  }
-
+  // Entitlement lives in access.js, shared with the student dashboard so both
+  // agree on what owning a course means. The browser only stores the signed
+  // token; /api/check-access decides whether it is genuine.
   function storeAccess(courseId, token, extra) {
-    try {
-      localStorage.setItem('af_access_' + courseId, JSON.stringify(
-        Object.assign({ token: token, paidAt: Date.now() }, extra || {})
-      ));
-    } catch (e) {}
-  }
-
-  // Customers who paid before entitlement became server-signed have the old
-  // localStorage record, which stored the Razorpay payment id. Trade it for a
-  // real token silently so they are never locked out of a course they bought.
-  async function migrateLegacyAccess(courseId) {
-    let legacy;
-    try {
-      legacy = JSON.parse(localStorage.getItem('af_paid_' + courseId) || 'null');
-    } catch (e) { return false; }
-    if (!legacy || !legacy.paymentId) return false;
-
-    try {
-      const res = await fetch('/api/restore-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paymentId: legacy.paymentId, courseId: courseId }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success && data.token) {
-        storeAccess(courseId, data.token, { email: data.email, paymentId: legacy.paymentId });
-        try { localStorage.removeItem('af_paid_' + courseId); } catch (e) {}
-        return true;
-      }
-    } catch (e) {}
-    return false;
+    return window.AFAccess.store(courseId, token, extra);
   }
 
   async function checkPaidEntitlement(courseId) {
-    let stored = readStoredAccess(courseId);
-    if (!stored) {
-      if (await migrateLegacyAccess(courseId)) stored = readStoredAccess(courseId);
-    }
-    if (!stored) return false;
-    try {
-      const res = await fetch('/api/check-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: stored.token, courseId: courseId }),
-      });
-      const data = await res.json();
-      return !!(data && data.valid);
-    } catch (e) {
-      // Network failure should not lock a paying customer out of content they
-      // already loaded, but it must not unlock anything either.
-      return false;
-    }
+    if (!window.AFAccess) return false;   // fail closed if the module is missing
+    return !!(await window.AFAccess.check(courseId));
   }
 
-  // Build module order from lesson list (preserves first-seen order)
   function computeModulesInOrder() {
     const seen = new Set();
     modulesInOrder = [];
@@ -759,36 +703,15 @@
 
   // Tokens live in the browser that paid, so someone who buys on their phone
   // and opens the course on a laptop would otherwise be locked out of what
-  // they paid for. The Payment ID (emailed by Razorpay) is the proof.
-  async function restoreAccess() {
-    const paymentId = prompt(
-      'Enter the Payment ID from your Razorpay receipt email.\n\n' +
-      'It looks like: pay_XXXXXXXXXXXX'
-    );
-    if (!paymentId) return;
-
-    try {
-      const res = await fetch('/api/restore-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paymentId: paymentId.trim(), courseId: currentCourse.id }),
-      });
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        alert(data.error || 'Could not restore access. Please email info@aifreedom.in.');
-        return;
-      }
-
-      storeAccess(currentCourse.id, data.token, { email: data.email, paymentId: paymentId.trim() });
+  // they paid for. The modal in access.js explains where to find the Payment ID.
+  function restoreAccess() {
+    if (!window.AFAccess) return;
+    window.AFAccess.openRestoreModal(currentCourse.id, function () {
       isPaid = true;
       closePaywall();
       renderPlaylist();
       loadLesson(currentLessonIndex);
-      alert('Access restored. Enjoy the course!');
-    } catch (err) {
-      alert('Could not reach the server. Please check your connection and try again.');
-    }
+    });
   }
 
   // =================================================================
