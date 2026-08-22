@@ -18,7 +18,8 @@ const { embedUrlFor } = require('./_videos');
    from the request, since the client could otherwise just claim any lesson
    is free. */
 const FREE_LESSONS = {
-  'ai-basics': ['ab-01', 'ab-02'],
+  // AI Basics has no free preview — every lesson requires purchase.
+  'ai-basics': [],
   'earn-ai': ['ea-01', 'ea-02'],
   'ai-trading': ['at-01', 'at-02'],
   'prompt-eng': ['pe-01', 'pe-02'],
