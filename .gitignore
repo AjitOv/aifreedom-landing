@@ -17,3 +17,7 @@ node_modules/
 # IDE
 .vscode/
 .idea/
+
+# Local tooling & content backups — not for deploy
+.claude/
+courses/content/*.bak.js

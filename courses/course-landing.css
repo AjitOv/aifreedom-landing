@@ -375,3 +375,17 @@ img { max-width: 100%; display: block; }
   body { padding-bottom: 80px; }
 }
 @media (min-width: 721px) { .cl-sticky-cta { display: none; } }
+
+/* Free-preview entry point — the curriculum advertises it, so it needs a door. */
+.cl-preview-link {
+  display: block; text-align: center; margin-top: 12px;
+  font-size: 0.92rem; font-weight: 600; text-decoration: none;
+  color: #00d4ff; padding: 10px 12px; border-radius: 10px;
+  border: 1px dashed rgba(0, 212, 255, 0.35);
+  transition: all 0.2s ease;
+}
+.cl-preview-link:hover { background: rgba(0, 212, 255, 0.08); border-style: solid; }
+
+a.cl-module-lesson-free { text-decoration: none; cursor: pointer; }
+a.cl-module-lesson-free:hover { color: #00d4ff; }
+a.cl-module-lesson-free .cl-module-lesson-icon { color: #00ff88; }

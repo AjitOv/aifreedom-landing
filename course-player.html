@@ -23,6 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="player-styles.css">
 
+  <!-- Written lesson content (one file per course, keyed by lesson id) -->
+  <script src="/courses/content/ai-basics.js" defer></script>
+
   <!-- ====== GTM ====== -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -114,9 +117,12 @@
           <span class="pl-desc-toggle" id="descToggle" onclick="toggleDesc()">Show more ▾</span>
         </div>
 
+        <!-- Written lesson — injected by renderLessonContent() -->
+        <div class="pl-lesson-content" id="lessonContent"></div>
+
         <!-- Recommended Courses -->
         <div class="pl-recommended">
-          <h3>🔥 Aur Bhi Seekho — Recommended</h3>
+          <h3>🔥 Keep Learning — Recommended</h3>
           <div class="pl-rec-grid">
             <a href="course-player?course=earn-ai" class="pl-rec-card">
               <div class="pl-rec-thumb">💰</div>
@@ -143,7 +149,7 @@
         <div class="pl-sidebar-title">
           📋 Course Playlist
         </div>
-        <div class="pl-sidebar-course" id="sidebarCourseName">AI Basics — Zero se Hero</div>
+        <div class="pl-sidebar-course" id="sidebarCourseName">AI Basics — Zero to Hero</div>
         <div class="pl-sidebar-progress">
           <div class="pl-sidebar-progress-bar">
             <div class="pl-sidebar-progress-fill" id="sidebarProgressFill" style="width:0%"></div>
@@ -171,8 +177,8 @@
     <div class="pl-paywall-card">
       <button class="pl-paywall-close" id="paywallClose" onclick="closePaywall()">✕</button>
       <div class="pl-paywall-emoji">🔒</div>
-      <h2 class="pl-paywall-title">Yeh Lesson Locked Hai!</h2>
-      <p class="pl-paywall-desc">Pehle 2 lessons free hain. Full course access ke liye enroll karo — aur apni AI journey complete karo.</p>
+      <h2 class="pl-paywall-title">This Lesson Is Locked</h2>
+      <p class="pl-paywall-desc">The first 2 lessons are free. Enroll for full access and complete your AI journey.</p>
       <div class="pl-paywall-price" id="paywallPrice">₹499</div>
       <div class="pl-paywall-original">₹1,999</div>
       <ul class="pl-paywall-features">
@@ -193,7 +199,7 @@
     <div class="pl-complete-card">
       <div class="pl-complete-badge">🏆</div>
       <h2 class="pl-complete-title">Congratulations! 🎉</h2>
-      <p class="pl-complete-desc">Aapne "<span id="completedCourseName">AI Basics</span>" course complete kar liya! Ab aap AI ki duniya samajhte hain.</p>
+      <p class="pl-complete-desc">You have completed the "<span id="completedCourseName">AI Basics</span>" course! You now understand the world of AI.</p>
       <div class="pl-complete-certificate">
         🎓 Your certificate is ready! Share it on LinkedIn & WhatsApp.
       </div>
@@ -204,7 +210,7 @@
   <!-- ====== STICKY CTA (Mobile) ====== -->
   <div class="pl-sticky-cta" id="stickyCta">
     <div class="pl-sticky-cta-inner">
-      <span class="pl-sticky-cta-text">Full course sirf <strong>₹499</strong></span>
+      <span class="pl-sticky-cta-text">Full course just <strong>₹499</strong></span>
       <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20AI%20Basics%20course" target="_blank" class="pl-sticky-cta-btn">Enroll Now →</a>
     </div>
   </div>
@@ -217,7 +223,7 @@
   const COURSES = {
     'ai-basics': {
       id: 'ai-basics',
-      name: 'AI Basics — Zero se Hero',
+      name: 'AI Basics — Zero to Hero',
       price: '₹499',
       originalPrice: '₹1,999',
       freeLessons: 2,
@@ -225,36 +231,36 @@
         {
           id: 'ab-01',
           number: 1,
-          title: 'AI Kya Hai? — Introduction to Artificial Intelligence',
+          title: 'What Is AI? — Introduction to Artificial Intelligence',
           duration: '12:45',
           module: 'Module 1: AI Fundamentals',
-          description: 'Is pehle lesson mein hum samjhenge ki AI actually kya hai, kaise kaam karta hai, aur duniya ko kaise badal raha hai. Aapko AI ki basic concepts, types of AI (Narrow vs General vs Super AI), aur daily life mein AI ke examples milenge. Yeh lesson aapki AI journey ka foundation hai.',
-          objective: 'AI ki basic understanding aur types samajhna',
-          hook: 'Kya aapko pata hai ki aap din mein 100+ baar AI use karte ho bina jaane?',
+          description: 'In this first lesson we cover what AI actually is, how it works, and how it is changing the world. You get the basic concepts, the types of AI (Narrow vs General vs Super), and everyday examples. This lesson is the foundation of your AI journey.',
+          objective: 'understand the basics of AI and its types',
+          hook: 'Did you know you use AI over 100 times a day without realising it?',
           videoUrl: '',
           free: true
         },
         {
           id: 'ab-02',
           number: 2,
-          title: 'ChatGPT Masterclass — Pehla AI Tool Seekho',
+          title: 'ChatGPT Masterclass — Your First AI Tool',
           duration: '18:30',
           module: 'Module 1: AI Fundamentals',
-          description: 'ChatGPT ko kaise use karein — basic se advanced level tak. Account create karna, conversation start karna, aur powerful prompts likhna. Is lesson ke baad aap ChatGPT se kuch bhi karwa sakte ho — emails, code, content, ideas, aur bahut kuch.',
-          objective: 'ChatGPT pe hands-on mastery',
-          hook: 'Ek tool jo aapki 4 ghante ki kaam 10 minute mein kar de — kya aap ready ho?',
+          description: 'How to use ChatGPT from basic to advanced. Creating an account, starting a conversation, and writing powerful prompts. After this lesson you can get ChatGPT to do almost anything — emails, code, content, ideas and more.',
+          objective: 'get hands-on mastery of ChatGPT',
+          hook: 'One tool that does four hours of your work in ten minutes. Ready?',
           videoUrl: '',
           free: true
         },
         {
           id: 'ab-03',
           number: 3,
-          title: 'Google Gemini — Google Ka AI Weapon',
+          title: 'Google Gemini — Google\'s AI Weapon',
           duration: '15:20',
           module: 'Module 2: AI Tools Deep Dive',
-          description: 'Google Gemini kya hai, ChatGPT se kaise different hai, aur kaise use karein. Real-time search integration, multimodal capabilities, aur Indian context mein Gemini ke best use cases.',
-          objective: 'Gemini vs ChatGPT — dono tools mein mastery',
-          hook: 'Google ka yeh AI tool ChatGPT se bhi powerful hai — agar sahi use karo toh',
+          description: 'What Google Gemini is, how it differs from ChatGPT, and how to use it. Real-time search integration, multimodal capabilities, and the best use cases in an Indian context.',
+          objective: 'master both Gemini and ChatGPT, and know which to use when',
+          hook: 'Google\'s AI is more powerful than ChatGPT for some jobs — if you use it right.',
           videoUrl: '',
           free: false
         },
@@ -264,9 +270,9 @@
           title: 'AI Image Generation — DALL-E, Midjourney & Canva AI',
           duration: '22:15',
           module: 'Module 2: AI Tools Deep Dive',
-          description: 'AI se stunning images banao — DALL-E, Midjourney, aur Canva AI tools ke saath. Product images, social media graphics, logos — sab kuch AI se create karo bina design experience ke.',
-          objective: 'AI se professional quality images generate karna',
-          hook: 'Ek line likho — aur AI aapke liye masterpiece bana de',
+          description: 'Create stunning images with AI using DALL-E, Midjourney and Canva AI. Product images, social media graphics, logos — all created with AI without any design experience.',
+          objective: 'generate professional quality images with AI',
+          hook: 'Write one line, and AI builds you a masterpiece.',
           videoUrl: '',
           free: false
         },
@@ -276,69 +282,69 @@
           title: 'AI Video Creation — Reels & YouTube Shorts in Minutes',
           duration: '20:00',
           module: 'Module 3: Content Creation with AI',
-          description: 'AI tools se professional videos banao bina camera, editing skills, ya expensive software ke. InVideo AI, Runway, HeyGen, D-ID — sab tools hands-on seekho.',
-          objective: 'AI se video content create karna seekho',
-          hook: '₹0 budget. 0 editing skills. Phir bhi professional videos? AI se possible hai.',
+          description: 'Make professional videos with AI tools without a camera, editing skills or expensive software. Hands-on with InVideo AI, Runway, HeyGen and D-ID.',
+          objective: 'create video content with AI',
+          hook: 'Zero budget. Zero editing skills. Professional videos anyway — AI makes it possible.',
           videoUrl: '',
           free: false
         },
         {
           id: 'ab-06',
           number: 6,
-          title: 'AI Writing & Copywriting — Content Machine Bano',
+          title: 'AI Writing & Copywriting — Become a Content Machine',
           duration: '17:45',
           module: 'Module 3: Content Creation with AI',
-          description: 'Blogs, emails, social media posts, ad copy — sab kuch AI se likhna seekho. Jasper AI, Copy.ai, aur ChatGPT ke advanced writing techniques.',
-          objective: 'AI se high-quality content writing master karo',
-          hook: '1 ghante mein 10 blog posts? AI writers se possible hai.',
+          description: 'Blogs, emails, social media posts, ad copy — learn to write it all with AI. Advanced writing techniques with Jasper AI, Copy.ai and ChatGPT.',
+          objective: 'master high-quality content writing with AI',
+          hook: 'Ten blog posts in an hour? AI writers make it possible.',
           videoUrl: '',
           free: false
         },
         {
           id: 'ab-07',
           number: 7,
-          title: 'AI Website Builder — Bina Code Ke Website Banao',
+          title: 'AI Website Builder — Build a Website Without Code',
           duration: '19:30',
           module: 'Module 4: AI for Productivity',
-          description: 'AI tools se complete websites banao — landing pages, portfolios, e-commerce sites. Wix AI, Framer, aur v0.dev ke saath hands-on practice.',
-          objective: 'AI se functional websites create karna',
-          hook: 'Website ke liye developer hire karna band karo — AI se khud banao.',
+          description: 'Build complete websites with AI tools — landing pages, portfolios, e-commerce sites. Hands-on practice with Wix AI, Framer and v0.dev.',
+          objective: 'create functional websites with AI',
+          hook: 'Stop hiring a developer for a website — build it yourself with AI.',
           videoUrl: '',
           free: false
         },
         {
           id: 'ab-08',
           number: 8,
-          title: 'AI for Students — Studies mein AI ka Power Use',
+          title: 'AI for Students — Use AI Power in Your Studies',
           duration: '14:20',
           module: 'Module 4: AI for Productivity',
-          description: 'Notes banana, research karna, presentations likhna, exam prep — sab kuch AI se faster aur better karo. Students ke liye specific AI workflow.',
-          objective: 'Academic productivity 3x boost karo AI se',
-          hook: 'Topper students already AI use kar rahe hain. Kya aap peeche rehna chahte ho?',
+          description: 'Making notes, doing research, writing presentations, exam prep — do it all faster and better with AI. A specific AI workflow built for students.',
+          objective: 'boost your academic productivity 3x with AI',
+          hook: 'Top students are already using AI. Do you want to be left behind?',
           videoUrl: '',
           free: false
         },
         {
           id: 'ab-09',
           number: 9,
-          title: 'AI Automation — Boring Tasks ko Automate Karo',
+          title: 'AI Automation — Automate the Boring Tasks',
           duration: '16:40',
           module: 'Module 5: Advanced AI Skills',
-          description: 'Zapier, Make.com, aur AI automation tools ke saath repetitive tasks automate karo. Email replies, data entry, scheduling — sab automatic.',
-          objective: 'Daily tasks ko AI se automate karna seekho',
-          hook: 'Agar tum wahi kaam baar baar kar rahe ho — toh AI se automate karo.',
+          description: 'Automate repetitive tasks with Zapier, Make.com and AI automation tools. Email replies, data entry, scheduling — all automatic.',
+          objective: 'automate your daily tasks with AI',
+          hook: 'If you are doing the same job over and over, automate it with AI.',
           videoUrl: '',
           free: false
         },
         {
           id: 'ab-10',
           number: 10,
-          title: 'AI Career Roadmap — AI Se Future Secure Karo',
+          title: 'AI Career Roadmap — Secure Your Future With AI',
           duration: '21:00',
           module: 'Module 5: Advanced AI Skills',
-          description: 'AI mein career options, job roles, salary expectations, portfolio building, aur next steps. Complete roadmap — AI Basics ke baad kya karna hai.',
-          objective: 'AI career path clear karna aur action plan banana',
-          hook: 'AI seekhne ke baad kya karna hai? Yeh lesson aapka poora future plan hai.',
+          description: 'Career options in AI, job roles, salary expectations, portfolio building and next steps. The complete roadmap for what to do after AI Basics.',
+          objective: 'get clarity on your AI career path and build an action plan',
+          hook: 'What do you do after learning AI? This lesson is your whole future plan.',
           videoUrl: '',
           free: false
         }
@@ -607,8 +613,9 @@
     } else {
       player.innerHTML = `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:var(--radius-lg);background:linear-gradient(135deg,#0b1020,#1a1f3a);color:#cbd5e1;text-align:center;padding:32px;">
         <div style="font-size:3rem;line-height:1;">🎬</div>
-        <div style="font-size:1.15rem;font-weight:600;color:#fff;">Lesson Video Coming Soon</div>
-        <div style="font-size:0.95rem;max-width:360px;opacity:0.8;">Is lesson ka video record ho raha hai. Preview lesson description below.</div>
+        <div style="font-size:1.15rem;font-weight:600;color:#fff;">Video coming soon</div>
+        <div style="font-size:0.95rem;max-width:420px;opacity:0.8;">The full written lesson is below — steps, prompts, homework and a quiz. The video will appear here once it is ready.</div>
+        <a href="#lessonContent" style="margin-top:6px;color:#00ff88;font-weight:700;text-decoration:none;font-size:0.95rem;">↓ Read the lesson</a>
       </div>`;
     }
 
@@ -622,6 +629,9 @@
       <p style="margin-top:8px"><strong style="color:var(--neon-blue)">💡 Hook:</strong> "${lesson.hook}"</p>
       <p style="margin-top:12px">${lesson.description}</p>
     `;
+
+    // Written lesson under the video
+    renderLessonContent(lesson);
 
     // Update mark complete button
     const btn = document.getElementById('markCompleteBtn');
@@ -642,14 +652,191 @@
       if (activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
     }, 300);
 
-    // Simulate video end after duration (for demo)
-    simulateVideoEnd(lesson);
+    // Progress for real videos comes from playback; text lessons are driven by
+    // the quiz at the bottom of the written lesson instead.
+    if (lesson.videoUrl) simulateVideoEnd(lesson);
 
     // Close mobile sidebar
     closeMobileSidebar();
 
     // Scroll to top
     window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  // =================================================================
+  // WRITTEN LESSON CONTENT
+  // Rendered from window.AF_COURSE_CONTENT[courseId][lessonId], loaded from
+  // /courses/content/<course>.js. A lesson with no entry simply hides the block,
+  // so courses can be filled in one lesson at a time.
+  // =================================================================
+  let lcPrompts = [];   // raw prompt text, for copy-to-clipboard
+  let lcQuiz = null;    // { lessonId, total, answered:Set, correct:int }
+
+  const lcEsc = (str) => String(str == null ? '' : str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  function renderLessonContent(lesson) {
+    const box = document.getElementById('lessonContent');
+    if (!box) return;
+
+    const course = (window.AF_COURSE_CONTENT || {})[currentCourse.id] || {};
+    const c = course[lesson.id];
+
+    if (!c) { box.className = 'pl-lesson-content'; box.innerHTML = ''; return; }
+
+    lcPrompts = (c.prompts || []).map((p) => p.text);
+    lcQuiz = { lessonId: lesson.id, total: (c.quiz || []).length, answered: new Set(), correct: 0 };
+
+    const parts = [];
+
+    parts.push(`
+      <div class="pl-lc-head">
+        <h2>📖 Full Lesson — ${lcEsc(lesson.title)}</h2>
+        <span class="pl-lc-readtime">${lcEsc(c.readTime || '')}</span>
+      </div>
+      <div class="pl-lc-intro">${lcEsc(c.intro)}</div>
+    `);
+
+    // Teaching sections
+    (c.sections || []).forEach((sec) => {
+      const body = (sec.body || []).map((t) => `<p>${lcEsc(t)}</p>`).join('');
+      const list = (sec.list || []).length
+        ? `<ul>${sec.list.map((t) => `<li>${lcEsc(t)}</li>`).join('')}</ul>` : '';
+      const call = sec.callout
+        ? `<div class="pl-lc-callout ${lcEsc(sec.callout.type)}"><span class="ico">${
+            sec.callout.type === 'warn' ? '⚠️' : sec.callout.type === 'tip' ? '💡' : 'ℹ️'
+          }</span><span>${lcEsc(sec.callout.text)}</span></div>` : '';
+      parts.push(`<div class="pl-lc-section"><h3>${lcEsc(sec.heading)}</h3>${body}${list}${call}</div>`);
+    });
+
+    // Hands-on steps
+    if ((c.steps || []).length) {
+      parts.push(`<div class="pl-lc-block"><h3>🛠 Do It Now — Step by Step</h3>${
+        c.steps.map((st, i) => `
+          <div class="pl-lc-step">
+            <div class="pl-lc-step-num">${i + 1}</div>
+            <div class="pl-lc-step-body"><strong>${lcEsc(st.title)}</strong><span>${lcEsc(st.detail)}</span></div>
+          </div>`).join('')
+      }</div>`);
+    }
+
+    // Copy-paste prompts
+    if ((c.prompts || []).length) {
+      parts.push(`<div class="pl-lc-block"><h3>✨ Ready Prompts — Copy These</h3>${
+        c.prompts.map((pr, i) => `
+          <div class="pl-lc-prompt">
+            <div class="pl-lc-prompt-head">
+              <span class="pl-lc-prompt-label">${lcEsc(pr.label)}</span>
+              <button class="pl-lc-copy" onclick="lcCopy(this, ${i})">Copy</button>
+            </div>
+            <pre>${lcEsc(pr.text)}</pre>
+          </div>`).join('')
+      }</div>`);
+    }
+
+    // Common mistakes
+    if ((c.mistakes || []).length) {
+      parts.push(`<div class="pl-lc-block"><h3>🚫 Don't Make These Mistakes</h3><ul>${
+        c.mistakes.map((m) => `<li>${lcEsc(m)}</li>`).join('')
+      }</ul></div>`);
+    }
+
+    // Homework
+    if (c.homework) {
+      parts.push(`
+        <div class="pl-lc-block">
+          <h3>📝 Homework</h3>
+          <div class="pl-lc-homework">
+            <p>${lcEsc(c.homework.task)}</p>
+            <div class="meta">
+              <span>📦 ${lcEsc(c.homework.deliverable)}</span>
+              <span>⏱ ${lcEsc(c.homework.time)}</span>
+            </div>
+          </div>
+        </div>`);
+    }
+
+    // Quiz
+    if ((c.quiz || []).length) {
+      parts.push(`<div class="pl-lc-block"><h3>🧠 Quick Quiz — Test Yourself</h3>${
+        c.quiz.map((q, qi) => `
+          <div class="pl-lc-quiz-q">
+            <p>${qi + 1}. ${lcEsc(q.q)}</p>
+            ${q.options.map((opt, oi) => `
+              <button class="pl-lc-opt" data-q="${qi}" data-o="${oi}"
+                onclick="lcAnswer(${qi}, ${oi}, ${q.answer})">${lcEsc(opt)}</button>`).join('')}
+            <div class="pl-lc-why" id="lcWhy${qi}">${lcEsc(q.why)}</div>
+          </div>`).join('')
+      }<div class="pl-lc-score" id="lcScore" style="display:none"></div></div>`);
+    }
+
+    // Resources
+    if ((c.resources || []).length) {
+      parts.push(`<div class="pl-lc-block"><h3>🔗 Tools & Links</h3><div class="pl-lc-res">${
+        c.resources.map((r) => {
+          const ext = /^https?:/i.test(r.url);
+          return `<a href="${lcEsc(r.url)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${lcEsc(r.label)} ↗</a>`;
+        }).join('')
+      }</div></div>`);
+    }
+
+    box.innerHTML = parts.join('');
+    box.className = 'pl-lesson-content is-visible';
+  }
+
+  function lcCopy(btn, index) {
+    const text = lcPrompts[index] || '';
+    const done = () => {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function lcAnswer(qi, oi, correctIndex) {
+    if (!lcQuiz || lcQuiz.answered.has(qi)) return;
+    lcQuiz.answered.add(qi);
+    if (oi === correctIndex) lcQuiz.correct++;
+
+    document.querySelectorAll(`.pl-lc-opt[data-q="${qi}"]`).forEach((b) => {
+      const o = Number(b.getAttribute('data-o'));
+      b.disabled = true;
+      if (o === correctIndex) b.classList.add('correct');
+      else if (o === oi) b.classList.add('wrong');
+    });
+    const why = document.getElementById('lcWhy' + qi);
+    if (why) why.classList.add('show');
+
+    // All answered → show the score and count the lesson as worked through.
+    if (lcQuiz.answered.size === lcQuiz.total) {
+      const el = document.getElementById('lcScore');
+      if (el) {
+        el.style.display = 'block';
+        el.textContent = lcQuiz.correct === lcQuiz.total
+          ? `🏆 ${lcQuiz.correct}/${lcQuiz.total} — perfect! Move on to the next lesson.`
+          : `Score: ${lcQuiz.correct}/${lcQuiz.total}. Read the explanation above for anything you got wrong, then move on.`;
+      }
+      lessonProgress[lcQuiz.lessonId] = 100;
+      saveProgress();
+      renderPlaylist();
+    }
   }
 
   // =================================================================
