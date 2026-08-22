@@ -23,6 +23,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="player-styles.css">
 
+  <!-- Razorpay checkout — the paywall used to link out to WhatsApp for manual
+       payment; it now takes payment inline and unlocks the course on success. -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/razorpay-checkout.js" defer></script>
+
   <!-- Written lesson content (one file per course, keyed by lesson id) -->
   <script src="/courses/content/ai-basics.js" defer></script>
 
@@ -62,7 +67,7 @@
           </div>
         </div>
         <button class="pl-toggle-playlist" id="togglePlaylist" style="display:none;">📋 Playlist</button>
-        <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20full%20access%20to%20AI%20courses" target="_blank" class="pl-nav-cta">🚀 Upgrade</a>
+        <button type="button" class="pl-nav-cta" onclick="buyCourse()">🚀 Upgrade</button>
       </div>
     </div>
   </nav>
@@ -162,9 +167,9 @@
       <div class="pl-lesson-list" id="lessonList"></div>
 
       <div class="pl-sidebar-footer">
-        <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20to%20unlock%20full%20AI%20Basics%20course" target="_blank" class="pl-sidebar-cta">
+        <button type="button" class="pl-sidebar-cta" id="sidebarCta" onclick="buyCourse()">
           🔓 Unlock Full Course — ₹499
-        </a>
+        </button>
       </div>
     </aside>
   </div>
@@ -188,9 +193,13 @@
         <li>Community access</li>
         <li>WhatsApp support group</li>
       </ul>
-      <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20to%20buy%20AI%20Basics%20course%20for%20₹499" target="_blank" class="pl-paywall-cta" id="paywallCta">
+      <button type="button" class="pl-paywall-cta" id="paywallCta" onclick="buyCourse()">
         🚀 Enroll Now — ₹499 Only
-      </a>
+      </button>
+      <div class="pl-restore">
+        <span>Already purchased?</span>
+        <button type="button" class="pl-restore-btn" onclick="restoreAccess()">Restore my access</button>
+      </div>
     </div>
   </div>
 
@@ -211,7 +220,7 @@
   <div class="pl-sticky-cta" id="stickyCta">
     <div class="pl-sticky-cta-inner">
       <span class="pl-sticky-cta-text">Full course just <strong>₹499</strong></span>
-      <a href="https://wa.me/918007280721?text=Hi%2C%20I%20want%20AI%20Basics%20course" target="_blank" class="pl-sticky-cta-btn">Enroll Now →</a>
+      <button type="button" class="pl-sticky-cta-btn" onclick="buyCourse()">Enroll Now →</button>
     </div>
   </div>
 
@@ -440,11 +449,72 @@
   let modulesInOrder = [];
 
   // Has the user paid for the current course?
-  function checkPaidEntitlement(courseId) {
+  // Entitlement is a token the server signed at payment time. The browser
+  // cannot validate it (it does not have the key), so it is checked against
+  // /api/check-access. Previously any truthy localStorage value unlocked the
+  // course, which meant a one-line console command bypassed payment.
+  function readStoredAccess(courseId) {
     try {
-      const raw = localStorage.getItem('af_paid_' + courseId);
-      return !!raw;
-    } catch(e) { return false; }
+      const raw = localStorage.getItem('af_access_' + courseId);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed && parsed.token ? parsed : null;
+    } catch (e) { return null; }
+  }
+
+  function storeAccess(courseId, token, extra) {
+    try {
+      localStorage.setItem('af_access_' + courseId, JSON.stringify(
+        Object.assign({ token: token, paidAt: Date.now() }, extra || {})
+      ));
+    } catch (e) {}
+  }
+
+  // Customers who paid before entitlement became server-signed have the old
+  // localStorage record, which stored the Razorpay payment id. Trade it for a
+  // real token silently so they are never locked out of a course they bought.
+  async function migrateLegacyAccess(courseId) {
+    let legacy;
+    try {
+      legacy = JSON.parse(localStorage.getItem('af_paid_' + courseId) || 'null');
+    } catch (e) { return false; }
+    if (!legacy || !legacy.paymentId) return false;
+
+    try {
+      const res = await fetch('/api/restore-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentId: legacy.paymentId, courseId: courseId }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success && data.token) {
+        storeAccess(courseId, data.token, { email: data.email, paymentId: legacy.paymentId });
+        try { localStorage.removeItem('af_paid_' + courseId); } catch (e) {}
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  async function checkPaidEntitlement(courseId) {
+    let stored = readStoredAccess(courseId);
+    if (!stored) {
+      if (await migrateLegacyAccess(courseId)) stored = readStoredAccess(courseId);
+    }
+    if (!stored) return false;
+    try {
+      const res = await fetch('/api/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: stored.token, courseId: courseId }),
+      });
+      const data = await res.json();
+      return !!(data && data.valid);
+    } catch (e) {
+      // Network failure should not lock a paying customer out of content they
+      // already loaded, but it must not unlock anything either.
+      return false;
+    }
   }
 
   // Build module order from lesson list (preserves first-seen order)
@@ -500,20 +570,16 @@
   // =================================================================
   // INITIALIZATION
   // =================================================================
-  function init() {
+  async function init() {
     // Get course from URL params
     const params = new URLSearchParams(window.location.search);
     const courseId = params.get('course') || 'ai-basics';
     currentCourse = COURSES[courseId] || COURSES['ai-basics'];
 
-    // Check paid entitlement (also honour ?paid=1 from the payment-success redirect)
-    isPaid = checkPaidEntitlement(currentCourse.id);
-    if (params.get('paid') === '1' && !isPaid) {
-      // fallback: the redirect landed here but localStorage write hadn't persisted;
-      // mark as paid so the user isn't bounced back into the paywall
-      try { localStorage.setItem('af_paid_' + currentCourse.id, JSON.stringify({ paidAt: Date.now(), source: 'redirect' })); } catch(e) {}
-      isPaid = true;
-    }
+    // Check paid entitlement against the server. There is deliberately no
+    // "?paid=1" shortcut any more — that query parameter granted full access
+    // to anyone who typed it into the address bar.
+    isPaid = await checkPaidEntitlement(currentCourse.id);
 
     // Compute module order (used by unlock logic)
     computeModulesInOrder();
@@ -661,6 +727,68 @@
 
     // Scroll to top
     window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  // =================================================================
+  // PURCHASE & ACCESS RECOVERY
+  // =================================================================
+
+  // COURSES stores a display price ("₹2,999"); Razorpay needs paise.
+  function coursePricePaise(course) {
+    const n = parseFloat(String(course.price || '').replace(/[^\d.]/g, ''));
+    return Number.isFinite(n) && n > 0 ? Math.round(n * 100) : null;
+  }
+
+  function buyCourse() {
+    if (!currentCourse) return;
+    const paise = coursePricePaise(currentCourse);
+    if (!paise) {
+      alert('Pricing is unavailable right now. Please email info@aifreedom.in.');
+      return;
+    }
+    if (typeof openCourseCheckout !== 'function') {
+      alert('Payment is still loading. Please try again in a moment.');
+      return;
+    }
+    // On success the checkout stores the signed token and returns here.
+    openCourseCheckout(currentCourse.name, paise, {
+      courseId: currentCourse.id,
+      redirectTo: '/course-player?course=' + encodeURIComponent(currentCourse.id),
+    });
+  }
+
+  // Tokens live in the browser that paid, so someone who buys on their phone
+  // and opens the course on a laptop would otherwise be locked out of what
+  // they paid for. The Payment ID (emailed by Razorpay) is the proof.
+  async function restoreAccess() {
+    const paymentId = prompt(
+      'Enter the Payment ID from your Razorpay receipt email.\n\n' +
+      'It looks like: pay_XXXXXXXXXXXX'
+    );
+    if (!paymentId) return;
+
+    try {
+      const res = await fetch('/api/restore-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentId: paymentId.trim(), courseId: currentCourse.id }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        alert(data.error || 'Could not restore access. Please email info@aifreedom.in.');
+        return;
+      }
+
+      storeAccess(currentCourse.id, data.token, { email: data.email, paymentId: paymentId.trim() });
+      isPaid = true;
+      closePaywall();
+      renderPlaylist();
+      loadLesson(currentLessonIndex);
+      alert('Access restored. Enjoy the course!');
+    } catch (err) {
+      alert('Could not reach the server. Please check your connection and try again.');
+    }
   }
 
   // =================================================================

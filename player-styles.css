@@ -643,3 +643,33 @@ ul { list-style:none; }
   .pl-lc-block ul li, .pl-lc-section ul li { font-size:0.95rem; }
   .pl-lc-prompt pre { font-size:0.82rem; }
 }
+
+/* ============================================================
+   PURCHASE CTAs — these were <a> links to WhatsApp and are now
+   <button> elements that open Razorpay inline. Buttons do not
+   inherit link styling, so the shared look is restored here.
+   ============================================================ */
+button.pl-nav-cta,
+button.pl-sidebar-cta,
+button.pl-paywall-cta,
+button.pl-sticky-cta-btn {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+button.pl-sidebar-cta,
+button.pl-paywall-cta { width: 100%; display: block; text-align: center; }
+
+/* Access recovery — for buyers opening the course on a second device */
+.pl-restore {
+  margin-top: 14px; text-align: center;
+  font-size: 0.85rem; color: var(--text-tertiary);
+}
+.pl-restore-btn {
+  background: none; border: none; padding: 0 0 0 6px;
+  font: inherit; font-weight: 700; cursor: pointer;
+  color: var(--neon-blue); text-decoration: underline;
+}
+.pl-restore-btn:hover { color: var(--neon-green); }

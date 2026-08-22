@@ -253,7 +253,7 @@ function openCourseCheckout(courseName, amount, options) {
 
   const opts = options || {};
   const courseId = opts.courseId || null;   // e.g. 'ai-basics' — enables entitlement + redirect
-  const redirectTo = opts.redirectTo || null; // defaults to '/course-player?course=<courseId>&paid=1'
+  const redirectTo = opts.redirectTo || null; // defaults to '/course-player?course=<courseId>'
   const amountPaise = parseInt(amount, 10);
   const amountRupees = '₹' + (amountPaise / 100).toLocaleString('en-IN');
 
@@ -351,7 +351,7 @@ function openCourseCheckout(courseName, amount, options) {
       const res = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: amountPaise, currency: 'INR', receipt: `rcpt_${Date.now()}`, courseName }),
+        body: JSON.stringify({ amount: amountPaise, currency: 'INR', receipt: `rcpt_${Date.now()}`, courseName, courseId, email }),
       });
       orderData = await res.json();
       if (!res.ok) throw new Error(orderData.error || `Server error ${res.status}`);
@@ -394,15 +394,20 @@ function openCourseCheckout(courseName, amount, options) {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id:   response.razorpay_order_id,
               razorpay_signature:  response.razorpay_signature,
+              courseId,
             }),
           });
           const verifyData = await verifyRes.json();
           if (!verifyRes.ok || !verifyData.success) throw new Error(verifyData.error || 'Verification failed.');
 
-          // Grant entitlement for the course (localStorage-based, device-bound)
+          // Store the server-signed entitlement. The old code wrote a plain
+          // "paid" flag, which anyone could set from the browser console to
+          // unlock the course for free; this token is signed server-side and
+          // is re-validated by /api/check-access on every load.
           if (courseId) {
             try {
-              localStorage.setItem('af_paid_' + courseId, JSON.stringify({
+              localStorage.setItem('af_access_' + courseId, JSON.stringify({
+                token:     verifyData.access_token || '',
                 paymentId: response.razorpay_payment_id,
                 orderId:   response.razorpay_order_id,
                 courseName,
@@ -410,10 +415,10 @@ function openCourseCheckout(courseName, amount, options) {
                 email,
                 paidAt: Date.now(),
               }));
-            } catch (e) { /* storage full / blocked — redirect will still mark as paid via ?paid=1 */ }
+            } catch (e) { /* storage full or blocked — restore-access covers this */ }
 
             // Show success state, then redirect to the course player
-            const target = redirectTo || ('/course-player?course=' + encodeURIComponent(courseId) + '&paid=1');
+            const target = redirectTo || ('/course-player?course=' + encodeURIComponent(courseId));
             showRedirectSuccessToast(name, courseName, response.razorpay_payment_id, target);
           } else {
             // Fallback: original toast behaviour for callers that don't pass a courseId
