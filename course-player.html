@@ -616,18 +616,10 @@
     // Cancel any autoplay
     cancelAutoplay();
 
-    // Update video — show placeholder when lesson video is not yet published
-    const player = document.getElementById('videoPlayer');
-    if (lesson.videoUrl) {
-      player.innerHTML = `<iframe src="${lesson.videoUrl}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:var(--radius-lg);"></iframe>`;
-    } else {
-      player.innerHTML = `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:var(--radius-lg);background:linear-gradient(135deg,#0b1020,#1a1f3a);color:#cbd5e1;text-align:center;padding:32px;">
-        <div style="font-size:3rem;line-height:1;">🎬</div>
-        <div style="font-size:1.15rem;font-weight:600;color:#fff;">Video coming soon</div>
-        <div style="font-size:0.95rem;max-width:420px;opacity:0.8;">The full written lesson is below — steps, prompts, homework and a quiz. The video will appear here once it is ready.</div>
-        <a href="#lessonContent" style="margin-top:6px;color:#00ff88;font-weight:700;text-decoration:none;font-size:0.95rem;">↓ Read the lesson</a>
-      </div>`;
-    }
+    // Video URLs are fetched per lesson from /api/lesson-video rather than
+    // shipped in the page. If the YouTube ids were in the source, anyone could
+    // read them from devtools and watch every paid lesson for free.
+    renderLessonVideo(lesson);
 
     // Update info
     document.getElementById('videoTag').textContent = `Lesson ${lesson.number}`;
@@ -662,15 +654,74 @@
       if (activeEl) activeEl.scrollIntoView({ behavior:'smooth', block:'center' });
     }, 300);
 
-    // Progress for real videos comes from playback; text lessons are driven by
-    // the quiz at the bottom of the written lesson instead.
-    if (lesson.videoUrl) simulateVideoEnd(lesson);
+    // Progress for real videos is started by renderLessonVideo once a video is
+    // actually found; text lessons are driven by the quiz instead.
 
     // Close mobile sidebar
     closeMobileSidebar();
 
     // Scroll to top
     window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  // =================================================================
+  // LESSON VIDEO
+  // =================================================================
+
+  function videoShell(inner) {
+    return '<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;' +
+      'justify-content:center;gap:12px;border-radius:var(--radius-lg);' +
+      'background:linear-gradient(135deg,#0b1020,#1a1f3a);color:#cbd5e1;text-align:center;padding:32px;">' +
+      inner + '</div>';
+  }
+
+  async function renderLessonVideo(lesson) {
+    const player = document.getElementById('videoPlayer');
+    if (!player) return;
+
+    player.innerHTML = videoShell(
+      '<div style="font-size:2rem;line-height:1;opacity:0.6;">🎬</div>' +
+      '<div style="font-size:0.95rem;opacity:0.7;">Loading lesson…</div>'
+    );
+
+    const stored = window.AFAccess ? window.AFAccess.read(currentCourse.id) : null;
+
+    let url = null;
+    try {
+      const res = await fetch('/api/lesson-video', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          courseId: currentCourse.id,
+          lessonId: lesson.id,
+          token: stored ? stored.token : null,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        url = data.url || null;
+      }
+    } catch (e) { /* fall through to the written-lesson placeholder */ }
+
+    // Guard against a slow response arriving after the user moved on.
+    if (currentCourse.lessons[currentLessonIndex] !== lesson) return;
+
+    if (url) {
+      player.innerHTML = '<iframe src="' + url + '?autoplay=1&rel=0&modestbranding=1" ' +
+        'allow="autoplay; encrypted-media" allowfullscreen ' +
+        'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:var(--radius-lg);"></iframe>';
+      // A real video drives its own progress; the demo timer is only for text lessons.
+      simulateVideoEnd(lesson);
+    } else {
+      player.innerHTML = videoShell(
+        '<div style="font-size:3rem;line-height:1;">🎬</div>' +
+        '<div style="font-size:1.15rem;font-weight:600;color:#fff;">Video coming soon</div>' +
+        '<div style="font-size:0.95rem;max-width:420px;opacity:0.8;">The full written lesson is below — steps, ' +
+        'prompts, homework and a quiz. The video will appear here once it is ready.</div>' +
+        '<a href="#lessonContent" style="margin-top:6px;color:#00ff88;font-weight:700;' +
+        'text-decoration:none;font-size:0.95rem;">↓ Read the lesson</a>'
+      );
+    }
   }
 
   // =================================================================

@@ -15,6 +15,10 @@
     "api/restore-access.js": {
       "memory": 128,
       "maxDuration": 10
+    },
+    "api/lesson-video.js": {
+      "memory": 128,
+      "maxDuration": 10
     }
   },
   "headers": [
