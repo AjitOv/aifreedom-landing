@@ -15,7 +15,16 @@
 
 const LESSON_VIDEOS = {
   'ai-basics': {
-    // 'ab-01': 'YOUTUBE_VIDEO_ID',
+    'ab-01': 'DxObASOUfHM',
+    'ab-02': '14XZgfRzfKA',
+    'ab-03': '7QbnN5eTYQk',
+    'ab-04': 'X-QjcI2uV6w',
+    'ab-05': 'uXL6QGqekPw',
+    'ab-06': 'aM9jJZ6Qm-g',
+    'ab-07': '6CTbEmeGYNs',
+    'ab-08': 'HgS0p0IEh0w',
+    'ab-09': 'GRKNYSIYQcE',
+    'ab-10': 'P-QnvPMK0tY',
   },
 };
 
