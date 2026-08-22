@@ -126,6 +126,9 @@
         <!-- Written lesson — injected by renderLessonContent() -->
         <div class="pl-lesson-content" id="lessonContent"></div>
 
+        <!-- Bonuses — populated by loadBonuses() for enrolled students only -->
+        <div class="pl-bonuses" id="bonusPanel"></div>
+
         <!-- Recommended Courses -->
         <div class="pl-recommended">
           <h3>🔥 Keep Learning — Recommended</h3>
@@ -545,6 +548,9 @@
     // Load current lesson
     loadLesson(currentLessonIndex);
 
+    // Bonuses (enrolled students only)
+    loadBonuses();
+
     // Setup mobile playlist toggle
     setupMobilePlaylist();
   }
@@ -663,6 +669,138 @@
 
     // Scroll to top
     window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  // =================================================================
+  // BONUSES
+  // Fetched from /api/bonuses, which requires a valid access token. The
+  // sales page has always promised these; before this they were never
+  // actually delivered to anyone who paid.
+  // =================================================================
+  let bonusPrompts = null;
+
+  async function loadBonuses() {
+    const panel = document.getElementById('bonusPanel');
+    if (!panel) return;
+    panel.className = 'pl-bonuses';
+    panel.innerHTML = '';
+    if (!isPaid || !window.AFAccess) return;
+
+    const stored = window.AFAccess.read(currentCourse.id);
+    if (!stored) return;
+
+    let bonuses = [];
+    try {
+      const res = await fetch('/api/bonuses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId: currentCourse.id, token: stored.token }),
+      });
+      if (!res.ok) return;
+      bonuses = (await res.json()).bonuses || [];
+    } catch (e) { return; }
+    if (!bonuses.length) return;
+
+    const cards = bonuses.map((b) => {
+      const inner =
+        `<span class="pl-bonus-ico">${lcEsc(b.icon)}</span>` +
+        `<span><strong>${lcEsc(b.title)}</strong><span>${lcEsc(b.blurb)}</span></span>`;
+      if (b.type === 'prompts') {
+        bonusPrompts = b.categories;
+        return `<button type="button" class="pl-bonus-card" onclick="openPromptPack()">${inner}</button>`;
+      }
+      if (b.type === 'download') {
+        return `<button type="button" class="pl-bonus-card" onclick="downloadBonus('tools','${lcEsc(b.filename)}')">${inner}</button>`;
+      }
+      return `<a class="pl-bonus-card" href="${lcEsc(b.url)}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
+    }).join('');
+
+    panel.innerHTML = `<h3>🎁 Your Bonuses</h3><div class="pl-bonus-grid">${cards}</div>`;
+    panel.className = 'pl-bonuses is-visible';
+  }
+
+  // The file never sits in the public web root, so it is fetched as a blob
+  // with the token attached and handed to the browser from memory.
+  async function downloadBonus(file, filename) {
+    const stored = window.AFAccess ? window.AFAccess.read(currentCourse.id) : null;
+    if (!stored) return;
+    try {
+      const res = await fetch('/api/bonus-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId: currentCourse.id, token: stored.token, file: file }),
+      });
+      if (!res.ok) { alert('Could not fetch that file. Please try again.'); return; }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'bonus.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    } catch (e) {
+      alert('Could not reach the server. Check your connection and try again.');
+    }
+  }
+
+  function openPromptPack() {
+    if (!bonusPrompts) return;
+    const overlay = document.createElement('div');
+    overlay.className = 'pl-pp-overlay';
+    const total = bonusPrompts.reduce((n, c) => n + c.prompts.length, 0);
+
+    const tabs = bonusPrompts.map((c, i) =>
+      `<button type="button" class="pl-pp-tab${i === 0 ? ' on' : ''}" data-i="${i}">${lcEsc(c.icon)} ${lcEsc(c.category)}</button>`
+    ).join('');
+
+    overlay.innerHTML =
+      '<div class="pl-pp-card" role="dialog" aria-modal="true">' +
+        `<div class="pl-pp-head"><h3>📝 ${total} Prompt Templates</h3>` +
+        '<button class="pl-pp-close" aria-label="Close">&times;</button></div>' +
+        `<div class="pl-pp-tabs">${tabs}</div>` +
+        '<div class="pl-pp-body" id="ppBody"></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    const body = overlay.querySelector('#ppBody');
+    const show = (i) => {
+      body.innerHTML = bonusPrompts[i].prompts.map((pr, j) =>
+        '<div class="pl-pp-item">' +
+          `<div class="pl-pp-item-head"><b>${lcEsc(pr.t)}</b>` +
+          `<button class="pl-lc-copy" data-c="${i}" data-p="${j}">Copy</button></div>` +
+          `<pre>${lcEsc(pr.p)}</pre>` +
+        '</div>'
+      ).join('');
+      body.scrollTop = 0;
+    };
+    show(0);
+
+    overlay.querySelectorAll('.pl-pp-tab').forEach((t) => {
+      t.onclick = () => {
+        overlay.querySelectorAll('.pl-pp-tab').forEach((x) => x.classList.remove('on'));
+        t.classList.add('on');
+        show(Number(t.getAttribute('data-i')));
+      };
+    });
+    body.addEventListener('click', (e) => {
+      const btn = e.target.closest('.pl-lc-copy');
+      if (!btn) return;
+      const text = bonusPrompts[Number(btn.dataset.c)].prompts[Number(btn.dataset.p)].p;
+      const done = () => {
+        btn.textContent = '✓ Copied';
+        btn.classList.add('done');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else fallbackCopy(text, done);
+    });
+
+    const close = () => overlay.remove();
+    overlay.querySelector('.pl-pp-close').onclick = close;
+    overlay.onclick = (e) => { if (e.target === overlay) close(); };
   }
 
   // =================================================================
