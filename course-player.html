@@ -29,8 +29,32 @@
   <script src="/razorpay-checkout.js" defer></script>
   <script src="/access.js" defer></script>
 
-  <!-- Written lesson content (one file per course, keyed by lesson id) -->
-  <script src="/courses/content/ai-basics.js" defer></script>
+  <!-- Written lesson content — one file per course, loaded for whichever
+       course the URL asks for. Filenames differ from course ids because the
+       sales pages already own those URLs. -->
+  <script>
+  (function () {
+    var FILES = {
+      'ai-basics': 'ai-basics',
+      'prompt-eng': 'ai-prompt-engineering',
+      'ai-freelancing': 'ai-freelancing',
+      'earn-ai': 'ai-se-kamao',
+      'ai-trading': 'ai-trading',
+    };
+    var id = new URLSearchParams(location.search).get('course') || 'ai-basics';
+    var file = FILES[id] || FILES['ai-basics'];
+    var tag = document.createElement('script');
+    tag.src = '/courses/content/' + file + '.js';
+    tag.defer = true;
+    // init() awaits this, otherwise the lesson can render before the content
+    // file has arrived and the written lesson silently stays empty.
+    window.AF_CONTENT_READY = new Promise(function (resolve) {
+      tag.onload = resolve;
+      tag.onerror = resolve;   // a missing file must not hang the player
+    });
+    document.head.appendChild(tag);
+  })();
+  </script>
 
   <!-- ====== GTM ====== -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -408,16 +432,16 @@
       originalPrice: '₹1,750',
       freeLessons: 2,
       lessons: [
-        { id:'pe-01', number:1, title:'Prompt Engineering Kya Hai — Why It Matters', duration:'12:00', module:'Module 1: Foundations', description:'Good vs bad prompts ka difference. Same AI, 10x output kaise milta hai. Core principles.', objective:'Prompt engineering ke fundamentals samajhna', hook:'Ek sentence badalne se ChatGPT 10x better jawab deta hai. Kya aap jaante ho kaise?', videoUrl:'', free:true },
-        { id:'pe-02', number:2, title:'Anatomy of a Great Prompt — 6-Part Formula', duration:'16:00', module:'Module 1: Foundations', description:'Role, Task, Context, Format, Examples, Constraints — 6 layer wala prompt framework.', objective:'6-part prompt formula internalize karna', hook:'Yeh 6 ingredients har prompt mein daalo — magic dekho.', videoUrl:'', free:true },
-        { id:'pe-03', number:3, title:'Chain-of-Thought Prompting — AI Se Soch Karwao', duration:'18:00', module:'Module 2: Advanced Techniques', description:'Step-by-step thinking karwane ka tarika. Complex problems solve karwana.', objective:'CoT prompting master karna', hook:'"Step by step socho" — yeh 4 shabd 10x accuracy laate hain.', videoUrl:'', free:false },
-        { id:'pe-04', number:4, title:'Few-Shot Prompting — Examples Se AI Ko Sikhao', duration:'15:30', module:'Module 2: Advanced Techniques', description:'Input-output examples de kar AI ko train karna. Pattern matching ka power.', objective:'Few-shot prompting use cases seekhna', hook:'AI ko 3 example dikhao — woh next 100 khud kar dega.', videoUrl:'', free:false },
-        { id:'pe-05', number:5, title:'Role & Persona Prompts — AI Ko Expert Bana Do', duration:'14:00', module:'Module 3: Specialized Prompts', description:'"Act as a senior copywriter", "expert lawyer", etc. Persona prompts ka magic.', objective:'Role-based prompts likhna seekho', hook:'ChatGPT ko Shakespeare bana do — poetry likhega vaisi hi.', videoUrl:'', free:false },
-        { id:'pe-06', number:6, title:'Prompts for Content Creation — Blogs, Scripts, Ads', duration:'20:00', module:'Module 3: Specialized Prompts', description:'Content ke liye ready-made prompt templates. Blogs, YouTube scripts, Instagram captions, ad copy.', objective:'Content creation prompt library banao', hook:'20 prompts jo content creators ko ₹50K/month la dete hain.', videoUrl:'', free:false },
-        { id:'pe-07', number:7, title:'Image Prompting — Midjourney & DALL-E Ke Secrets', duration:'19:00', module:'Module 4: Image & Creative', description:'Visual prompts likhne ki art. Style, lighting, composition — exact words jo chahiye.', objective:'Professional image prompts likhna seekho', hook:'"A cat" vs "cinematic shot of a cat" — dono mein asmaan-zameen ka fark.', videoUrl:'', free:false },
-        { id:'pe-08', number:8, title:'Negative Prompting & Prompt Debugging', duration:'13:00', module:'Module 4: Image & Creative', description:'AI jab galat output de toh prompt kaise fix karein. Common mistakes aur solutions.', objective:'Prompt troubleshooting skills develop karna', hook:'90% log yehi galti karte hain — seekho aur avoid karo.', videoUrl:'', free:false },
-        { id:'pe-09', number:9, title:'Custom GPTs & Prompt Chains — Automation', duration:'22:00', module:'Module 5: Automation', description:'Custom GPT banao apne use case ke liye. Prompts ko chain karke workflow automate karo.', objective:'Apna pehla custom GPT aur prompt chain banao', hook:'Ek baar setup karo, hamesha ke liye kaam bachao.', videoUrl:'', free:false },
-        { id:'pe-10', number:10, title:'Your Prompt Library — 100+ Templates', duration:'17:00', module:'Module 5: Automation', description:'Complete prompt library — sales, marketing, coding, learning, productivity. Ready to use.', objective:'100+ templates apne paas rakhna', hook:'Yeh library aap ko sab kaam ke liye prompts degi — zindagi bhar.', videoUrl:'', free:false }
+        { id:'pe-01', number:1, title:'What Is Prompt Engineering — And Why It Matters', duration:'12:00', module:'Module 1: Foundations', description:'What prompt engineering actually is, why the same model gives wildly different quality to different people, and which parts of a prompt genuinely move the needle. Includes the rework test for judging your own prompts.', objective:'understand what actually drives AI output quality', hook:'Two people, the same tool, the same day. One bins the output, the other bills for it.', videoUrl:'', free:true },
+        { id:'pe-02', number:2, title:'Anatomy of a Great Prompt — The 6-Part Formula', duration:'16:00', module:'Module 1: Foundations', description:'The six components behind every reliably good prompt: role, context, task, format, constraints and examples. Learn to build prompts in layers instead of guessing.', objective:'write a strong prompt in twenty seconds using a repeatable structure', hook:'Six parts. Learn them once and prompting stops being guesswork forever.', videoUrl:'', free:true },
+        { id:'pe-03', number:3, title:'Chain-of-Thought — Make AI Think Before It Answers', duration:'18:00', module:'Module 2: Advanced Techniques', description:'Why instant answers go wrong on anything with logic or numbers, how to structure the reasoning you want, and how to read that reasoning to find exactly where it went astray.', objective:'get reliable answers on multi-step and numerical problems', hook:'Confident and wrong is the worst failure mode. This is how you stop it.', videoUrl:'', free:false },
+        { id:'pe-04', number:4, title:'Few-Shot Prompting — Teach AI With Examples', duration:'15:30', module:'Module 2: Advanced Techniques', description:'Showing beats telling. Clone your own writing voice, build input-output pairs for repetitive work, and learn where examples backfire.', objective:'make AI produce work that sounds like you, not like AI', hook:'Three paragraphs describing your style will fail. Two examples will not.', videoUrl:'', free:false },
+        { id:'pe-05', number:5, title:'Role & Persona Prompts — What They Really Change', duration:'14:00', module:'Module 3: Specialized Prompts', description:'Roles shift tone, vocabulary and what gets considered — but not accuracy. Learn specific roles over grand ones, why audience matters more, and how to run a multi-role panel on a decision.', objective:'use roles correctly and avoid the confidence trap', hook:'\'You are a world-class expert\' is the most copied and most misunderstood line in prompting.', videoUrl:'', free:false },
+        { id:'pe-06', number:6, title:'Prompts for Content — Blogs, Scripts, Ads and Emails', duration:'20:00', module:'Module 3: Specialized Prompts', description:'The full content pipeline: angles before content, outline before draft, editing prompts that do more than writing prompts, and how to strip the tells that make writing read as AI-generated.', objective:'produce publishable content instead of drafts you have to rewrite', hook:'This is the lesson that pays for the course.', videoUrl:'', free:false },
+        { id:'pe-07', number:7, title:'Image Prompting — Midjourney, DALL-E and Canva', duration:'19:00', module:'Module 4: Image & Creative', description:'Image models follow different rules from text models. The six components of a strong image prompt, why lighting carries most of the quality, aspect ratios, negative prompts, and the legal lines to stay behind in India.', objective:'generate images that look deliberate rather than generated', hook:'Text models want instructions. Image models want description. That one difference changes everything.', videoUrl:'', free:false },
+        { id:'pe-08', number:8, title:'Negative Prompting & Debugging a Failing Prompt', duration:'13:00', module:'Module 4: Image & Creative', description:'The four failure types and the different fix each needs, why instructions get ignored, why quality degrades in long chats, and how to make the model diagnose its own prompt.', objective:'diagnose and repair a prompt instead of rewriting it blindly', hook:'Every prompt fails eventually. Whether you improve depends on whether you can tell why.', videoUrl:'', free:false },
+        { id:'pe-09', number:9, title:'Custom GPTs & Prompt Chains — Build a System', duration:'22:00', module:'Module 5: Automation', description:'Package your best prompts into Projects and Custom GPTs so context never gets retyped, then chain prompts so each output feeds the next. Includes where to automate handoffs and where not to.', objective:'turn your best prompts into a system that runs without you', hook:'Stop retyping your context into every chat. Configure it once.', videoUrl:'', free:false },
+        { id:'pe-10', number:10, title:'Your Prompt Library — Make It Compound', duration:'17:00', module:'Module 5: Automation', description:'How to organise prompts by job rather than by tool, what to record with each one, where to keep them, and when to prune. Plus an honest view of what to do after this course.', objective:'build a library that keeps paying you back', hook:'Everyone finishes able to write good prompts. Almost nobody keeps them.', videoUrl:'', free:false }
       ]
     },
     'ai-freelancing': {
@@ -538,6 +562,10 @@
 
     // Update paywall pricing
     document.getElementById('paywallPrice').textContent = currentCourse.price;
+
+    // The written lesson comes from a separate file; wait for it so the first
+    // lesson does not render before its content exists.
+    if (window.AF_CONTENT_READY) { try { await window.AF_CONTENT_READY; } catch (e) {} }
 
     // Load progress
     loadProgress();
