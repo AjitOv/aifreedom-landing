@@ -14,6 +14,19 @@
    =================================================================== */
 
 const LESSON_VIDEOS = {
+  'prompt-eng': {
+    'pe-01': 'vyjAi84ZtIw',
+    'pe-02': 'RQJGe2pUVFw',
+    'pe-03': 'azLCsyTrw2k',
+    'pe-04': 'Fafi8j13ugs',
+    'pe-05': 'rlG755O0FKs',
+    'pe-06': 'a8vth05t20Q',
+    'pe-07': 'BG-FA17-rq8',
+    'pe-08': '6hBL6Frhd0A',
+    'pe-09': 'C-A1nieH02I',
+    'pe-10': 'A7VWScb9uxI',
+    'pe-11': 'r-WlDksNxuk',
+  },
   'ai-basics': {
     'ab-01': 'DxObASOUfHM',
     'ab-02': '14XZgfRzfKA',
