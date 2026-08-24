@@ -196,7 +196,7 @@
 
       <div class="pl-sidebar-footer">
         <button type="button" class="pl-sidebar-cta" id="sidebarCta" onclick="buyCourse()">
-          🔓 Unlock Full Course — ₹499
+          🔓 Unlock Full Course — <span id="sidebarCtaPrice">₹499</span>
         </button>
       </div>
     </aside>
@@ -211,18 +211,18 @@
       <button class="pl-paywall-close" id="paywallClose" onclick="closePaywall()">✕</button>
       <div class="pl-paywall-emoji">🔒</div>
       <h2 class="pl-paywall-title">This Lesson Is Locked</h2>
-      <p class="pl-paywall-desc">Enroll to unlock all 10 video lessons, the full written course, prompts and quizzes.</p>
+      <p class="pl-paywall-desc" id="paywallDesc">Enroll to unlock every video lesson, the full written course, prompts and quizzes.</p>
       <div class="pl-paywall-price" id="paywallPrice">₹499</div>
-      <div class="pl-paywall-original">₹1,999</div>
+      <div class="pl-paywall-original" id="paywallOriginal">₹1,999</div>
       <ul class="pl-paywall-features">
-        <li>All 10 video lessons unlock</li>
+        <li id="paywallLessonCount">All 10 video lessons unlock</li>
         <li>Lifetime access</li>
         <li>Certificate of completion</li>
         <li>Community access</li>
         <li>WhatsApp support group</li>
       </ul>
       <button type="button" class="pl-paywall-cta" id="paywallCta" onclick="buyCourse()">
-        🚀 Enroll Now — ₹499 Only
+        🚀 Enroll Now — <span id="paywallCtaPrice">₹499</span> Only
       </button>
       <div class="pl-restore">
         <span>Already purchased?</span>
@@ -247,7 +247,7 @@
   <!-- ====== STICKY CTA (Mobile) ====== -->
   <div class="pl-sticky-cta" id="stickyCta">
     <div class="pl-sticky-cta-inner">
-      <span class="pl-sticky-cta-text">Full course just <strong>₹499</strong></span>
+      <span class="pl-sticky-cta-text">Full course just <strong id="stickyPrice">₹499</strong></span>
       <button type="button" class="pl-sticky-cta-btn" onclick="buyCourse()">Enroll Now →</button>
     </div>
   </div>
@@ -561,8 +561,20 @@
     document.getElementById('navCourseName').textContent = currentCourse.name;
     document.getElementById('sidebarCourseName').textContent = currentCourse.name;
 
-    // Update paywall pricing
-    document.getElementById('paywallPrice').textContent = currentCourse.price;
+    // Update every price and lesson-count in the UI from the current course.
+    // These were hardcoded to AI Basics' ₹499 and 10 lessons, so any other
+    // course advertised the wrong price on its own paywall.
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+    const count = currentCourse.lessons.length;
+    setText('paywallPrice', currentCourse.price);
+    setText('paywallOriginal', currentCourse.originalPrice || '');
+    setText('paywallCtaPrice', currentCourse.price);
+    setText('sidebarCtaPrice', currentCourse.price);
+    setText('stickyPrice', currentCourse.price);
+    setText('paywallLessonCount', `All ${count} video lessons unlock`);
 
     // The written lesson comes from a separate file; wait for it so the first
     // lesson does not render before its content exists.
@@ -855,7 +867,7 @@
         'lessons plus the full written course, prompts, homework and quizzes.</div>' +
         '<button type="button" onclick="buyCourse()" style="margin-top:10px;padding:11px 26px;border:none;' +
         'border-radius:999px;background:linear-gradient(135deg,#00ff88,#00d4ff);color:#0a0a0f;' +
-        'font-weight:700;font-size:0.95rem;cursor:pointer;font-family:inherit;">Enrol now — ₹499</button>'
+        'font-weight:700;font-size:0.95rem;cursor:pointer;font-family:inherit;">Enrol now — ' + lcEsc(currentCourse.price) + '</button>'
       );
     }
     // Nothing of the paid lesson body is revealed here.
