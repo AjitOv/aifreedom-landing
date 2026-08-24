@@ -29,8 +29,8 @@ window.AF_CATALOGUE = [
     price: '₹699',
     originalPrice: '₹1,750',
     pricePaise: 69900,
-    lessonCount: 10,
-    lessonIds: ['pe-01','pe-02','pe-03','pe-04','pe-05','pe-06','pe-07','pe-08','pe-09','pe-10'],
+    lessonCount: 11,
+    lessonIds: ['pe-01','pe-02','pe-03','pe-04','pe-05','pe-06','pe-07','pe-08','pe-09','pe-10','pe-11'],
     salesUrl: '/courses/ai-prompt-engineering',
   },
   {

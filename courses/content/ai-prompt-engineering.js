@@ -1172,5 +1172,148 @@ window.AF_COURSE_CONTENT["prompt-eng"] = {
       { label: "AI Freelancing Masterclass", url: "/courses/ai-freelancing" },
       { label: "Notion — for a tagged prompt database", url: "https://www.notion.so" }
     ]
+  },
+
+  /* ------------------------------------------------------------------ */
+  "pe-11": {
+    readTime: "13 min read",
+    intro: "Everything so far has been about writing a better prompt. This lesson is about not needing to. A loop is a prompt that improves its own output by running against a standard, again and again, until it stops getting better. Once you can build one, quality stops depending on how good your first attempt was.",
+    sections: [
+      {
+        heading: "1. What a loop actually is",
+        body: [
+          "A loop is three steps repeated: generate, evaluate against a standard, refine. The important part is the middle one — evaluation needs a stated standard, or you are just asking for a rewrite and getting a lateral move.",
+          "One-shot prompting caps your output at whatever you thought of in the first attempt. A loop lets output exceed your own first draft, because each pass is measured against criteria rather than against your patience."
+        ],
+        callout: { type: "note", text: "The distinction that matters: 'make this better' is a rewrite request. 'Score this against these five criteria, then fix the two lowest' is a loop. Only the second one converges." }
+      },
+      {
+        heading: "2. The self-critique loop",
+        body: [
+          "The simplest loop and the one to learn first. Generate, then ask the model to attack its own output as a specific kind of sceptic, then rewrite addressing what it found.",
+          "It works because generating and evaluating are different tasks. A model producing text is optimising for plausibility; a model reviewing text can be pointed at weaknesses. Splitting them into separate turns genuinely finds problems the single pass missed."
+        ]
+      },
+      {
+        heading: "3. The scoring loop — where it gets powerful",
+        body: [
+          "Give the model an explicit rubric, have it score its own output out of 10 on each criterion, then fix only the lowest-scoring items. Repeat until the scores plateau.",
+          "The rubric is the whole technique. Vague criteria produce vague improvement. Write criteria you could argue about — 'contains at least one concrete number', not 'is engaging'."
+        ],
+        list: [
+          "Define 4-6 criteria specific to the job, not generic quality words",
+          "Ask for a score and a one-line justification for each — the justification is what forces honesty",
+          "Fix only the two weakest each round, so improvements do not fight each other",
+          "Stop when scores stop moving, not when they hit 10"
+        ]
+      },
+      {
+        heading: "4. Knowing when to stop",
+        body: [
+          "Loops do not improve forever. Typically pass two is a large gain, pass three smaller, and by pass four the model starts making changes for the sake of changing — often making things worse while reporting higher scores.",
+          "Two or three passes is the working range for most tasks. Set the limit before you start, and keep every version so you can go back when pass four turns out worse than pass three."
+        ],
+        callout: { type: "warn", text: "A model scoring its own work grades generously and drifts upward across passes. Rising scores are not proof of rising quality — judge the output yourself, or score in a fresh chat that has not seen the earlier attempts." }
+      },
+      {
+        heading: "5. Meta-prompting — have AI write the prompt",
+        body: [
+          "You do not have to write the prompt yourself. Describe the job and the output you want, and ask for the prompt that would produce it. Then run that prompt.",
+          "This is genuinely effective for tasks you do not do often, because the model has seen far more prompts for that task than you have. It is weaker where the job needs your specific context — it cannot invent what it does not know about your business."
+        ]
+      },
+      {
+        heading: "6. Techniques worth knowing now",
+        body: ["The field moves, but these have proved durable rather than faddish."],
+        list: [
+          "Structured output — ask for strict JSON with named fields. Removes parsing guesswork and makes output feed directly into automation.",
+          "Grounding — paste the source document and instruct 'answer only from the text above; if it is not there, say so'. The strongest single defence against hallucination.",
+          "Reasoning models — newer models think before answering by default. With those, heavy chain-of-thought instructions add little; give them the problem and the constraints instead.",
+          "Plan-then-execute — ask for a plan, approve it, then ask for execution. A loop where you are the evaluator.",
+          "Multi-model comparison — run the same prompt in two tools and take the better answer. Crude, and consistently effective.",
+          "Rubric reuse — a rubric you refine once becomes reusable across every similar task forever."
+        ]
+      },
+      {
+        heading: "7. What loops cannot do",
+        body: [
+          "A loop cannot add facts the model does not have. Iterating on an ungrounded claim produces a better-written wrong claim, not a right one.",
+          "A loop also cannot supply taste. It converges on the rubric you wrote — so if your criteria are mediocre, it will reliably converge on mediocre. The judgement in the rubric is still yours."
+        ]
+      }
+    ],
+    steps: [
+      { title: "Take a piece you already have", detail: "Something real that is decent but not finished." },
+      { title: "Run one self-critique pass", detail: "Use the critique prompt below. Note whether the criticism is specific or generic." },
+      { title: "Write a rubric", detail: "4-6 criteria for this specific job. Argue-able, not vague." },
+      { title: "Run the scoring loop three times", detail: "Keep every version. Do not delete pass two when pass three arrives." },
+      { title: "Judge it yourself", detail: "Pick the best version by reading. Compare your pick with the model's scores — they often disagree." },
+      { title: "Try meta-prompting", detail: "Describe a task you rarely do and ask for the prompt. Run it and see." },
+      { title: "Save the rubric", detail: "It is more reusable than the prompt. Into the library from lesson 10." }
+    ],
+    prompts: [
+      {
+        label: "Self-critique loop — the one to learn first",
+        text: "Here is your previous output:\n[paste]\n\nNow act as a hostile reviewer whose job is to find what is weak. Identify:\n1) The three weakest parts and exactly why.\n2) Any claim made without support.\n3) Anything a sceptical reader would push back on.\nBe blunt — do not soften it. Then rewrite the piece fixing everything you listed."
+      },
+      {
+        label: "Scoring loop with a rubric",
+        text: "Score the output below out of 10 on each criterion, with one line of justification each:\n1) [criterion — e.g. opens with a specific claim, not a generality]\n2) [criterion — e.g. contains at least two concrete numbers or names]\n3) [criterion — e.g. takes a clear position]\n4) [criterion — e.g. no filler sentences]\n5) [criterion — e.g. a reader could act on it today]\n\nOUTPUT: [paste]\n\nThen rewrite, improving ONLY the two lowest-scoring criteria. Do not touch what already scores well."
+      },
+      {
+        label: "Independent scoring — avoids self-flattery",
+        text: "You have not seen this before and have no stake in it. Score it out of 10 against these criteria: [list]. Give one line of justification per score, and state the single change that would most improve it.\n\n[paste output]"
+      },
+      {
+        label: "Meta-prompting — get the prompt written for you",
+        text: "I need to [describe the job]. The output should be [describe what good looks like]. My context: [who I am, who it is for].\nDo not do the task. Instead write me the best possible prompt for it — including role, context, format, constraints and an example — and explain in one line why each part is there."
+      },
+      {
+        label: "Grounded answering — the anti-hallucination pattern",
+        text: "Source document:\n[paste]\n\nAnswer only from the text above. If the answer is not in it, reply exactly: NOT IN SOURCE. Do not use outside knowledge. Quote the specific line supporting each claim you make.\n\nQuestion: [question]"
+      },
+      {
+        label: "Structured output for automation",
+        text: "[task]. Return strict JSON only — no prose before or after, no markdown fences. Schema:\n{\n  \"title\": string,\n  \"summary\": string (max 40 words),\n  \"score\": number 1-10,\n  \"tags\": string[],\n  \"needs_review\": boolean\n}\nIf a field cannot be filled, use null rather than inventing a value."
+      }
+    ],
+    mistakes: [
+      "Asking to 'make it better' with no standard — that is a rewrite, not a loop, and it moves sideways.",
+      "Looping five or six times and shipping the last version instead of the best one.",
+      "Trusting rising self-scores as proof of rising quality.",
+      "Writing vague rubric criteria and getting vague improvement.",
+      "Looping on facts instead of grounding them — you get a better-written wrong answer.",
+      "Deleting earlier versions, then having no way back when a later pass is worse."
+    ],
+    homework: {
+      task: "Take a real piece of your work. Write a 5-criterion rubric for it. Run three scoring passes, keeping every version. Then pick the best by reading it yourself and note where your judgement disagreed with the model's scores. Save the rubric to your library.",
+      deliverable: "A rubric, four versions, and one line on where the scores misled you",
+      time: "40 minutes"
+    },
+    quiz: [
+      {
+        q: "What separates a loop from a plain rewrite request?",
+        options: ["Running it more times", "Evaluating against a stated standard", "Using a better model", "A longer prompt"],
+        answer: 1,
+        why: "Without explicit criteria the model moves sideways. The rubric is what makes it converge."
+      },
+      {
+        q: "Self-scores climb with every pass. What does that tell you?",
+        options: ["Quality is improving", "Little — models grade their own work generously and drift upward", "The rubric is perfect", "You should keep looping"],
+        answer: 1,
+        why: "Judge the output yourself, or score it in a fresh chat that has not seen the earlier attempts."
+      },
+      {
+        q: "What is the strongest defence against hallucination?",
+        options: ["Asking politely", "Grounding — answer only from a supplied source, and say so when it is absent", "Looping more", "A longer prompt"],
+        answer: 1,
+        why: "Restricting the model to supplied text, with an explicit escape hatch, removes most invention."
+      }
+    ],
+    resources: [
+      { label: "ChatGPT", url: "https://chatgpt.com" },
+      { label: "Claude", url: "https://claude.ai" },
+      { label: "Google Gemini", url: "https://gemini.google.com" }
+    ]
   }
 };
