@@ -36,7 +36,7 @@ window.AF_CATALOGUE = [
   {
     id: 'ai-freelancing',
     name: 'AI Freelancing Masterclass',
-    tagline: 'The ₹50K/month freelancing blueprint.',
+    tagline: 'Build a freelance practice around AI services.',
     icon: '💼',
     price: '₹1,499',
     originalPrice: '₹3,750',
