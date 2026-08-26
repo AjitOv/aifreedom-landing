@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grant Course Access — Admin</title>
+  <!-- Never index this, and never follow from it. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0a0f;--card:#16161f;--bd:rgba(255,255,255,.1);--tx:#f0f0f5;--t2:#a0a0b8;--t3:#6b6b82;
+      --green:#00ff88;--blue:#00d4ff;--red:#ff4757;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--tx);
+      font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;min-height:100vh;}
+    .wrap{width:100%;max-width:560px}
+    h1{font-size:1.5rem;font-weight:800;margin:0 0 6px}
+    .sub{color:var(--t2);font-size:.92rem;line-height:1.6;margin:0 0 26px}
+    .card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:24px}
+    label{display:block;font-size:.8rem;font-weight:700;color:var(--t2);margin:16px 0 6px}
+    label:first-child{margin-top:0}
+    input,select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:10px;
+      color:#fff;font-size:.95rem;padding:12px 14px;outline:none;font-family:inherit}
+    input:focus,select:focus{border-color:var(--blue)}
+    .hint{font-size:.76rem;color:var(--t3);margin-top:5px;line-height:1.5}
+    button{width:100%;margin-top:22px;padding:14px;border:none;border-radius:12px;font-size:1rem;
+      font-weight:700;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,#00ff88,#00d4ff);color:#0a0a0f}
+    button:disabled{opacity:.6;cursor:default}
+    .msg{display:none;margin-top:18px;padding:12px 14px;border-radius:10px;font-size:.88rem;line-height:1.6}
+    .msg.err{display:block;background:rgba(255,71,87,.12);border:1px solid rgba(255,71,87,.3);color:#ffb3ba}
+    .msg.ok{display:block;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#8ff0c0}
+    .link{display:none;margin-top:14px}
+    .link.show{display:block}
+    .link textarea{width:100%;height:96px;background:#05050c;border:1px solid var(--bd);border-radius:10px;
+      color:#d7d9ec;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.8rem;padding:12px;resize:vertical}
+    .copy{margin-top:10px;padding:10px;background:rgba(255,255,255,.07);border:1px solid var(--bd);
+      color:var(--t2);border-radius:10px;font-weight:700;font-size:.85rem}
+    .warn{margin-top:24px;padding:12px 14px;border-radius:10px;font-size:.8rem;line-height:1.6;
+      background:rgba(255,159,67,.08);border:1px solid rgba(255,159,67,.3);color:#f7e2c8}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Grant course access</h1>
+    <p class="sub">For customers who paid outside Razorpay — UPI, WhatsApp, bank transfer or cash.
+       Anyone who paid <em>through the site</em> should use “Restore my access” with their Payment ID instead.</p>
+
+    <div class="card">
+      <label for="secret">Admin secret</label>
+      <input id="secret" type="password" placeholder="ADMIN_SECRET" autocomplete="off">
+      <div class="hint">Set in Vercel → Settings → Environment Variables. Never stored in this page.</div>
+
+      <label for="course">Course</label>
+      <select id="course">
+        <option value="ai-basics">AI Basics — Zero to Hero (₹499)</option>
+        <option value="prompt-eng">AI Prompt Engineering (₹699)</option>
+        <option value="ai-freelancing">AI Freelancing Masterclass (₹1,499)</option>
+        <option value="earn-ai">AI Se Kamao (₹2,999)</option>
+        <option value="ai-trading">AI Trading Mastery (₹2,999)</option>
+      </select>
+
+      <label for="email">Customer email <span style="font-weight:400;color:var(--t3)">(optional)</span></label>
+      <input id="email" type="email" placeholder="buyer@example.com" autocomplete="off">
+
+      <label for="note">Note <span style="font-weight:400;color:var(--t3)">(optional — your own record)</span></label>
+      <input id="note" type="text" placeholder="UPI 24 Aug, ₹499" autocomplete="off" maxlength="40">
+      <div class="hint">Stored inside the token so a manual grant is always distinguishable from a purchase.</div>
+
+      <button id="go" type="button">Generate access link</button>
+      <div class="msg" id="msg"></div>
+
+      <div class="link" id="linkBox">
+        <label for="out">Send this link to the customer</label>
+        <textarea id="out" readonly></textarea>
+        <button class="copy" id="copy" type="button">Copy link</button>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>Treat the link like a password.</strong> Anyone who opens it gets the course.
+      Send it to one person, privately. There is no database here, so keep your own record
+      of who you granted and why — the Note field is written into the token to help.
+    </div>
+  </div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const show = (t, k) => { const m = $('msg'); m.textContent = t; m.className = 'msg ' + k; };
+
+$('go').onclick = async () => {
+  const secret = $('secret').value.trim();
+  const courseId = $('course').value;
+  const email = $('email').value.trim();
+  const note = $('note').value.trim();
+
+  if (!secret) return show('Enter the admin secret.', 'err');
+
+  $('go').disabled = true;
+  $('go').textContent = 'Generating…';
+  $('msg').className = 'msg';
+  $('linkBox').className = 'link';
+
+  try {
+    const res = await fetch('/api/admin-grant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret, courseId, email, note }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      show(data.error || 'Could not generate a link.', 'err');
+    } else {
+      $('out').value = data.link;
+      $('linkBox').className = 'link show';
+      show('Link created for ' + courseId + (data.email ? ' → ' + data.email : '') + '.', 'ok');
+    }
+  } catch (e) {
+    show('Could not reach the server. Check your connection.', 'err');
+  }
+  $('go').disabled = false;
+  $('go').textContent = 'Generate access link';
+};
+
+$('copy').onclick = () => {
+  const ta = $('out');
+  ta.select();
+  navigator.clipboard.writeText(ta.value)
+    .then(() => { $('copy').textContent = '✓ Copied'; setTimeout(() => $('copy').textContent = 'Copy link', 1600); })
+    .catch(() => { document.execCommand('copy'); });
+};
+</script>
+</body>
+</html>

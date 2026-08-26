@@ -548,9 +548,31 @@
     const courseId = params.get('course') || 'ai-basics';
     currentCourse = COURSES[courseId] || COURSES['ai-basics'];
 
-    // Check paid entitlement against the server. There is deliberately no
-    // "?paid=1" shortcut any more — that query parameter granted full access
-    // to anyone who typed it into the address bar.
+    // A ?grant=<token> link from /api/admin-grant, for buyers who paid outside
+    // Razorpay. Unlike the old "?paid=1" this is NOT a bypass: the token is
+    // signed server-side and is verified by /api/check-access before being
+    // stored, so a made-up value unlocks nothing.
+    const grant = params.get('grant');
+    if (grant) {
+      const valid = await fetch('/api/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: grant, courseId: currentCourse.id }),
+      }).then((r) => r.json()).catch(() => null);
+
+      if (valid && valid.valid) {
+        storeAccess(currentCourse.id, grant, { email: valid.email, source: 'admin-grant' });
+      }
+      // Drop the token from the address bar either way, so it is not left in
+      // history or copied out of the URL when the page is shared.
+      try {
+        const clean = new URL(location.href);
+        clean.searchParams.delete('grant');
+        history.replaceState({}, '', clean.toString());
+      } catch (e) {}
+    }
+
+    // Check paid entitlement against the server.
     isPaid = await checkPaidEntitlement(currentCourse.id);
 
     // Compute module order (used by unlock logic)
