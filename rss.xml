@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>AI Freedom Institute — Blog</title>
+<link>https://www.aifreedom.in/blog/</link>
+<atom:link href="https://www.aifreedom.in/rss.xml" rel="self" type="application/rss+xml"/>
+<description>Practical AI guides, tutorials and case studies for Indian students, professionals and business owners. Written in simple Hinglish by Ajit (AI Finance Guy).</description>
+<language>en-IN</language>
+<copyright>© 2026 AI Freedom Institute. All Rights Reserved.</copyright>
+<managingEditor>info@aifreedom.in (Ajit)</managingEditor>
+<webMaster>info@aifreedom.in (Ajit)</webMaster>
+<lastBuildDate>Sun, 30 Aug 2026 10:00:00 +0530</lastBuildDate>
+<generator>Static site on Vercel</generator>
+<image>
+<url>https://www.aifreedom.in/assets/images/logo.png</url>
+<title>AI Freedom Institute</title>
+<link>https://www.aifreedom.in/</link>
+</image>
+
+<item>
+<title>AI For Teachers India — Lesson Plan Se Question Paper Tak (2026)</title>
+<link>https://www.aifreedom.in/blog/ai-for-teachers-india</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-for-teachers-india</guid>
+<pubDate>Sun, 30 Aug 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI for Schools</category>
+<description>CBSE is bringing AI into the curriculum from Class 3. Three practical workflows for Indian teachers — lesson plans, blueprint-based question papers, and report card remarks — with copy-paste prompts.</description>
+</item>
+
+<item>
+<title>AI for Small Business Owners India — 7 Real Use Cases (2026)</title>
+<link>https://www.aifreedom.in/blog/ai-for-small-business-india</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-for-small-business-india</guid>
+<pubDate>Fri, 08 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI for Business</category>
+<description>7 specific AI workflows for Indian SMBs — social media, WhatsApp support, email marketing, product photos, local SEO, GST helper, hiring. Real time and cost savings.</description>
+</item>
+
+<item>
+<title>AI Career Roadmap India 2026 — Salary, Skills, Pathways</title>
+<link>https://www.aifreedom.in/blog/ai-career-roadmap-india</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-career-roadmap-india</guid>
+<pubDate>Thu, 07 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI Career</category>
+<description>7 top AI roles in India 2026 with realistic salary ranges, required skills, and 4 entry pathways for students, tech professionals, non-tech workers, and entrepreneurs.</description>
+</item>
+
+<item>
+<title>AI Se Resume Kaise Banaye — 10 Min Mein Job-Ready CV (2026)</title>
+<link>https://www.aifreedom.in/blog/ai-se-resume-kaise-banaye</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-se-resume-kaise-banaye</guid>
+<pubDate>Wed, 06 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI for Career</category>
+<description>4-step process to build an ATS-friendly resume with ChatGPT in 10 minutes. 5 ready-to-use prompts, 3 mistakes to avoid, free template links.</description>
+</item>
+
+<item>
+<title>ChatGPT vs Gemini vs Claude — Indian Users Ke Liye Best AI Kaunsa? (2026)</title>
+<link>https://www.aifreedom.in/blog/chatgpt-vs-gemini-vs-claude-india</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/chatgpt-vs-gemini-vs-claude-india</guid>
+<pubDate>Tue, 05 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI Tools</category>
+<description>Detailed comparison of ChatGPT, Gemini, and Claude for Indian users — pricing, Hindi support, free limits, when to use each.</description>
+</item>
+
+<item>
+<title>Top 10 Free AI Tools Har Indian Ke Liye (2026 Updated)</title>
+<link>https://www.aifreedom.in/blog/top-10-free-ai-tools-india</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/top-10-free-ai-tools-india</guid>
+<pubDate>Mon, 04 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI Tools</category>
+<description>10 free AI tools every Indian student, professional, and business owner should use in 2026 — ChatGPT, Gemini, Perplexity, Canva AI, NotebookLM, and more.</description>
+</item>
+
+<item>
+<title>AI Se Paise Kaise Kamayein? — 5 Real Tarike (2026 Mein Real Income)</title>
+<link>https://www.aifreedom.in/blog/ai-se-paise-kaise-kamaye</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-se-paise-kaise-kamaye</guid>
+<pubDate>Fri, 01 May 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI Earning</category>
+<description>5 proven AI income methods — freelancing, agency, faceless YouTube, copywriting, micro-SaaS. Real numbers, honest reality check, and a decision tree.</description>
+</item>
+
+<item>
+<title>ChatGPT Kaise Use Karein? — Complete Step-by-Step Guide (2026)</title>
+<link>https://www.aifreedom.in/blog/chatgpt-kaise-use-karein-step-by-step</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/chatgpt-kaise-use-karein-step-by-step</guid>
+<pubDate>Mon, 28 Apr 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>ChatGPT Tutorials</category>
+<description>Account setup, 6-part prompt formula, 10 ready-to-copy prompts, common mistakes, and free vs Plus comparison — all in simple Hinglish.</description>
+</item>
+
+<item>
+<title>AI Kya Hai? — Beginners Ke Liye Complete Hindi Guide (2026)</title>
+<link>https://www.aifreedom.in/blog/ai-kya-hai-hindi-guide</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/ai-kya-hai-hindi-guide</guid>
+<pubDate>Fri, 25 Apr 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI Basics</category>
+<description>AI ka matlab, kaam, types, aur 8 daily Indian examples. Why every Indian student and professional should learn AI in 2026 — in simple Hinglish.</description>
+</item>
+
+<item>
+<title>How to Use ChatGPT for Studies in India — Complete 2026 Guide</title>
+<link>https://www.aifreedom.in/blog/chatgpt-for-indian-students</link>
+<guid isPermaLink="true">https://www.aifreedom.in/blog/chatgpt-for-indian-students</guid>
+<pubDate>Thu, 24 Apr 2026 10:00:00 +0530</pubDate>
+<author>info@aifreedom.in (Ajit)</author>
+<category>AI for Students</category>
+<description>Practical step-by-step guide to using ChatGPT for studies in India — notes, revision, essays, project prep, exam strategy. Honest, not cheating. Written in simple Hinglish.</description>
+</item>
+
+</channel>
+</rss>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI Freedom Institute — Blog</title>
     <link>https://www.aifreedom.in/blog/</link>
