@@ -1,0 +1,55 @@
+/* Shared by the homepage and blog footers. */
+.af-preferred-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: left;
+}
+
+.af-preferred-source strong {
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.af-preferred-source p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.af-preferred-source a.af-preferred-source__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: #fff;
+  color: #0a0a0f;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+}
+
+.af-preferred-source a.af-preferred-source__link:hover {
+  background: #e7f5ef;
+  color: #0a0a0f;
+}
+
+.af-preferred-source a.af-preferred-source__link:focus-visible {
+  outline: 3px solid #4ade80;
+  outline-offset: 4px;
+}
